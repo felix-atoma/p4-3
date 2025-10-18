@@ -1,0 +1,1724 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apprendre le Français - Ghana</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f4f4f4 0%, #e8e8e8 100%);
+            overflow-x: hidden;
+        }
+
+        /* Ghana Flag Colors */
+        .ghana-stripe {
+            height: 8px;
+            background: linear-gradient(to right, #CE1126 0%, #CE1126 33%, #FCD116 33%, #FCD116 66%, #006B3F 66%, #006B3F 100%);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        header {
+            background: linear-gradient(135deg, #006B3F 0%, #005a33 100%);
+            color: white;
+            padding: 40px 20px 30px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            position: relative;
+            margin-top: 8px;
+        }
+
+        header::before {
+            content: "⭐";
+            position: absolute;
+            font-size: 80px;
+            opacity: 0.1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #FCD116;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        nav {
+            background: #CE1126;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 8px;
+            z-index: 999;
+        }
+
+        .nav-btn {
+            background: white;
+            color: #CE1126;
+            border: none;
+            padding: 12px 25px;
+            margin: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+            background: #FCD116;
+        }
+
+        .nav-btn.active {
+            background: #006B3F;
+            color: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        }
+
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .vocab-item {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%);
+            border: 3px solid #FCD116;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vocab-item::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(252, 209, 22, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .vocab-item:hover::before {
+            left: 100%;
+        }
+
+        .vocab-item:hover {
+            transform: scale(1.05);
+            border-color: #CE1126;
+            box-shadow: 0 8px 20px rgba(206, 17, 38, 0.3);
+        }
+
+        .vocab-item.clicked {
+            animation: pulse 0.5s ease;
+        }
+
+        .vocab-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .vocab-french {
+            font-size: 24px;
+            font-weight: bold;
+            color: #006B3F;
+            margin: 10px 0;
+        }
+
+        .vocab-english {
+            font-size: 18px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .speaker-icon {
+            display: inline-block;
+            margin-left: 10px;
+            color: #CE1126;
+            animation: speaker-pulse 2s infinite;
+        }
+
+        .quiz-container {
+            background: linear-gradient(135deg, #FCD116 0%, #f4c700 100%);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+        }
+
+        .quiz-question {
+            font-size: 24px;
+            color: #006B3F;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 15px;
+        }
+
+        .quiz-option {
+            background: white;
+            border: 3px solid #006B3F;
+            border-radius: 10px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 18px;
+        }
+
+        .quiz-option:hover {
+            background: #006B3F;
+            color: white;
+            transform: translateX(10px);
+        }
+
+        .quiz-option.correct {
+            background: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+
+        .quiz-option.incorrect {
+            background: #dc3545;
+            color: white;
+            border-color: #dc3545;
+        }
+
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            max-width: 500px;
+            margin: 30px auto;
+        }
+
+        .game-card {
+            background: white;
+            border: 3px solid #006B3F;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+            color: #006B3F;
+        }
+
+        .game-card:hover {
+            background: #FCD116;
+            transform: scale(1.05);
+        }
+
+        .game-card.flipped {
+            background: #CE1126;
+            color: white;
+        }
+
+        .score-board {
+            background: linear-gradient(135deg, #CE1126 0%, #a01020 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            margin: 20px 0;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background: #006B3F;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .btn-primary:hover {
+            background: #005a33;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: #e0e0e0;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #006B3F 0%, #FCD116 50%, #CE1126 100%);
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* New styles for additional content */
+        .phrase-container {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 5px solid #006B3F;
+        }
+
+        .phrase-french {
+            font-size: 20px;
+            font-weight: bold;
+            color: #006B3F;
+            margin-bottom: 8px;
+        }
+
+        .phrase-english {
+            font-size: 16px;
+            color: #555;
+            font-style: italic;
+        }
+
+        .dialogue-container {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .dialogue-line {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .dialogue-speaker {
+            font-weight: bold;
+            color: #CE1126;
+        }
+
+        .dialogue-text {
+            margin-left: 10px;
+        }
+
+        .hangman-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .hangman-drawing {
+            font-family: monospace;
+            font-size: 18px;
+            line-height: 1.5;
+            margin: 20px 0;
+            color: #006B3F;
+        }
+
+        .hangman-word {
+            font-size: 32px;
+            letter-spacing: 10px;
+            font-weight: bold;
+            margin: 20px 0;
+            color: #CE1126;
+        }
+
+        .hangman-letters {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .hangman-letter {
+            width: 40px;
+            height: 40px;
+            background: #FCD116;
+            border: 2px solid #006B3F;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .hangman-letter:hover {
+            background: #006B3F;
+            color: white;
+        }
+
+        .hangman-letter.disabled {
+            background: #ccc;
+            color: #777;
+            cursor: not-allowed;
+        }
+
+        .flashcard-container {
+            perspective: 1000px;
+            width: 300px;
+            height: 200px;
+            margin: 30px auto;
+        }
+
+        .flashcard {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            cursor: pointer;
+        }
+
+        .flashcard.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-front, .flashcard-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .flashcard-front {
+            background: #006B3F;
+            color: white;
+        }
+
+        .flashcard-back {
+            background: #FCD116;
+            color: #006B3F;
+            transform: rotateY(180deg);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes speaker-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .celebration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            animation: confetti-fall 3s linear;
+        }
+
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        .house-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .room-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 3px solid #006B3F;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .room-title {
+            font-size: 24px;
+            color: #CE1126;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8em; }
+            .vocab-grid { grid-template-columns: 1fr; }
+            .house-grid { grid-template-columns: 1fr; }
+            .game-board { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <div class="ghana-stripe"></div>
+    
+    <header>
+        <h1>🇬🇭 Apprendre le Français 🇫🇷</h1>
+        <p class="subtitle">Learn French the Ghanaian Way!</p>
+    </header>
+
+    <nav>
+        <button class="nav-btn active" onclick="showSection('home')">🏠 Accueil</button>
+        <button class="nav-btn" onclick="showSection('house')">🏡 Chez Moi</button>
+        <button class="nav-btn" onclick="showSection('school')">🎒 À l'École</button>
+        <button class="nav-btn" onclick="showSection('market')">🛒 Au Marché</button>
+        <button class="nav-btn" onclick="showSection('greetings')">👋 Salutations</button>
+        <button class="nav-btn" onclick="showSection('quiz')">🎯 Quiz</button>
+        <button class="nav-btn" onclick="showSection('games')">🎮 Jeux</button>
+    </nav>
+
+    <div class="container">
+        <!-- Home Section -->
+        <div id="home" class="section active">
+            <div class="card">
+                <h2 style="color: #006B3F; font-size: 2em; margin-bottom: 20px;">Bienvenue! Welcome! Akwaaba!</h2>
+                <p style="font-size: 1.2em; line-height: 1.8; color: #555;">
+                    This interactive platform helps Ghanaian students learn French through fun activities, 
+                    audio pronunciations, and engaging games. Click on any word to hear its pronunciation!
+                </p>
+                <div style="margin-top: 30px; text-align: center;">
+                    <button class="btn-primary" onclick="showSection('greetings')">Start Learning! 🚀</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 style="color: #CE1126; margin-bottom: 15px;">📚 Learning Units:</h3>
+                <ul style="font-size: 1.1em; line-height: 2; color: #555;">
+                    <li><strong>Unité 1:</strong> Salutations (Greetings) - Learn how to greet people</li>
+                    <li><strong>Unité 2:</strong> Chez Moi (My House) - Learn about rooms and household items</li>
+                    <li><strong>Unité 3:</strong> À l'École (At School) - Discover school vocabulary</li>
+                    <li><strong>Unité 4:</strong> Au Marché (At the Market) - Learn shopping vocabulary</li>
+                    <li><strong>Interactive Quizzes</strong> - Test your knowledge</li>
+                    <li><strong>Memory Games & Hangman</strong> - Practice and have fun!</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Greetings Section -->
+        <div id="greetings" class="section">
+            <div class="card">
+                <h2 style="color: #006B3F; font-size: 2em; margin-bottom: 20px;">👋 Unité 1: Salutations</h2>
+                <p style="font-size: 1.1em; margin-bottom: 20px;">Click on each phrase to hear the pronunciation!</p>
+
+                <h3 style="color: #CE1126; margin: 30px 0 20px;">📝 Basic Greetings:</h3>
+                <div class="vocab-grid">
+                    <div class="vocab-item" onclick="playAudio('bonjour')">
+                        <span class="vocab-icon">🌞</span>
+                        <div class="vocab-french">Bonjour <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-english">Good morning / Hello</div>
+                    </div>
+                    <div class="vocab-item" onclick="playAudio('bonsoir')">
+                        <span class="vocab-icon">🌙</span>
+                        <div class="vocab-french">Bonsoir <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-english">Good evening</div>
+                    </div>
+                    <div class="vocab-item" onclick="playAudio('bonne_nuit')">
+                        <span class="vocab-icon">😴</span>
+                        <div class="vocab-french">Bonne nuit <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-english">Good night</div>
+                    </div>
+                    <div class="vocab-item" onclick="playAudio('au_revoir')">
+                        <span class="vocab-icon">👋</span>
+                        <div class="vocab-french">Au revoir <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-english">Goodbye</div>
+                    </div>
+                    <div class="vocab-item" onclick="playAudio('a_bientot')">
+                        <span class="vocab-icon">⏰</span>
+                        <div class="vocab-french">À bientôt <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-english">See you soon</div>
+                    </div>
+                    <div class="vocab-item" onclick="playAudio('comment_ca_va')">
+                        <span class="vocab-icon">🙂</span>
+                        <div class="vocab-french">Comment ça va? <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-english">How are you?</div>
+                    </div>
+                </div>
+
+                <h3 style="color: #CE1126; margin: 30px 0 20px;">🗣️ Useful Phrases:</h3>
+                <div class="vocab-grid">
+                    <div class="vocab-item" onclick="playAudio('je_m_appelle')">
+                        <span class="vocab-icon">👤</span>
+                        <div class="vocab-french">Je m'appelle... <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-english">My name is...</div>
+                    </div>
+                    <div class="vocab-item" onclick="playAudio('comment_t_appelles_tu')">
+                        <span class="vocab-icon">❓</span>
+                        <div class="vocab-french">Comment t'appelles-tu? <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-english">What's your name?</div>
+                    </div>
+                    <div class="vocab-item" onclick="playAudio('enchanté')">
+                        <span class="vocab-icon">🤝</span>
+                        <div class="vocab-french">Enchanté(e) <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-english">Nice to meet you</div>
+                    </div>
+                    <div class="vocab-item" onclick="playAudio('s_il_vous_plait')">
+                        <span class="vocab-icon">🙏</span>
+                        <div class="vocab-french">S'il vous plaît <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-english">Please</div>
+                    </div>
+                    <div class="vocab-item" onclick="playAudio('merci')">
+                        <span class="vocab-icon">😊</span>
+                        <div class="vocab-french">Merci <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-english">Thank you</div>
+                    </div>
+                    <div class="vocab-item" onclick="playAudio('de_rien')">
+                        <span class="vocab-icon">😌</span>
+                        <div class="vocab-french">De rien <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-english">You're welcome</div>
+                    </div>
+                </div>
+
+                <h3 style="color: #CE1126; margin: 30px 0 20px;">💬 Sample Dialogue:</h3>
+                <div class="dialogue-container">
+                    <div class="dialogue-line">
+                        <span class="dialogue-speaker">Pierre:</span>
+                        <span class="dialogue-text">Bonjour! Comment ça va?</span>
+                        <button class="btn-primary" onclick="playAudio('bonjour_comment_ca_va')" style="padding: 5px 10px; font-size: 14px; margin-left: 10px;">🔊</button>
+                    </div>
+                    <div class="dialogue-line">
+                        <span class="dialogue-speaker">Marie:</span>
+                        <span class="dialogue-text">Bonjour! Ça va bien, merci. Et toi?</span>
+                        <button class="btn-primary" onclick="playAudio('bonjour_ca_va_bien')" style="padding: 5px 10px; font-size: 14px; margin-left: 10px;">🔊</button>
+                    </div>
+                    <div class="dialogue-line">
+                        <span class="dialogue-speaker">Pierre:</span>
+                        <span class="dialogue-text">Très bien, merci. Je m'appelle Pierre. Comment t'appelles-tu?</span>
+                        <button class="btn-primary" onclick="playAudio('je_m_appelle_pierre')" style="padding: 5px 10px; font-size: 14px; margin-left: 10px;">🔊</button>
+                    </div>
+                    <div class="dialogue-line">
+                        <span class="dialogue-speaker">Marie:</span>
+                        <span class="dialogue-text">Je m'appelle Marie. Enchantée!</span>
+                        <button class="btn-primary" onclick="playAudio('je_m_appelle_marie')" style="padding: 5px 10px; font-size: 14px; margin-left: 10px;">🔊</button>
+                    </div>
+                    <div class="dialogue-line">
+                        <span class="dialogue-speaker">Pierre:</span>
+                        <span class="dialogue-text">Enchanté! Au revoir, Marie!</span>
+                        <button class="btn-primary" onclick="playAudio('au_revoir_marie')" style="padding: 5px 10px; font-size: 14px; margin-left: 10px;">🔊</button>
+                    </div>
+                    <div class="dialogue-line">
+                        <span class="dialogue-speaker">Marie:</span>
+                        <span class="dialogue-text">À bientôt, Pierre!</span>
+                        <button class="btn-primary" onclick="playAudio('a_bientot_pierre')" style="padding: 5px 10px; font-size: 14px; margin-left: 10px;">🔊</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- House Section -->
+        <div id="house" class="section">
+            <div class="card">
+                <h2 style="color: #006B3F; font-size: 2em; margin-bottom: 20px;">🏡 Unité 2: Chez Moi</h2>
+                <p style="font-size: 1.1em; margin-bottom: 20px;">Click on each item to hear the pronunciation!</p>
+
+                <div class="house-grid">
+                    <div class="room-section">
+                        <div class="room-title">🚿 LA SALLE DE BAIN</div>
+                        <div class="vocab-grid">
+                            <div class="vocab-item" onclick="playAudio('lavabo')">
+                                <span class="vocab-icon">🚰</span>
+                                <div class="vocab-french">Le lavabo <span class="speaker-icon">🔊</span></div>
+                                <div class="vocab-english">The sink</div>
+                            </div>
+                            <div class="vocab-item" onclick="playAudio('baignoire')">
+                                <span class="vocab-icon">🛁</span>
+                                <div class="vocab-french">La baignoire <span class="speaker-icon">🔊</span></div>
+                                <div class="vocab-english">The bathtub</div>
+                            </div>
+                            <div class="vocab-item" onclick="playAudio('glace')">
+                                <span class="vocab-icon">🪞</span>
+                                <div class="vocab-french">La glace <span class="speaker-icon">🔊</span></div>
+                                <div class="vocab-english">The mirror</div>
+                            </div>
+                            <div class="vocab-item" onclick="playAudio('serviette')">
+                                <span class="vocab-icon">🧻</span>
+                                <div class="vocab-french">La serviette <span class="speaker-icon">🔊</span></div>
+                                <div class="vocab-english">The towel</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="room-section">
+                        <div class="room-title">🛏️ LA CHAMBRE</div>
+                        <div class="vocab-grid">
+                            <div class="vocab-item" onclick="playAudio('lit')">
+                                <span class="vocab-icon">🛏️</span>
+                                <div class="vocab-french">Le lit <span class="speaker-icon">🔊</span></div>
+                                <div class="vocab-english">The bed</div>
+                            </div>
+                            <div class="vocab-item" onclick="playAudio('armoire')">
+                                <span class="vocab-icon">🚪</span>
+                                <div class="vocab-french">L'armoire <span class="speaker-icon">🔊</span></div>
+                                <div class="vocab-english">The wardrobe</div>
+                            </div>
+                            <div class="vocab-item" onclick="playAudio('oreiller')">
+                                <span class="vocab-icon">🛌</span>
+                                <div class="vocab-french">L'oreiller <span class="speaker-icon">🔊</span></div>
+                                <div class="vocab-english">The pillow</div>
+                            </div>
+                            <div class="vocab-item" onclick="playAudio('lampe')">
+                                <span class="vocab-icon">💡</span>
+                                <div class="vocab-french">La lampe <span class="speaker-icon">🔊</span></div>
+                                <div class="vocab-english">The lamp</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="room-section">
+                        <div class="room-title">🍳 LA CUISINE</div>
+                        <div class="vocab-grid">
+                            <div class="vocab-item" onclick="playAudio('cuisiniere')">
+                                <span class="vocab-icon">🔥</span>
+                                <div class="vocab-french">La cuisinière <span class="speaker-icon">🔊</span></div>
+                                <div class="vocab-english">The stove</div>
+                            </div>
+                            <div class="vocab-item" onclick="playAudio('four')">
+                                <span class="vocab-icon">🔲</span>
+                                <div class="vocab-french">Le four <span class="speaker-icon">🔊</span></div>
+                                <div class="vocab-english">The oven</div>
+                            </div>
+                            <div class="vocab-item" onclick="playAudio('casserole')">
+                                <span class="vocab-icon">🍳</span>
+                                <div class="vocab-french">La casserole <span class="speaker-icon">🔊</span></div>
+                                <div class="vocab-english">The pot</div>
+                            </div>
+                            <div class="vocab-item" onclick="playAudio('assiette')">
+                                <span class="vocab-icon">🍽️</span>
+                                <div class="vocab-french">L'assiette <span class="speaker-icon">🔊</span></div>
+                                <div class="vocab-english">The plate</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="room-section">
+                        <div class="room-title">🛋️ LE SALON</div>
+                        <div class="vocab-grid">
+                            <div class="vocab-item" onclick="playAudio('television')">
+                                <span class="vocab-icon">📺</span>
+                                <div class="vocab-french">La télévision <span class="speaker-icon">🔊</span></div>
+                                <div class="vocab-english">The television</div>
+                            </div>
+                            <div class="vocab-item" onclick="playAudio('fauteuil')">
+                                <span class="vocab-icon">🪑</span>
+                                <div class="vocab-french">Le fauteuil <span class="speaker-icon">🔊</span></div>
+                                <div class="vocab-english">The armchair</div>
+                            </div>
+                            <div class="vocab-item" onclick="playAudio('table')">
+                                <span class="vocab-icon">🪑</span>
+                                <div class="vocab-french">La table <span class="speaker-icon">🔊</span></div>
+                                <div class="vocab-english">The table</div>
+                            </div>
+                            <div class="vocab-item" onclick="playAudio('chaise')">
+                                <span class="vocab-icon">🪑</span>
+                                <div class="vocab-french">La chaise <span class="speaker-icon">🔊</span></div>
+                                <div class="vocab-english">The chair</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- School Section -->
+        <div id="school" class="section">
+            <div class="card">
+                <h2 style="color: #006B3F; font-size: 2em; margin-bottom: 20px;">🎒 Unité 3: À l'École</h2>
+                
+                <h3 style="color: #CE1126; margin: 30px 0 20px;">📚 Dans la salle de classe:</h3>
+                <div class="vocab-grid">
+                    <div class="vocab-item" onclick="playAudio('livre')">
+                        <span class="vocab-icon">📖</span>
+                        <div class="vocab-french">Le livre <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-english">The book</div>
+                    </div>
+                    <div class="vocab-item" onclick="playAudio('cahier')">
+                        <span class="vocab-icon">📓</span>
+                        <div class="vocab-french">Le cahier <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-english">The notebook</div>
+                    </div>
+                    <div class="vocab-item" onclick="playAudio('crayon')">
+                        <span class="vocab-icon">✏️</span>
+                        <div class="vocab-french">Le crayon <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-english">The pencil</div>
+                    </div>
+                    <div class="vocab-item" onclick="playAudio('stylo')">
+                        <span class="vocab-icon">🖊️</span>
+                        <div class="vocab-french">Le stylo <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-english">The pen</div>
+                    </div>
+                    <div class="vocab-item" onclick="playAudio('gomme')">
+                        <span class="vocab-icon">🧽</span>
+                        <div class="vocab-french">La gomme <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-english">The eraser</div>
+                    </div>
+                    <div class="vocab-item" onclick="playAudio('regle')">
+                        <span class="vocab-icon">📏</span>
+                        <div class="vocab-french">La règle <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-english">The ruler</div>
+                    </div>
+                    <div class="vocab-item" onclick="playAudio('cartable')">
+                        <span class="vocab-icon">🎒</span>
+                        <div class="vocab-french">Le cartable <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-english">The schoolbag</div>
+                    </div>
+                    <div class="vocab-item" onclick="playAudio('tableau')">
+                        <span class="vocab-icon">⬛</span>
+                        <div class="vocab-french">Le tableau <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-english">The blackboard</div>
+                    </div>
+                </div>
+
+                <h3 style="color: #CE1126; margin: 30px 0 20px;">🏫 Les endroits à l'école:</h3>
+                <div class="vocab-grid">
+                    <div class="vocab-item" onclick="playAudio('bibliotheque')">
+                        <span class="vocab-icon">📚</span>
+                        <div class="vocab-french">La bibliothèque <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-english">The library</div>
+                    </div>
+                    <div class="vocab-item" onclick="playAudio('cantine')">
+                        <span class="vocab-icon">🍽️</span>
+                        <div class="vocab-french">La cantine <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-english">The cafeteria</div>
+                    </div>
+                    <div class="vocab-item" onclick="playAudio('cour')">
+                        <span class="vocab-icon">🏃</span>
+                        <div class="vocab-french">La cour de récréation <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-english">The playground</div>
+                    </div>
+                    <div class="vocab-item" onclick="playAudio('terrain')">
+                        <span class="vocab-icon">⚽</span>
+                        <div class="vocab-french">Le terrain de sport <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-english">The sports field</div>
+                    </div>
+                </div>
+
+                <h3 style="color: #CE1126; margin: 30px 0 20px;">👨‍🏫 Les personnes à l'école:</h3>
+                <div class="vocab-grid">
+                    <div class="vocab-item" onclick="playAudio('professeur')">
+                        <span class="vocab-icon">👨‍🏫</span>
+                        <div class="vocab-french">Le professeur <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-english">The teacher</div>
+                    </div>
+                    <div class="vocab-item" onclick="playAudio('eleve')">
+                        <span class="vocab-icon">👨‍🎓</span>
+                        <div class="vocab-french">L'élève <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-english">The student</div>
+                    </div>
+                    <div class="vocab-item" onclick="playAudio('directeur')">
+                        <span class="vocab-icon">👨‍💼</span>
+                        <div class="vocab-french">Le directeur <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-english">The principal</div>
+                    </div>
+                    <div class="vocab-item" onclick="playAudio('surveillant')">
+                        <span class="vocab-icon">👮</span>
+                        <div class="vocab-french">Le surveillant <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-english">The supervisor</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Market Section -->
+        <div id="market" class="section">
+            <div class="card">
+                <h2 style="color: #006B3F; font-size: 2em; margin-bottom: 20px;">🛒 Unité 4: Au Marché</h2>
+                
+                <h3 style="color: #CE1126; margin: 30px 0 20px;">🥦 Les fruits et légumes:</h3>
+                <div class="vocab-grid">
+                    <div class="vocab-item" onclick="playAudio('pomme')">
+                        <span class="vocab-icon">🍎</span>
+                        <div class="vocab-french">La pomme <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-english">The apple</div>
+                    </div>
+                    <div class="vocab-item" onclick="playAudio('banane')">
+                        <span class="vocab-icon">🍌</span>
+                        <div class="vocab-french">La banane <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-english">The banana</div>
+                    </div>
+                    <div class="vocab-item" onclick="playAudio('tomate')">
+                        <span class="vocab-icon">🍅</span>
+                        <div class="vocab-french">La tomate <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-english">The tomato</div>
+                    </div>
+                    <div class="vocab-item" onclick="playAudio('carotte')">
+                        <span class="vocab-icon">🥕</span>
+                        <div class="vocab-french">La carotte <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-english">The carrot</div>
+                    </div>
+                    <div class="vocab-item" onclick="playAudio('oignon')">
+                        <span class="vocab-icon">🧅</span>
+                        <div class="vocab-french">L'oignon <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-english">The onion</div>
+                    </div>
+                    <div class="vocab-item" onclick="playAudio('piment')">
+                        <span class="vocab-icon">🌶️</span>
+                        <div class="vocab-french">Le piment <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-english">The pepper</div>
+                    </div>
+                </div>
+
+                <h3 style="color: #CE1126; margin: 30px 0 20px;">🛍️ Les phrases utiles:</h3>
+                <div class="phrase-container">
+                    <div class="phrase-french">Combien ça coûte? <button class="btn-primary" onclick="playAudio('combien_ca_coute')" style="padding: 5px 10px; font-size: 14px; margin-left: 10px;">🔊</button></div>
+                    <div class="phrase-english">How much does it cost?</div>
+                </div>
+                <div class="phrase-container">
+                    <div class="phrase-french">Je voudrais acheter... <button class="btn-primary" onclick="playAudio('je_voudrais_acheter')" style="padding: 5px 10px; font-size: 14px; margin-left: 10px;">🔊</button></div>
+                    <div class="phrase-english">I would like to buy...</div>
+                </div>
+                <div class="phrase-container">
+                    <div class="phrase-french">C'est trop cher! <button class="btn-primary" onclick="playAudio('c_est_trop_cher')" style="padding: 5px 10px; font-size: 14px; margin-left: 10px;">🔊</button></div>
+                    <div class="phrase-english">It's too expensive!</div>
+                </div>
+                <div class="phrase-container">
+                    <div class="phrase-french">Vous avez...? <button class="btn-primary" onclick="playAudio('vous_avez')" style="padding: 5px 10px; font-size: 14px; margin-left: 10px;">🔊</button></div>
+                    <div class="phrase-english">Do you have...?</div>
+                </div>
+
+                <h3 style="color: #CE1126; margin: 30px 0 20px;">💬 Dialogue au marché:</h3>
+                <div class="dialogue-container">
+                    <div class="dialogue-line">
+                        <span class="dialogue-speaker">Client:</span>
+                        <span class="dialogue-text">Bonjour! Combien coûtent les bananes?</span>
+                        <button class="btn-primary" onclick="playAudio('combien_coutent_bananes')" style="padding: 5px 10px; font-size: 14px; margin-left: 10px;">🔊</button>
+                    </div>
+                    <div class="dialogue-line">
+                        <span class="dialogue-speaker">Vendeur:</span>
+                        <span class="dialogue-text">Bonjour! C'est 500 francs le kilo.</span>
+                        <button class="btn-primary" onclick="playAudio('500_francs_kilo')" style="padding: 5px 10px; font-size: 14px; margin-left: 10px;">🔊</button>
+                    </div>
+                    <div class="dialogue-line">
+                        <span class="dialogue-speaker">Client:</span>
+                        <span class="dialogue-text">D'accord, je voudrais deux kilos, s'il vous plaît.</span>
+                        <button class="btn-primary" onclick="playAudio('deux_kilos_svp')" style="padding: 5px 10px; font-size: 14px; margin-left: 10px;">🔊</button>
+                    </div>
+                    <div class="dialogue-line">
+                        <span class="dialogue-speaker">Vendeur:</span>
+                        <span class="dialogue-text">Voilà! Ça fait 1000 francs.</span>
+                        <button class="btn-primary" onclick="playAudio('1000_francs')" style="padding: 5px 10px; font-size: 14px; margin-left: 10px;">🔊</button>
+                    </div>
+                    <div class="dialogue-line">
+                        <span class="dialogue-speaker">Client:</span>
+                        <span class="dialogue-text">Merci beaucoup! Au revoir!</span>
+                        <button class="btn-primary" onclick="playAudio('merci_au_revoir')" style="padding: 5px 10px; font-size: 14px; margin-left: 10px;">🔊</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Section -->
+        <div id="quiz" class="section">
+            <div class="card">
+                <h2 style="color: #006B3F; font-size: 2em; margin-bottom: 20px;">🎯 Test Your Knowledge!</h2>
+                <div class="score-board">Score: <span id="score">0</span> / <span id="total">0</span></div>
+                
+                <div id="quizContainer"></div>
+                
+                <button class="btn-primary" onclick="startQuiz()" style="margin-top: 20px;">Start New Quiz 🎮</button>
+            </div>
+        </div>
+
+        <!-- Games Section -->
+        <div id="games" class="section">
+            <div class="card">
+                <h2 style="color: #006B3F; font-size: 2em; margin-bottom: 20px;">🎮 Language Games</h2>
+                
+                <div class="score-board">Select a game to play!</div>
+                
+                <div style="display: flex; justify-content: center; gap: 20px; margin: 30px 0;">
+                    <button class="btn-primary" onclick="showGame('memory')">Memory Game 🧠</button>
+                    <button class="btn-primary" onclick="showGame('hangman')">Hangman 🪢</button>
+                    <button class="btn-primary" onclick="showGame('flashcards')">Flashcards 🔄</button>
+                </div>
+                
+                <!-- Memory Game -->
+                <div id="memoryGame" class="game-section">
+                    <h3 style="color: #CE1126; text-align: center; margin-bottom: 20px;">🧠 Memory Game</h3>
+                    <p style="text-align: center; margin-bottom: 20px;">Match the French words with their meanings!</p>
+                    
+                    <div class="score-board">Moves: <span id="moves">0</span> | Matches: <span id="matches">0</span> / 6</div>
+                    
+                    <div class="game-board" id="gameBoard"></div>
+                    
+                    <div style="text-align: center; margin-top: 20px;">
+                        <button class="btn-primary" onclick="startMemoryGame()">New Game 🔄</button>
+                    </div>
+                </div>
+                
+                <!-- Hangman Game -->
+                <div id="hangmanGame" class="game-section" style="display: none;">
+                    <h3 style="color: #CE1126; text-align: center; margin-bottom: 20px;">🪢 Hangman</h3>
+                    <p style="text-align: center; margin-bottom: 20px;">Guess the French word!</p>
+                    
+                    <div class="score-board">Lives: <span id="lives">6</span> | Category: <span id="category">House</span></div>
+                    
+                    <div class="hangman-container">
+                        <div class="hangman-drawing" id="hangmanDrawing">
+                            <pre id="hangmanArt"></pre>
+                        </div>
+                        <div class="hangman-word" id="hangmanWord"></div>
+                        <div class="hangman-letters" id="hangmanLetters"></div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 20px;">
+                        <button class="btn-primary" onclick="startHangman()">New Word 🔄</button>
+                    </div>
+                </div>
+                
+                <!-- Flashcards -->
+                <div id="flashcardsGame" class="game-section" style="display: none;">
+                    <h3 style="color: #CE1126; text-align: center; margin-bottom: 20px;">🔄 Flashcards</h3>
+                    <p style="text-align: center; margin-bottom: 20px;">Click the card to flip it and learn!</p>
+                    
+                    <div class="flashcard-container">
+                        <div class="flashcard" id="flashcard" onclick="flipCard()">
+                            <div class="flashcard-front" id="flashcardFront">Click to flip</div>
+                            <div class="flashcard-back" id="flashcardBack"></div>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 20px;">
+                        <button class="btn-primary" onclick="nextFlashcard()">Next Card ➡️</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="celebration" id="celebration"></div>
+
+    <script>
+        // Navigation
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Game navigation
+        function showGame(gameType) {
+            document.querySelectorAll('.game-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById(gameType + 'Game').style.display = 'block';
+            
+            if (gameType === 'memory') {
+                startMemoryGame();
+            } else if (gameType === 'hangman') {
+                startHangman();
+            } else if (gameType === 'flashcards') {
+                startFlashcards();
+            }
+        }
+
+        // Audio pronunciation using Web Speech API with enhanced French pronunciation
+        function playAudio(word) {
+            const vocab = {
+                // Greetings
+                'bonjour': 'bonjour',
+                'bonsoir': 'bonsoir',
+                'bonne_nuit': 'bonne nuit',
+                'au_revoir': 'au revoir',
+                'a_bientot': 'à bientôt',
+                'comment_ca_va': 'comment ça va',
+                'je_m_appelle': 'je m\'appelle',
+                'comment_t_appelles_tu': 'comment t\'appelles-tu',
+                'enchanté': 'enchanté',
+                's_il_vous_plait': 's\'il vous plaît',
+                'merci': 'merci',
+                'de_rien': 'de rien',
+                
+                // Dialogue phrases
+                'bonjour_comment_ca_va': 'Bonjour! Comment ça va?',
+                'bonjour_ca_va_bien': 'Bonjour! Ça va bien, merci. Et toi?',
+                'je_m_appelle_pierre': 'Très bien, merci. Je m\'appelle Pierre. Comment t\'appelles-tu?',
+                'je_m_appelle_marie': 'Je m\'appelle Marie. Enchantée!',
+                'au_revoir_marie': 'Enchanté! Au revoir, Marie!',
+                'a_bientot_pierre': 'À bientôt, Pierre!',
+                
+                // House vocabulary
+                'lavabo': 'lavabo',
+                'baignoire': 'baignoire',
+                'glace': 'glace',
+                'serviette': 'serviette',
+                'lit': 'lit',
+                'armoire': 'armoire',
+                'oreiller': 'oreiller',
+                'lampe': 'lampe',
+                'cuisiniere': 'cuisinière',
+                'four': 'four',
+                'casserole': 'casserole',
+                'assiette': 'assiette',
+                'television': 'télévision',
+                'fauteuil': 'fauteuil',
+                'table': 'table',
+                'chaise': 'chaise',
+                
+                // School vocabulary
+                'livre': 'livre',
+                'cahier': 'cahier',
+                'crayon': 'crayon',
+                'stylo': 'stylo',
+                'gomme': 'gomme',
+                'regle': 'règle',
+                'cartable': 'cartable',
+                'tableau': 'tableau',
+                'bibliotheque': 'bibliothèque',
+                'cantine': 'cantine',
+                'cour': 'cour de récréation',
+                'terrain': 'terrain de sport',
+                'professeur': 'professeur',
+                'eleve': 'élève',
+                'directeur': 'directeur',
+                'surveillant': 'surveillant',
+                
+                // Market vocabulary
+                'pomme': 'pomme',
+                'banane': 'banane',
+                'tomate': 'tomate',
+                'carotte': 'carotte',
+                'oignon': 'oignon',
+                'piment': 'piment',
+                'combien_ca_coute': 'combien ça coûte',
+                'je_voudrais_acheter': 'je voudrais acheter',
+                'c_est_trop_cher': 'c\'est trop cher',
+                'vous_avez': 'vous avez',
+                'combien_coutent_bananes': 'Bonjour! Combien coûtent les bananes?',
+                '500_francs_kilo': 'Bonjour! C\'est 500 francs le kilo',
+                'deux_kilos_svp': 'D\'accord, je voudrais deux kilos, s\'il vous plaît',
+                '1000_francs': 'Voilà! Ça fait 1000 francs',
+                'merci_au_revoir': 'Merci beaucoup! Au revoir!'
+            };
+
+            const utterance = new SpeechSynthesisUtterance(vocab[word]);
+            utterance.lang = 'fr-FR';
+            utterance.rate = 0.8;
+            
+            // Try to use a French voice if available
+            const voices = speechSynthesis.getVoices();
+            const frenchVoice = voices.find(voice => voice.lang === 'fr-FR');
+            if (frenchVoice) {
+                utterance.voice = frenchVoice;
+            }
+            
+            speechSynthesis.speak(utterance);
+
+            // Visual feedback
+            if (event && event.currentTarget) {
+                event.currentTarget.classList.add('clicked');
+                setTimeout(() => {
+                    event.currentTarget.classList.remove('clicked');
+                }, 500);
+            }
+        }
+
+        // Quiz functionality
+        let currentQuestion = 0;
+        let quizScore = 0;
+        const quizQuestions = [
+            {
+                question: "What is 'le lit' in English?",
+                options: ["The bed", "The chair", "The table", "The lamp"],
+                correct: 0
+            },
+            {
+                question: "How do you say 'the book' in French?",
+                options: ["Le cahier", "Le livre", "Le stylo", "Le crayon"],
+                correct: 1
+            },
+            {
+                question: "What is 'la cuisine'?",
+                options: ["The bathroom", "The bedroom", "The kitchen", "The living room"],
+                correct: 2
+            },
+            {
+                question: "Choose the correct French word for 'the mirror':",
+                options: ["La serviette", "La glace", "La lampe", "La table"],
+                correct: 1
+            },
+            {
+                question: "What does 'le cartable' mean?",
+                options: ["The pencil", "The notebook", "The schoolbag", "The ruler"],
+                correct: 2
+            },
+            {
+                question: "How do you say 'the library' in French?",
+                options: ["La cantine", "La bibliothèque", "La salle de classe", "Le terrain de sport"],
+                correct: 1
+            },
+            {
+                question: "What is 'la baignoire'?",
+                options: ["The sink", "The mirror", "The bathtub", "The towel"],
+                correct: 2
+            },
+            {
+                question: "Choose the correct translation for 'the eraser':",
+                options: ["La gomme", "La règle", "Le crayon", "Le stylo"],
+                correct: 0
+            },
+            {
+                question: "How do you say 'Good morning' in French?",
+                options: ["Bonsoir", "Bonne nuit", "Bonjour", "Au revoir"],
+                correct: 2
+            },
+            {
+                question: "What does 'Comment ça va?' mean?",
+                options: ["What is your name?", "How are you?", "Where are you from?", "How old are you?"],
+                correct: 1
+            }
+        ];
+
+        function startQuiz() {
+            currentQuestion = 0;
+            quizScore = 0;
+            document.getElementById('score').textContent = quizScore;
+            document.getElementById('total').textContent = quizQuestions.length;
+            showQuestion();
+        }
+
+        function showQuestion() {
+            if (currentQuestion >= quizQuestions.length) {
+                showQuizResults();
+                return;
+            }
+
+            const q = quizQuestions[currentQuestion];
+            const container = document.getElementById('quizContainer');
+            
+            let html = `
+                <div class="quiz-container">
+                    <div class="quiz-question">Question ${currentQuestion + 1}/${quizQuestions.length}</div>
+                    <div class="quiz-question">${q.question}</div>
+                    <div class="quiz-options">
+            `;
+
+            q.options.forEach((option, index) => {
+                html += `
+                    <div class="quiz-option" onclick="checkAnswer(${index})">
+                        ${option}
+                    </div>
+                `;
+            });
+
+            html += `
+                    </div>
+                </div>
+            `;
+
+            container.innerHTML = html;
+        }
+
+        function checkAnswer(selected) {
+            const q = quizQuestions[currentQuestion];
+            const options = document.querySelectorAll('.quiz-option');
+            
+            options.forEach(option => {
+                option.style.pointerEvents = 'none';
+            });
+
+            if (selected === q.correct) {
+                options[selected].classList.add('correct');
+                quizScore++;
+                document.getElementById('score').textContent = quizScore;
+                celebrate();
+            } else {
+                options[selected].classList.add('incorrect');
+                options[q.correct].classList.add('correct');
+            }
+
+            setTimeout(() => {
+                currentQuestion++;
+                showQuestion();
+            }, 2000);
+        }
+
+        function showQuizResults() {
+            const container = document.getElementById('quizContainer');
+            const percentage = (quizScore / quizQuestions.length * 100).toFixed(0);
+            
+            let message = '';
+            let emoji = '';
+            
+            if (percentage >= 80) {
+                message = 'Excellent! Très bien! 🌟';
+                emoji = '🎉';
+                celebrate(true);
+            } else if (percentage >= 60) {
+                message = 'Good job! Bon travail! 👍';
+                emoji = '😊';
+            } else {
+                message = 'Keep practicing! Continue à pratiquer! 💪';
+                emoji = '📚';
+            }
+
+            container.innerHTML = `
+                <div class="quiz-container" style="text-align: center;">
+                    <div style="font-size: 80px; margin: 20px 0;">${emoji}</div>
+                    <div class="quiz-question">Quiz Complete!</div>
+                    <div style="font-size: 48px; color: #006B3F; margin: 20px 0;">
+                        ${quizScore} / ${quizQuestions.length}
+                    </div>
+                    <div style="font-size: 24px; color: #CE1126; margin: 20px 0;">
+                        ${percentage}%
+                    </div>
+                    <div style="font-size: 28px; font-weight: bold; color: #FCD116; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+                        ${message}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Memory Game
+        let gameCards = [];
+        let flippedCards = [];
+        let matchedPairs = 0;
+        let moves = 0;
+
+        const memoryPairs = [
+            { french: 'Le lit', english: 'The bed' },
+            { french: 'La table', english: 'The table' },
+            { french: 'Le livre', english: 'The book' },
+            { french: 'Le stylo', english: 'The pen' },
+            { french: 'La chaise', english: 'The chair' },
+            { french: 'La lampe', english: 'The lamp' },
+            { french: 'Bonjour', english: 'Hello' },
+            { french: 'Merci', english: 'Thank you' }
+        ];
+
+        function startMemoryGame() {
+            matchedPairs = 0;
+            moves = 0;
+            flippedCards = [];
+            document.getElementById('moves').textContent = moves;
+            document.getElementById('matches').textContent = matchedPairs;
+
+            gameCards = [];
+            memoryPairs.forEach((pair, index) => {
+                gameCards.push({ id: index, text: pair.french, type: 'french' });
+                gameCards.push({ id: index, text: pair.english, type: 'english' });
+            });
+
+            // Shuffle cards
+            gameCards.sort(() => Math.random() - 0.5);
+
+            const board = document.getElementById('gameBoard');
+            board.innerHTML = '';
+
+            gameCards.forEach((card, index) => {
+                const cardElement = document.createElement('div');
+                cardElement.className = 'game-card';
+                cardElement.innerHTML = '❓';
+                cardElement.dataset.index = index;
+                cardElement.onclick = () => flipCard(index);
+                board.appendChild(cardElement);
+            });
+        }
+
+        function flipCard(index) {
+            const cardElements = document.querySelectorAll('.game-card');
+            const card = cardElements[index];
+
+            if (flippedCards.length >= 2 || card.classList.contains('flipped')) {
+                return;
+            }
+
+            card.classList.add('flipped');
+            card.innerHTML = gameCards[index].text;
+            flippedCards.push(index);
+
+            if (flippedCards.length === 2) {
+                moves++;
+                document.getElementById('moves').textContent = moves;
+                checkMatch();
+            }
+        }
+
+        function checkMatch() {
+            const cardElements = document.querySelectorAll('.game-card');
+            const [index1, index2] = flippedCards;
+            const card1 = gameCards[index1];
+            const card2 = gameCards[index2];
+
+            setTimeout(() => {
+                if (card1.id === card2.id && card1.type !== card2.type) {
+                    // Match found!
+                    cardElements[index1].style.background = '#28a745';
+                    cardElements[index2].style.background = '#28a745';
+                    cardElements[index1].style.color = 'white';
+                    cardElements[index2].style.color = 'white';
+                    matchedPairs++;
+                    document.getElementById('matches').textContent = matchedPairs;
+                    
+                    if (matchedPairs === memoryPairs.length) {
+                        setTimeout(() => {
+                            celebrate(true);
+                            alert(`🎉 Félicitations! You won in ${moves} moves! 🎉`);
+                        }, 500);
+                    }
+                } else {
+                    // No match
+                    cardElements[index1].classList.remove('flipped');
+                    cardElements[index2].classList.remove('flipped');
+                    cardElements[index1].innerHTML = '❓';
+                    cardElements[index2].innerHTML = '❓';
+                }
+                flippedCards = [];
+            }, 1000);
+        }
+
+        // Hangman Game
+        let hangmanWords = [
+            { word: "MAISON", category: "House", hint: "A place where people live" },
+            { word: "ÉCOLE", category: "School", hint: "A place where students learn" },
+            { word: "LIVRE", category: "School", hint: "You read this to gain knowledge" },
+            { word: "CHAISE", category: "House", hint: "You sit on this" },
+            { word: "TABLE", category: "House", hint: "You eat on this" },
+            { word: "BANANE", category: "Market", hint: "A yellow fruit" },
+            { word: "TOMATE", category: "Market", hint: "A red fruit often used in salads" },
+            { word: "BONJOUR", category: "Greetings", hint: "What you say when you meet someone" }
+        ];
+
+        let currentHangmanWord = "";
+        let guessedLetters = [];
+        let wrongGuesses = 0;
+        const maxWrongGuesses = 6;
+
+        const hangmanArt = [
+            `
+               +---+
+               |   |
+                   |
+                   |
+                   |
+                   |
+            =========`,
+            `
+               +---+
+               |   |
+               O   |
+                   |
+                   |
+                   |
+            =========`,
+            `
+               +---+
+               |   |
+               O   |
+               |   |
+                   |
+                   |
+            =========`,
+            `
+               +---+
+               |   |
+               O   |
+              /|   |
+                   |
+                   |
+            =========`,
+            `
+               +---+
+               |   |
+               O   |
+              /|\\  |
+                   |
+                   |
+            =========`,
+            `
+               +---+
+               |   |
+               O   |
+              /|\\  |
+              /    |
+                   |
+            =========`,
+            `
+               +---+
+               |   |
+               O   |
+              /|\\  |
+              / \\  |
+                   |
+            =========`
+        ];
+
+        function startHangman() {
+            const randomIndex = Math.floor(Math.random() * hangmanWords.length);
+            currentHangmanWord = hangmanWords[randomIndex].word;
+            guessedLetters = [];
+            wrongGuesses = 0;
+            
+            document.getElementById('lives').textContent = maxWrongGuesses - wrongGuesses;
+            document.getElementById('category').textContent = hangmanWords[randomIndex].category;
+            document.getElementById('hangmanArt').textContent = hangmanArt[0];
+            
+            updateHangmanWordDisplay();
+            createLetterButtons();
+        }
+
+        function updateHangmanWordDisplay() {
+            const wordDisplay = document.getElementById('hangmanWord');
+            let displayText = "";
+            
+            for (let letter of currentHangmanWord) {
+                if (guessedLetters.includes(letter)) {
+                    displayText += letter + " ";
+                } else {
+                    displayText += "_ ";
+                }
+            }
+            
+            wordDisplay.textContent = displayText;
+            
+            // Check if player has won
+            if (!displayText.includes("_")) {
+                setTimeout(() => {
+                    celebrate(true);
+                    alert(`🎉 Félicitations! You guessed the word: ${currentHangmanWord}`);
+                }, 500);
+            }
+        }
+
+        function createLetterButtons() {
+            const lettersContainer = document.getElementById('hangmanLetters');
+            lettersContainer.innerHTML = "";
+            
+            const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            
+            for (let letter of alphabet) {
+                const button = document.createElement('div');
+                button.className = 'hangman-letter';
+                button.textContent = letter;
+                button.onclick = () => guessLetter(letter);
+                lettersContainer.appendChild(button);
+            }
+        }
+
+        function guessLetter(letter) {
+            if (guessedLetters.includes(letter)) return;
+            
+            guessedLetters.push(letter);
+            
+            if (currentHangmanWord.includes(letter)) {
+                // Correct guess
+                playAudio(letter.toLowerCase());
+            } else {
+                // Wrong guess
+                wrongGuesses++;
+                document.getElementById('lives').textContent = maxWrongGuesses - wrongGuesses;
+                document.getElementById('hangmanArt').textContent = hangmanArt[wrongGuesses];
+                
+                if (wrongGuesses >= maxWrongGuesses) {
+                    setTimeout(() => {
+                        alert(`Game Over! The word was: ${currentHangmanWord}`);
+                        startHangman();
+                    }, 500);
+                    return;
+                }
+            }
+            
+            // Disable the guessed letter
+            const letterButtons = document.querySelectorAll('.hangman-letter');
+            letterButtons.forEach(btn => {
+                if (btn.textContent === letter) {
+                    btn.classList.add('disabled');
+                    btn.onclick = null;
+                }
+            });
+            
+            updateHangmanWordDisplay();
+        }
+
+        // Flashcards
+        let currentFlashcardIndex = 0;
+        const flashcards = [
+            { french: "Bonjour", english: "Hello / Good morning" },
+            { french: "Merci", english: "Thank you" },
+            { french: "S'il vous plaît", english: "Please" },
+            { french: "Au revoir", english: "Goodbye" },
+            { french: "Comment ça va?", english: "How are you?" },
+            { french: "Je m'appelle...", english: "My name is..." },
+            { french: "Oui", english: "Yes" },
+            { french: "Non", english: "No" },
+            { french: "Excusez-moi", english: "Excuse me" },
+            { french: "Je ne comprends pas", english: "I don't understand" }
+        ];
+
+        function startFlashcards() {
+            currentFlashcardIndex = 0;
+            showFlashcard();
+        }
+
+        function showFlashcard() {
+            const card = flashcards[currentFlashcardIndex];
+            document.getElementById('flashcardFront').textContent = card.french;
+            document.getElementById('flashcardBack').textContent = card.english;
+            document.getElementById('flashcard').classList.remove('flipped');
+        }
+
+        function flipCard() {
+            const flashcard = document.getElementById('flashcard');
+            flashcard.classList.toggle('flipped');
+            
+            if (flashcard.classList.contains('flipped')) {
+                playAudio(flashcards[currentFlashcardIndex].french.toLowerCase().replace(/ /g, '_').replace(/'/g, '_'));
+            }
+        }
+
+        function nextFlashcard() {
+            currentFlashcardIndex = (currentFlashcardIndex + 1) % flashcards.length;
+            showFlashcard();
+        }
+
+        // Celebration effect
+        function celebrate(big = false) {
+            const celebration = document.getElementById('celebration');
+            const colors = ['#CE1126', '#FCD116', '#006B3F', '#ffffff'];
+            const count = big ? 50 : 20;
+
+            for (let i = 0; i < count; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                    celebration.appendChild(confetti);
+
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 30);
+            }
+        }
+
+        // Initialize on page load
+        window.onload = function() {
+            startQuiz();
+            startMemoryGame();
+            
+            // Wait for voices to be loaded
+            if (speechSynthesis.onvoiceschanged !== undefined) {
+                speechSynthesis.onvoiceschanged = () => {
+                    // Voices are now loaded
+                };
+            }
+        };
+    </script>
+</body>
+</html>

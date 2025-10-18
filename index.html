@@ -335,6 +335,101 @@
             box-shadow: 0 6px 15px rgba(0,0,0,0.3);
         }
 
+        /* New Styles for Dialogues and Pronunciation */
+        .dialogue-section {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 5px solid #CE1126;
+        }
+
+        .dialogue-title {
+            color: #006B3F;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .dialogue-line {
+            background: white;
+            margin: 15px 0;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #FCD116;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .dialogue-speaker {
+            font-weight: bold;
+            color: #CE1126;
+            min-width: 100px;
+        }
+
+        .dialogue-text {
+            flex: 1;
+            margin: 0 15px;
+            font-size: 1.1em;
+        }
+
+        .dialogue-audio-btn {
+            background: #006B3F;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .dialogue-audio-btn:hover {
+            background: #005a33;
+            transform: scale(1.05);
+        }
+
+        .pronunciation-tips {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+            border: 2px solid #FCD116;
+        }
+
+        .pronunciation-title {
+            color: #CE1126;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .pronunciation-tip {
+            background: white;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #006B3F;
+        }
+
+        .tip-example {
+            color: #CE1126;
+            font-weight: bold;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        .phonetic {
+            color: #006B3F;
+            font-family: monospace;
+            background: #f8f9fa;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin: 0 3px;
+        }
+
         .progress-bar {
             width: 100%;
             height: 30px;
@@ -355,7 +450,6 @@
             font-weight: bold;
         }
 
-        /* New styles for additional content */
         .phrase-container {
             background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
             border-radius: 12px;
@@ -375,29 +469,6 @@
             font-size: 16px;
             color: #555;
             font-style: italic;
-        }
-
-        .dialogue-container {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            margin: 20px 0;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        .dialogue-line {
-            margin: 10px 0;
-            padding: 10px;
-            border-radius: 8px;
-        }
-
-        .dialogue-speaker {
-            font-weight: bold;
-            color: #CE1126;
-        }
-
-        .dialogue-text {
-            margin-left: 10px;
         }
 
         .hangman-container {
@@ -588,6 +659,9 @@
             .vocab-grid { grid-template-columns: 1fr; }
             .house-grid { grid-template-columns: 1fr; }
             .game-board { grid-template-columns: repeat(2, 1fr); }
+            .dialogue-line { flex-direction: column; align-items: flex-start; }
+            .dialogue-speaker { min-width: auto; margin-bottom: 5px; }
+            .dialogue-text { margin: 0; }
         }
     </style>
 </head>
@@ -629,6 +703,8 @@
                     <li><strong>Unité 3:</strong> À l'École (At School) - Discover school vocabulary</li>
                     <li><strong>Unité 4:</strong> Au Marché (At the Market) - Learn shopping vocabulary</li>
                     <li><strong>Interactive Quizzes & Games</strong> - Test your knowledge in each topic</li>
+                    <li><strong>Audio Dialogues</strong> - Practice real conversations</li>
+                    <li><strong>Pronunciation Tips</strong> - Learn to speak like a native</li>
                 </ul>
             </div>
         </div>
@@ -670,6 +746,62 @@
                         <span class="vocab-icon">🙂</span>
                         <div class="vocab-french">Comment ça va? <span class="speaker-icon">🔊</span></div>
                         <div class="vocab-english">How are you?</div>
+                    </div>
+                </div>
+
+                <!-- Pronunciation Tips -->
+                <div class="pronunciation-tips">
+                    <h3 class="pronunciation-title">🎯 Pronunciation Tips - Greetings</h3>
+                    <div class="pronunciation-tip">
+                        <strong>Silent Letters:</strong> In French, many letters at the end of words are silent.
+                        <div class="tip-example">Example: <span class="phonetic">Bonjour</span> sounds like "bon-zhoor" (silent 'r')</div>
+                    </div>
+                    <div class="pronunciation-tip">
+                        <strong>Nasal Sounds:</strong> French has nasal vowels that don't exist in English.
+                        <div class="tip-example">Example: <span class="phonetic">Bonsoir</span> - the "oin" sounds like "wan" in "want"</div>
+                    </div>
+                    <div class="pronunciation-tip">
+                        <strong>French 'R':</strong> The French 'R' is guttural, made in the back of the throat.
+                        <div class="tip-example">Example: <span class="phonetic">Au revoir</span> - practice the 'R' like gently gargling</div>
+                    </div>
+                    <div class="pronunciation-tip">
+                        <strong>Liaison:</strong> Sometimes final consonants connect to following vowel sounds.
+                        <div class="tip-example">Example: <span class="phonetic">Comment allez-vous?</span> - the 't' in "comment" connects to "allez"</div>
+                    </div>
+                </div>
+
+                <!-- Greetings Dialogue -->
+                <div class="dialogue-section">
+                    <h3 class="dialogue-title">💬 Practice Dialogue - Meeting New Friends</h3>
+                    <div class="dialogue-line">
+                        <span class="dialogue-speaker">Kofi:</span>
+                        <span class="dialogue-text">Bonjour! Comment ça va?</span>
+                        <button class="dialogue-audio-btn" onclick="playDialogue('greeting1')">🔊 Play</button>
+                    </div>
+                    <div class="dialogue-line">
+                        <span class="dialogue-speaker">Ama:</span>
+                        <span class="dialogue-text">Bonjour! Ça va bien, merci. Et toi?</span>
+                        <button class="dialogue-audio-btn" onclick="playDialogue('greeting2')">🔊 Play</button>
+                    </div>
+                    <div class="dialogue-line">
+                        <span class="dialogue-speaker">Kofi:</span>
+                        <span class="dialogue-text">Très bien, merci. Je m'appelle Kofi. Comment t'appelles-tu?</span>
+                        <button class="dialogue-audio-btn" onclick="playDialogue('greeting3')">🔊 Play</button>
+                    </div>
+                    <div class="dialogue-line">
+                        <span class="dialogue-speaker">Ama:</span>
+                        <span class="dialogue-text">Je m'appelle Ama. Enchantée!</span>
+                        <button class="dialogue-audio-btn" onclick="playDialogue('greeting4')">🔊 Play</button>
+                    </div>
+                    <div class="dialogue-line">
+                        <span class="dialogue-speaker">Kofi:</span>
+                        <span class="dialogue-text">Enchanté! Au revoir, Ama!</span>
+                        <button class="dialogue-audio-btn" onclick="playDialogue('greeting5')">🔊 Play</button>
+                    </div>
+                    <div class="dialogue-line">
+                        <span class="dialogue-speaker">Ama:</span>
+                        <span class="dialogue-text">À bientôt, Kofi!</span>
+                        <button class="dialogue-audio-btn" onclick="playDialogue('greeting6')">🔊 Play</button>
                     </div>
                 </div>
 
@@ -826,6 +958,62 @@
                     </div>
                 </div>
 
+                <!-- Pronunciation Tips -->
+                <div class="pronunciation-tips">
+                    <h3 class="pronunciation-title">🎯 Pronunciation Tips - House Items</h3>
+                    <div class="pronunciation-tip">
+                        <strong>French 'U':</strong> The French 'U' is different from English - purse your lips as if saying "oo" but try to say "ee".
+                        <div class="tip-example">Example: <span class="phonetic">Cuisinière</span> - the 'ui' sounds like "wee"</div>
+                    </div>
+                    <div class="pronunciation-tip">
+                        <strong>Silent 'H':</strong> The letter 'H' is always silent in French.
+                        <div class="tip-example">Example: <span class="phonetic">L'armoire</span> - sounds like "lar-mwar" (silent 'h')</div>
+                    </div>
+                    <div class="pronunciation-tip">
+                        <strong>Final 'E':</strong> Final 'e' is often silent, but it affects the pronunciation of the preceding consonant.
+                        <div class="tip-example">Example: <span class="phonetic">La lampe</span> - the 'p' is pronounced because of the following 'e'</div>
+                    </div>
+                    <div class="pronunciation-tip">
+                        <strong>Gender Articles:</strong> Practice the liaison between articles and nouns.
+                        <div class="tip-example">Example: <span class="phonetic">L'assiette</span> - the 'l' connects to 'assiette'</div>
+                    </div>
+                </div>
+
+                <!-- House Dialogue -->
+                <div class="dialogue-section">
+                    <h3 class="dialogue-title">💬 Practice Dialogue - Describing My House</h3>
+                    <div class="dialogue-line">
+                        <span class="dialogue-speaker">Friend:</span>
+                        <span class="dialogue-text">Ta maison est grande? (Is your house big?)</span>
+                        <button class="dialogue-audio-btn" onclick="playDialogue('house1')">🔊 Play</button>
+                    </div>
+                    <div class="dialogue-line">
+                        <span class="dialogue-speaker">You:</span>
+                        <span class="dialogue-text">Oui, j'ai un salon, une cuisine et trois chambres.</span>
+                        <button class="dialogue-audio-btn" onclick="playDialogue('house2')">🔊 Play</button>
+                    </div>
+                    <div class="dialogue-line">
+                        <span class="dialogue-speaker">Friend:</span>
+                        <span class="dialogue-text">Il y a une télévision dans le salon?</span>
+                        <button class="dialogue-audio-btn" onclick="playDialogue('house3')">🔊 Play</button>
+                    </div>
+                    <div class="dialogue-line">
+                        <span class="dialogue-speaker">You:</span>
+                        <span class="dialogue-text">Oui, et il y a un grand fauteuil confortable.</span>
+                        <button class="dialogue-audio-btn" onclick="playDialogue('house4')">🔊 Play</button>
+                    </div>
+                    <div class="dialogue-line">
+                        <span class="dialogue-speaker">Friend:</span>
+                        <span class="dialogue-text">Et la cuisine? Tu aimes cuisiner?</span>
+                        <button class="dialogue-audio-btn" onclick="playDialogue('house5')">🔊 Play</button>
+                    </div>
+                    <div class="dialogue-line">
+                        <span class="dialogue-speaker">You:</span>
+                        <span class="dialogue-text">Oui, j'ai une nouvelle cuisinière et un grand four.</span>
+                        <button class="dialogue-audio-btn" onclick="playDialogue('house6')">🔊 Play</button>
+                    </div>
+                </div>
+
                 <!-- House Quiz -->
                 <div class="topic-quiz-container">
                     <h3 style="color: #006B3F; text-align: center; margin-bottom: 20px;">🎯 House Vocabulary Quiz</h3>
@@ -915,6 +1103,62 @@
                     </div>
                 </div>
 
+                <!-- Pronunciation Tips -->
+                <div class="pronunciation-tips">
+                    <h3 class="pronunciation-title">🎯 Pronunciation Tips - School Items</h3>
+                    <div class="pronunciation-tip">
+                        <strong>French 'J':</strong> The French 'J' sounds like the 's' in "measure" - a soft sound.
+                        <div class="tip-example">Example: <span class="phonetic">Cahier</span> - sounds like "ka-yay"</div>
+                    </div>
+                    <div class="pronunciation-tip">
+                        <strong>Nasal Vowels:</strong> When a vowel is followed by 'n' or 'm', it becomes nasal.
+                        <div class="tip-example">Example: <span class="phonetic">Crayon</span> - the 'on' sounds like "on" in "song"</div>
+                    </div>
+                    <div class="pronunciation-tip">
+                        <strong>Silent Consonants:</strong> Many final consonants are silent in French.
+                        <div class="tip-example">Example: <span class="phonetic">Stylo</span> - sounds like "stee-lo" (silent final 'o' is very soft)</div>
+                    </div>
+                    <div class="pronunciation-tip">
+                        <strong>French 'EU':</strong> This sound doesn't exist in English - round your lips as if saying "o" but say "e".
+                        <div class="tip-example">Example: <span class="phonetic">Gomme</span> - sounds like "gom" with rounded lips</div>
+                    </div>
+                </div>
+
+                <!-- School Dialogue -->
+                <div class="dialogue-section">
+                    <h3 class="dialogue-title">💬 Practice Dialogue - In the Classroom</h3>
+                    <div class="dialogue-line">
+                        <span class="dialogue-speaker">Teacher:</span>
+                        <span class="dialogue-text">Bonjour les élèves! Sortez vos cahiers et vos stylos.</span>
+                        <button class="dialogue-audio-btn" onclick="playDialogue('school1')">🔊 Play</button>
+                    </div>
+                    <div class="dialogue-line">
+                        <span class="dialogue-speaker">Student:</span>
+                        <span class="dialogue-text">Madame, j'ai oublié mon crayon. Puis-je emprunter un stylo?</span>
+                        <button class="dialogue-audio-btn" onclick="playDialogue('school2')">🔊 Play</button>
+                    </div>
+                    <div class="dialogue-line">
+                        <span class="dialogue-speaker">Teacher:</span>
+                        <span class="dialogue-text">Bien sûr. Regardez le tableau, s'il vous plaît.</span>
+                        <button class="dialogue-audio-btn" onclick="playDialogue('school3')">🔊 Play</button>
+                    </div>
+                    <div class="dialogue-line">
+                        <span class="dialogue-speaker">Student:</span>
+                        <span class="dialogue-text">J'ai une question. Où est la bibliothèque?</span>
+                        <button class="dialogue-audio-btn" onclick="playDialogue('school4')">🔊 Play</button>
+                    </div>
+                    <div class="dialogue-line">
+                        <span class="dialogue-speaker">Teacher:</span>
+                        <span class="dialogue-text">La bibliothèque est au premier étage, à gauche.</span>
+                        <button class="dialogue-audio-btn" onclick="playDialogue('school5')">🔊 Play</button>
+                    </div>
+                    <div class="dialogue-line">
+                        <span class="dialogue-speaker">Student:</span>
+                        <span class="dialogue-text">Merci beaucoup, madame!</span>
+                        <button class="dialogue-audio-btn" onclick="playDialogue('school6')">🔊 Play</button>
+                    </div>
+                </div>
+
                 <!-- School Quiz -->
                 <div class="topic-quiz-container">
                     <h3 style="color: #006B3F; text-align: center; margin-bottom: 20px;">🎯 School Vocabulary Quiz</h3>
@@ -992,6 +1236,62 @@
                         <span class="vocab-icon">🌶️</span>
                         <div class="vocab-french">Le piment <span class="speaker-icon">🔊</span></div>
                         <div class="vocab-english">The pepper</div>
+                    </div>
+                </div>
+
+                <!-- Pronunciation Tips -->
+                <div class="pronunciation-tips">
+                    <h3 class="pronunciation-title">🎯 Pronunciation Tips - Market Items</h3>
+                    <div class="pronunciation-tip">
+                        <strong>French 'OI':</strong> The 'oi' combination sounds like "wa" in English.
+                        <div class="tip-example">Example: <span class="phonetic">Oignon</span> - sounds like "on-yon"</div>
+                    </div>
+                    <div class="pronunciation-tip">
+                        <strong>Double Letters:</strong> Double letters in French are pronounced as single sounds.
+                        <div class="tip-example">Example: <span class="phonetic">Tomate</span> - the 'mm' is pronounced as a single 'm'</div>
+                    </div>
+                    <div class="pronunciation-tip">
+                        <strong>Final 'E':</strong> The final 'e' in feminine words is usually silent.
+                        <div class="tip-example">Example: <span class="phonetic">Pomme</span> - sounds like "pom" (silent final 'e')</div>
+                    </div>
+                    <div class="pronunciation-tip">
+                        <strong>French 'EN/AN':</strong> These combinations create a nasal sound.
+                        <div class="tip-example">Example: <span class="phonetic">Banane</span> - the 'an' sounds like "on" in "song"</div>
+                    </div>
+                </div>
+
+                <!-- Market Dialogue -->
+                <div class="dialogue-section">
+                    <h3 class="dialogue-title">💬 Practice Dialogue - Shopping at the Market</h3>
+                    <div class="dialogue-line">
+                        <span class="dialogue-speaker">Customer:</span>
+                        <span class="dialogue-text">Bonjour! Combien coûtent les bananes?</span>
+                        <button class="dialogue-audio-btn" onclick="playDialogue('market1')">🔊 Play</button>
+                    </div>
+                    <div class="dialogue-line">
+                        <span class="dialogue-speaker">Vendor:</span>
+                        <span class="dialogue-text">Bonjour! C'est 500 francs le kilo.</span>
+                        <button class="dialogue-audio-btn" onclick="playDialogue('market2')">🔊 Play</button>
+                    </div>
+                    <div class="dialogue-line">
+                        <span class="dialogue-speaker">Customer:</span>
+                        <span class="dialogue-text">D'accord, je voudrais deux kilos, s'il vous plaît.</span>
+                        <button class="dialogue-audio-btn" onclick="playDialogue('market3')">🔊 Play</button>
+                    </div>
+                    <div class="dialogue-line">
+                        <span class="dialogue-speaker">Vendor:</span>
+                        <span class="dialogue-text">Voilà! Ça fait 1000 francs. Vous voulez autre chose?</span>
+                        <button class="dialogue-audio-btn" onclick="playDialogue('market4')">🔊 Play</button>
+                    </div>
+                    <div class="dialogue-line">
+                        <span class="dialogue-speaker">Customer:</span>
+                        <span class="dialogue-text">Oui, donnez-moi aussi un kilo de tomates et des carottes.</span>
+                        <button class="dialogue-audio-btn" onclick="playDialogue('market5')">🔊 Play</button>
+                    </div>
+                    <div class="dialogue-line">
+                        <span class="dialogue-speaker">Vendor:</span>
+                        <span class="dialogue-text">Avec plaisir! Au total, ça fait 2500 francs. Merci beaucoup!</span>
+                        <button class="dialogue-audio-btn" onclick="playDialogue('market6')">🔊 Play</button>
                     </div>
                 </div>
 
@@ -1119,6 +1419,56 @@
                     event.currentTarget.classList.remove('clicked');
                 }, 500);
             }
+        }
+
+        // Dialogue Audio Function
+        function playDialogue(dialogueId) {
+            const dialogues = {
+                // Greetings dialogues
+                'greeting1': 'Bonjour! Comment ça va?',
+                'greeting2': 'Bonjour! Ça va bien, merci. Et toi?',
+                'greeting3': 'Très bien, merci. Je m\'appelle Kofi. Comment t\'appelles-tu?',
+                'greeting4': 'Je m\'appelle Ama. Enchantée!',
+                'greeting5': 'Enchanté! Au revoir, Ama!',
+                'greeting6': 'À bientôt, Kofi!',
+                
+                // House dialogues
+                'house1': 'Ta maison est grande?',
+                'house2': 'Oui, j\'ai un salon, une cuisine et trois chambres.',
+                'house3': 'Il y a une télévision dans le salon?',
+                'house4': 'Oui, et il y a un grand fauteuil confortable.',
+                'house5': 'Et la cuisine? Tu aimes cuisiner?',
+                'house6': 'Oui, j\'ai une nouvelle cuisinière et un grand four.',
+                
+                // School dialogues
+                'school1': 'Bonjour les élèves! Sortez vos cahiers et vos stylos.',
+                'school2': 'Madame, j\'ai oublié mon crayon. Puis-je emprunter un stylo?',
+                'school3': 'Bien sûr. Regardez le tableau, s\'il vous plaît.',
+                'school4': 'J\'ai une question. Où est la bibliothèque?',
+                'school5': 'La bibliothèque est au premier étage, à gauche.',
+                'school6': 'Merci beaucoup, madame!',
+                
+                // Market dialogues
+                'market1': 'Bonjour! Combien coûtent les bananes?',
+                'market2': 'Bonjour! C\'est 500 francs le kilo.',
+                'market3': 'D\'accord, je voudrais deux kilos, s\'il vous plaît.',
+                'market4': 'Voilà! Ça fait 1000 francs. Vous voulez autre chose?',
+                'market5': 'Oui, donnez-moi aussi un kilo de tomates et des carottes.',
+                'market6': 'Avec plaisir! Au total, ça fait 2500 francs. Merci beaucoup!'
+            };
+
+            const utterance = new SpeechSynthesisUtterance(dialogues[dialogueId]);
+            utterance.lang = 'fr-FR';
+            utterance.rate = 0.7; // Slower for dialogues
+            
+            // Try to use a French voice if available
+            const voices = speechSynthesis.getVoices();
+            const frenchVoice = voices.find(voice => voice.lang === 'fr-FR');
+            if (frenchVoice) {
+                utterance.voice = frenchVoice;
+            }
+            
+            speechSynthesis.speak(utterance);
         }
 
         // Celebration effect
@@ -1512,419 +1862,6 @@
                     <div class="quiz-question">Quiz Complete!</div>
                     <div style="font-size: 48px; color: #006B3F; margin: 20px 0;">
                         ${houseScore} / ${houseQuestions.length}
-                    </div>
-                    <div style="font-size: 24px; color: #CE1126; margin: 20px 0;">
-                        ${percentage}%
-                    </div>
-                    <div style="font-size: 28px; font-weight: bold; color: #FCD116; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
-                        ${message}
-                    </div>
-                </div>
-            `;
-        }
-
-        // House Hangman
-        const houseHangmanWords = ["LIT", "TABLE", "CHAISE", "LAMPE", "MAISON"];
-        let currentHouseWord = "";
-        let houseGuessedLetters = [];
-        let houseWrongGuesses = 0;
-        const maxHouseWrongGuesses = 6;
-
-        const hangmanArt = [
-            `
-               +---+
-               |   |
-                   |
-                   |
-                   |
-                   |
-            =========`,
-            `
-               +---+
-               |   |
-               O   |
-                   |
-                   |
-                   |
-            =========`,
-            `
-               +---+
-               |   |
-               O   |
-               |   |
-                   |
-                   |
-            =========`,
-            `
-               +---+
-               |   |
-               O   |
-              /|   |
-                   |
-                   |
-            =========`,
-            `
-               +---+
-               |   |
-               O   |
-              /|\\  |
-                   |
-                   |
-            =========`,
-            `
-               +---+
-               |   |
-               O   |
-              /|\\  |
-              /    |
-                   |
-            =========`,
-            `
-               +---+
-               |   |
-               O   |
-              /|\\  |
-              / \\  |
-                   |
-            =========`
-        ];
-
-        function startHouseHangman() {
-            // Hide memory game and show hangman
-            document.getElementById('houseMemoryGame').style.display = 'none';
-            document.getElementById('houseHangman').style.display = 'block';
-            
-            const randomIndex = Math.floor(Math.random() * houseHangmanWords.length);
-            currentHouseWord = houseHangmanWords[randomIndex];
-            houseGuessedLetters = [];
-            houseWrongGuesses = 0;
-            
-            document.getElementById('houseLives').textContent = maxHouseWrongGuesses - houseWrongGuesses;
-            document.getElementById('houseHangmanArt').textContent = hangmanArt[0];
-            
-            updateHouseHangmanWordDisplay();
-            createHouseLetterButtons();
-        }
-
-        function updateHouseHangmanWordDisplay() {
-            const wordDisplay = document.getElementById('houseHangmanWord');
-            let displayText = "";
-            
-            for (let letter of currentHouseWord) {
-                if (houseGuessedLetters.includes(letter)) {
-                    displayText += letter + " ";
-                } else {
-                    displayText += "_ ";
-                }
-            }
-            
-            wordDisplay.textContent = displayText;
-            
-            // Check if player has won
-            if (!displayText.includes("_")) {
-                setTimeout(() => {
-                    celebrate(true);
-                    alert(`🎉 Félicitations! You guessed the word: ${currentHouseWord}`);
-                    startHouseHangman(); // Start new game
-                }, 500);
-            }
-        }
-
-        function createHouseLetterButtons() {
-            const lettersContainer = document.getElementById('houseHangmanLetters');
-            lettersContainer.innerHTML = "";
-            
-            const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            
-            for (let letter of alphabet) {
-                const button = document.createElement('div');
-                button.className = 'hangman-letter';
-                button.textContent = letter;
-                button.onclick = () => guessHouseLetter(letter);
-                lettersContainer.appendChild(button);
-            }
-        }
-
-        function guessHouseLetter(letter) {
-            if (houseGuessedLetters.includes(letter)) return;
-            
-            houseGuessedLetters.push(letter);
-            
-            if (currentHouseWord.includes(letter)) {
-                // Correct guess
-                playAudio(letter.toLowerCase());
-            } else {
-                // Wrong guess
-                houseWrongGuesses++;
-                document.getElementById('houseLives').textContent = maxHouseWrongGuesses - houseWrongGuesses;
-                document.getElementById('houseHangmanArt').textContent = hangmanArt[houseWrongGuesses];
-                
-                if (houseWrongGuesses >= maxHouseWrongGuesses) {
-                    setTimeout(() => {
-                        alert(`Game Over! The word was: ${currentHouseWord}`);
-                        startHouseHangman();
-                    }, 500);
-                    return;
-                }
-            }
-            
-            // Disable the guessed letter
-            const letterButtons = document.querySelectorAll('#houseHangmanLetters .hangman-letter');
-            letterButtons.forEach(btn => {
-                if (btn.textContent === letter) {
-                    btn.classList.add('disabled');
-                    btn.onclick = null;
-                }
-            });
-            
-            updateHouseHangmanWordDisplay();
-        }
-
-        // House Memory Game (similar structure to greetings memory game)
-        function startHouseMemory() {
-            // Hide hangman and show memory game
-            document.getElementById('houseHangman').style.display = 'none';
-            document.getElementById('houseMemoryGame').style.display = 'block';
-            
-            // Similar implementation to greetings memory game
-            // Would follow the same pattern as greetings memory game
-        }
-
-        // ========== SCHOOL SECTION ==========
-        // School Quiz
-        let schoolCurrentQuestion = 0;
-        let schoolScore = 0;
-        const schoolQuestions = [
-            {
-                question: "How do you say 'the book' in French?",
-                options: ["Le cahier", "Le livre", "Le stylo", "Le crayon"],
-                correct: 1
-            },
-            {
-                question: "What does 'le cartable' mean?",
-                options: ["The pencil", "The notebook", "The schoolbag", "The ruler"],
-                correct: 2
-            },
-            {
-                question: "How do you say 'the library' in French?",
-                options: ["La cantine", "La bibliothèque", "La salle de classe", "Le terrain de sport"],
-                correct: 1
-            },
-            {
-                question: "Choose the correct translation for 'the eraser':",
-                options: ["La gomme", "La règle", "Le crayon", "Le stylo"],
-                correct: 0
-            }
-        ];
-
-        function startSchoolQuiz() {
-            schoolCurrentQuestion = 0;
-            schoolScore = 0;
-            document.getElementById('schoolScore').textContent = schoolScore;
-            document.getElementById('schoolTotal').textContent = schoolQuestions.length;
-            showSchoolQuestion();
-        }
-
-        function showSchoolQuestion() {
-            if (schoolCurrentQuestion >= schoolQuestions.length) {
-                showSchoolQuizResults();
-                return;
-            }
-
-            const q = schoolQuestions[schoolCurrentQuestion];
-            const container = document.getElementById('schoolQuizContainer');
-            
-            let html = `
-                <div class="quiz-question">Question ${schoolCurrentQuestion + 1}/${schoolQuestions.length}</div>
-                <div class="quiz-question">${q.question}</div>
-                <div class="quiz-options">
-            `;
-
-            q.options.forEach((option, index) => {
-                html += `
-                    <div class="quiz-option" onclick="checkSchoolAnswer(${index})">
-                        ${option}
-                    </div>
-                `;
-            });
-
-            html += `</div>`;
-            container.innerHTML = html;
-        }
-
-        function checkSchoolAnswer(selected) {
-            const q = schoolQuestions[schoolCurrentQuestion];
-            const options = document.querySelectorAll('#schoolQuizContainer .quiz-option');
-            
-            options.forEach(option => {
-                option.style.pointerEvents = 'none';
-            });
-
-            if (selected === q.correct) {
-                options[selected].classList.add('correct');
-                schoolScore++;
-                document.getElementById('schoolScore').textContent = schoolScore;
-                celebrate();
-            } else {
-                options[selected].classList.add('incorrect');
-                options[q.correct].classList.add('correct');
-            }
-
-            setTimeout(() => {
-                schoolCurrentQuestion++;
-                showSchoolQuestion();
-            }, 2000);
-        }
-
-        function showSchoolQuizResults() {
-            const container = document.getElementById('schoolQuizContainer');
-            const percentage = (schoolScore / schoolQuestions.length * 100).toFixed(0);
-            
-            let message = '';
-            let emoji = '';
-            
-            if (percentage >= 80) {
-                message = 'Excellent! Très bien! 🌟';
-                emoji = '🎉';
-                celebrate(true);
-            } else if (percentage >= 60) {
-                message = 'Good job! Bon travail! 👍';
-                emoji = '😊';
-            } else {
-                message = 'Keep practicing! Continue à pratiquer! 💪';
-                emoji = '📚';
-            }
-
-            container.innerHTML = `
-                <div style="text-align: center;">
-                    <div style="font-size: 80px; margin: 20px 0;">${emoji}</div>
-                    <div class="quiz-question">Quiz Complete!</div>
-                    <div style="font-size: 48px; color: #006B3F; margin: 20px 0;">
-                        ${schoolScore} / ${schoolQuestions.length}
-                    </div>
-                    <div style="font-size: 24px; color: #CE1126; margin: 20px 0;">
-                        ${percentage}%
-                    </div>
-                    <div style="font-size: 28px; font-weight: bold; color: #FCD116; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
-                        ${message}
-                    </div>
-                </div>
-            `;
-        }
-
-        // School Flashcards and Memory would follow similar patterns
-
-        // ========== MARKET SECTION ==========
-        // Market Quiz
-        let marketCurrentQuestion = 0;
-        let marketScore = 0;
-        const marketQuestions = [
-            {
-                question: "How do you say 'the apple' in French?",
-                options: ["La banane", "La tomate", "La pomme", "La carotte"],
-                correct: 2
-            },
-            {
-                question: "What is 'la banane' in English?",
-                options: ["The tomato", "The banana", "The apple", "The carrot"],
-                correct: 1
-            },
-            {
-                question: "Choose the correct French word for 'the tomato':",
-                options: ["La pomme", "La banane", "La tomate", "Le piment"],
-                correct: 2
-            },
-            {
-                question: "What does 'le piment' mean?",
-                options: ["The onion", "The pepper", "The carrot", "The tomato"],
-                correct: 1
-            }
-        ];
-
-        function startMarketQuiz() {
-            marketCurrentQuestion = 0;
-            marketScore = 0;
-            document.getElementById('marketScore').textContent = marketScore;
-            document.getElementById('marketTotal').textContent = marketQuestions.length;
-            showMarketQuestion();
-        }
-
-        function showMarketQuestion() {
-            if (marketCurrentQuestion >= marketQuestions.length) {
-                showMarketQuizResults();
-                return;
-            }
-
-            const q = marketQuestions[marketCurrentQuestion];
-            const container = document.getElementById('marketQuizContainer');
-            
-            let html = `
-                <div class="quiz-question">Question ${marketCurrentQuestion + 1}/${marketQuestions.length}</div>
-                <div class="quiz-question">${q.question}</div>
-                <div class="quiz-options">
-            `;
-
-            q.options.forEach((option, index) => {
-                html += `
-                    <div class="quiz-option" onclick="checkMarketAnswer(${index})">
-                        ${option}
-                    </div>
-                `;
-            });
-
-            html += `</div>`;
-            container.innerHTML = html;
-        }
-
-        function checkMarketAnswer(selected) {
-            const q = marketQuestions[marketCurrentQuestion];
-            const options = document.querySelectorAll('#marketQuizContainer .quiz-option');
-            
-            options.forEach(option => {
-                option.style.pointerEvents = 'none';
-            });
-
-            if (selected === q.correct) {
-                options[selected].classList.add('correct');
-                marketScore++;
-                document.getElementById('marketScore').textContent = marketScore;
-                celebrate();
-            } else {
-                options[selected].classList.add('incorrect');
-                options[q.correct].classList.add('correct');
-            }
-
-            setTimeout(() => {
-                marketCurrentQuestion++;
-                showMarketQuestion();
-            }, 2000);
-        }
-
-        function showMarketQuizResults() {
-            const container = document.getElementById('marketQuizContainer');
-            const percentage = (marketScore / marketQuestions.length * 100).toFixed(0);
-            
-            let message = '';
-            let emoji = '';
-            
-            if (percentage >= 80) {
-                message = 'Excellent! Très bien! 🌟';
-                emoji = '🎉';
-                celebrate(true);
-            } else if (percentage >= 60) {
-                message = 'Good job! Bon travail! 👍';
-                emoji = '😊';
-            } else {
-                message = 'Keep practicing! Continue à pratiquer! 💪';
-                emoji = '📚';
-            }
-
-            container.innerHTML = `
-                <div style="text-align: center;">
-                    <div style="font-size: 80px; margin: 20px 0;">${emoji}</div>
-                    <div class="quiz-question">Quiz Complete!</div>
-                    <div style="font-size: 48px; color: #006B3F; margin: 20px 0;">
-                        ${marketScore} / ${marketQuestions.length}
                     </div>
                     <div style="font-size: 24px; color: #CE1126; margin: 20px 0;">
                         ${percentage}%

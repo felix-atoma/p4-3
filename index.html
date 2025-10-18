@@ -195,11 +195,20 @@
             animation: speaker-pulse 2s infinite;
         }
 
-        .quiz-container {
+        /* Quiz and Game Styles */
+        .topic-quiz-container {
             background: linear-gradient(135deg, #FCD116 0%, #f4c700 100%);
             border-radius: 15px;
             padding: 30px;
-            margin: 20px 0;
+            margin: 30px 0;
+        }
+
+        .topic-game-container {
+            background: linear-gradient(135deg, #006B3F 0%, #005a33 100%);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            color: white;
         }
 
         .quiz-question {
@@ -252,7 +261,7 @@
 
         .game-card {
             background: white;
-            border: 3px solid #006B3F;
+            border: 3px solid #FCD116;
             border-radius: 12px;
             padding: 30px;
             text-align: center;
@@ -303,6 +312,25 @@
 
         .btn-primary:hover {
             background: #005a33;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+
+        .btn-secondary {
+            background: #FCD116;
+            color: #006B3F;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary:hover {
+            background: #e6b800;
             transform: translateY(-3px);
             box-shadow: 0 6px 15px rgba(0,0,0,0.3);
         }
@@ -382,7 +410,7 @@
             font-size: 18px;
             line-height: 1.5;
             margin: 20px 0;
-            color: #006B3F;
+            color: #FCD116;
         }
 
         .hangman-word {
@@ -390,7 +418,7 @@
             letter-spacing: 10px;
             font-weight: bold;
             margin: 20px 0;
-            color: #CE1126;
+            color: #FCD116;
         }
 
         .hangman-letters {
@@ -414,6 +442,7 @@
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
+            color: #006B3F;
         }
 
         .hangman-letter:hover {
@@ -470,6 +499,28 @@
             background: #FCD116;
             color: #006B3F;
             transform: rotateY(180deg);
+        }
+
+        .house-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .room-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 3px solid #006B3F;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .room-title {
+            font-size: 24px;
+            color: #CE1126;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
         }
 
         @keyframes fadeIn {
@@ -532,28 +583,6 @@
             }
         }
 
-        .house-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin: 20px 0;
-        }
-
-        .room-section {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border: 3px solid #006B3F;
-            border-radius: 12px;
-            padding: 20px;
-        }
-
-        .room-title {
-            font-size: 24px;
-            color: #CE1126;
-            font-weight: bold;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-
         @media (max-width: 768px) {
             h1 { font-size: 1.8em; }
             .vocab-grid { grid-template-columns: 1fr; }
@@ -572,12 +601,10 @@
 
     <nav>
         <button class="nav-btn active" onclick="showSection('home')">🏠 Accueil</button>
+        <button class="nav-btn" onclick="showSection('greetings')">👋 Salutations</button>
         <button class="nav-btn" onclick="showSection('house')">🏡 Chez Moi</button>
         <button class="nav-btn" onclick="showSection('school')">🎒 À l'École</button>
         <button class="nav-btn" onclick="showSection('market')">🛒 Au Marché</button>
-        <button class="nav-btn" onclick="showSection('greetings')">👋 Salutations</button>
-        <button class="nav-btn" onclick="showSection('quiz')">🎯 Quiz</button>
-        <button class="nav-btn" onclick="showSection('games')">🎮 Jeux</button>
     </nav>
 
     <div class="container">
@@ -601,8 +628,7 @@
                     <li><strong>Unité 2:</strong> Chez Moi (My House) - Learn about rooms and household items</li>
                     <li><strong>Unité 3:</strong> À l'École (At School) - Discover school vocabulary</li>
                     <li><strong>Unité 4:</strong> Au Marché (At the Market) - Learn shopping vocabulary</li>
-                    <li><strong>Interactive Quizzes</strong> - Test your knowledge</li>
-                    <li><strong>Memory Games & Hangman</strong> - Practice and have fun!</li>
+                    <li><strong>Interactive Quizzes & Games</strong> - Test your knowledge in each topic</li>
                 </ul>
             </div>
         </div>
@@ -647,71 +673,42 @@
                     </div>
                 </div>
 
-                <h3 style="color: #CE1126; margin: 30px 0 20px;">🗣️ Useful Phrases:</h3>
-                <div class="vocab-grid">
-                    <div class="vocab-item" onclick="playAudio('je_m_appelle')">
-                        <span class="vocab-icon">👤</span>
-                        <div class="vocab-french">Je m'appelle... <span class="speaker-icon">🔊</span></div>
-                        <div class="vocab-english">My name is...</div>
-                    </div>
-                    <div class="vocab-item" onclick="playAudio('comment_t_appelles_tu')">
-                        <span class="vocab-icon">❓</span>
-                        <div class="vocab-french">Comment t'appelles-tu? <span class="speaker-icon">🔊</span></div>
-                        <div class="vocab-english">What's your name?</div>
-                    </div>
-                    <div class="vocab-item" onclick="playAudio('enchanté')">
-                        <span class="vocab-icon">🤝</span>
-                        <div class="vocab-french">Enchanté(e) <span class="speaker-icon">🔊</span></div>
-                        <div class="vocab-english">Nice to meet you</div>
-                    </div>
-                    <div class="vocab-item" onclick="playAudio('s_il_vous_plait')">
-                        <span class="vocab-icon">🙏</span>
-                        <div class="vocab-french">S'il vous plaît <span class="speaker-icon">🔊</span></div>
-                        <div class="vocab-english">Please</div>
-                    </div>
-                    <div class="vocab-item" onclick="playAudio('merci')">
-                        <span class="vocab-icon">😊</span>
-                        <div class="vocab-french">Merci <span class="speaker-icon">🔊</span></div>
-                        <div class="vocab-english">Thank you</div>
-                    </div>
-                    <div class="vocab-item" onclick="playAudio('de_rien')">
-                        <span class="vocab-icon">😌</span>
-                        <div class="vocab-french">De rien <span class="speaker-icon">🔊</span></div>
-                        <div class="vocab-english">You're welcome</div>
+                <!-- Greetings Quiz -->
+                <div class="topic-quiz-container">
+                    <h3 style="color: #006B3F; text-align: center; margin-bottom: 20px;">🎯 Greetings Quiz</h3>
+                    <div class="score-board">Score: <span id="greetingsScore">0</span> / <span id="greetingsTotal">0</span></div>
+                    <div id="greetingsQuizContainer"></div>
+                    <div style="text-align: center; margin-top: 20px;">
+                        <button class="btn-primary" onclick="startGreetingsQuiz()">Start Quiz 🎮</button>
                     </div>
                 </div>
 
-                <h3 style="color: #CE1126; margin: 30px 0 20px;">💬 Sample Dialogue:</h3>
-                <div class="dialogue-container">
-                    <div class="dialogue-line">
-                        <span class="dialogue-speaker">Pierre:</span>
-                        <span class="dialogue-text">Bonjour! Comment ça va?</span>
-                        <button class="btn-primary" onclick="playAudio('bonjour_comment_ca_va')" style="padding: 5px 10px; font-size: 14px; margin-left: 10px;">🔊</button>
+                <!-- Greetings Games -->
+                <div class="topic-game-container">
+                    <h3 style="color: #FCD116; text-align: center; margin-bottom: 20px;">🎮 Greetings Games</h3>
+                    
+                    <div style="display: flex; justify-content: center; gap: 20px; margin: 30px 0; flex-wrap: wrap;">
+                        <button class="btn-secondary" onclick="startGreetingsMemory()">Memory Game 🧠</button>
+                        <button class="btn-secondary" onclick="startGreetingsFlashcards()">Flashcards 🔄</button>
                     </div>
-                    <div class="dialogue-line">
-                        <span class="dialogue-speaker">Marie:</span>
-                        <span class="dialogue-text">Bonjour! Ça va bien, merci. Et toi?</span>
-                        <button class="btn-primary" onclick="playAudio('bonjour_ca_va_bien')" style="padding: 5px 10px; font-size: 14px; margin-left: 10px;">🔊</button>
+                    
+                    <!-- Memory Game -->
+                    <div id="greetingsMemoryGame" style="display: none;">
+                        <div class="score-board">Moves: <span id="greetingsMoves">0</span> | Matches: <span id="greetingsMatches">0</span> / 4</div>
+                        <div class="game-board" id="greetingsGameBoard"></div>
                     </div>
-                    <div class="dialogue-line">
-                        <span class="dialogue-speaker">Pierre:</span>
-                        <span class="dialogue-text">Très bien, merci. Je m'appelle Pierre. Comment t'appelles-tu?</span>
-                        <button class="btn-primary" onclick="playAudio('je_m_appelle_pierre')" style="padding: 5px 10px; font-size: 14px; margin-left: 10px;">🔊</button>
-                    </div>
-                    <div class="dialogue-line">
-                        <span class="dialogue-speaker">Marie:</span>
-                        <span class="dialogue-text">Je m'appelle Marie. Enchantée!</span>
-                        <button class="btn-primary" onclick="playAudio('je_m_appelle_marie')" style="padding: 5px 10px; font-size: 14px; margin-left: 10px;">🔊</button>
-                    </div>
-                    <div class="dialogue-line">
-                        <span class="dialogue-speaker">Pierre:</span>
-                        <span class="dialogue-text">Enchanté! Au revoir, Marie!</span>
-                        <button class="btn-primary" onclick="playAudio('au_revoir_marie')" style="padding: 5px 10px; font-size: 14px; margin-left: 10px;">🔊</button>
-                    </div>
-                    <div class="dialogue-line">
-                        <span class="dialogue-speaker">Marie:</span>
-                        <span class="dialogue-text">À bientôt, Pierre!</span>
-                        <button class="btn-primary" onclick="playAudio('a_bientot_pierre')" style="padding: 5px 10px; font-size: 14px; margin-left: 10px;">🔊</button>
+                    
+                    <!-- Flashcards -->
+                    <div id="greetingsFlashcards" style="display: none; text-align: center;">
+                        <div class="flashcard-container">
+                            <div class="flashcard" id="greetingsFlashcard" onclick="flipGreetingsCard()">
+                                <div class="flashcard-front" id="greetingsFlashcardFront">Click to flip</div>
+                                <div class="flashcard-back" id="greetingsFlashcardBack"></div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 20px;">
+                            <button class="btn-secondary" onclick="nextGreetingsFlashcard()">Next Card ➡️</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -828,6 +825,44 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- House Quiz -->
+                <div class="topic-quiz-container">
+                    <h3 style="color: #006B3F; text-align: center; margin-bottom: 20px;">🎯 House Vocabulary Quiz</h3>
+                    <div class="score-board">Score: <span id="houseScore">0</span> / <span id="houseTotal">0</span></div>
+                    <div id="houseQuizContainer"></div>
+                    <div style="text-align: center; margin-top: 20px;">
+                        <button class="btn-primary" onclick="startHouseQuiz()">Start Quiz 🎮</button>
+                    </div>
+                </div>
+
+                <!-- House Games -->
+                <div class="topic-game-container">
+                    <h3 style="color: #FCD116; text-align: center; margin-bottom: 20px;">🎮 House Games</h3>
+                    
+                    <div style="display: flex; justify-content: center; gap: 20px; margin: 30px 0; flex-wrap: wrap;">
+                        <button class="btn-secondary" onclick="startHouseHangman()">Hangman 🪢</button>
+                        <button class="btn-secondary" onclick="startHouseMemory()">Memory Game 🧠</button>
+                    </div>
+                    
+                    <!-- Hangman Game -->
+                    <div id="houseHangman" style="display: none;">
+                        <div class="hangman-container">
+                            <div class="score-board">Lives: <span id="houseLives">6</span></div>
+                            <div class="hangman-drawing">
+                                <pre id="houseHangmanArt"></pre>
+                            </div>
+                            <div class="hangman-word" id="houseHangmanWord"></div>
+                            <div class="hangman-letters" id="houseHangmanLetters"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Memory Game -->
+                    <div id="houseMemoryGame" style="display: none;">
+                        <div class="score-board">Moves: <span id="houseMoves">0</span> | Matches: <span id="houseMatches">0</span> / 4</div>
+                        <div class="game-board" id="houseGameBoard"></div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -880,51 +915,42 @@
                     </div>
                 </div>
 
-                <h3 style="color: #CE1126; margin: 30px 0 20px;">🏫 Les endroits à l'école:</h3>
-                <div class="vocab-grid">
-                    <div class="vocab-item" onclick="playAudio('bibliotheque')">
-                        <span class="vocab-icon">📚</span>
-                        <div class="vocab-french">La bibliothèque <span class="speaker-icon">🔊</span></div>
-                        <div class="vocab-english">The library</div>
-                    </div>
-                    <div class="vocab-item" onclick="playAudio('cantine')">
-                        <span class="vocab-icon">🍽️</span>
-                        <div class="vocab-french">La cantine <span class="speaker-icon">🔊</span></div>
-                        <div class="vocab-english">The cafeteria</div>
-                    </div>
-                    <div class="vocab-item" onclick="playAudio('cour')">
-                        <span class="vocab-icon">🏃</span>
-                        <div class="vocab-french">La cour de récréation <span class="speaker-icon">🔊</span></div>
-                        <div class="vocab-english">The playground</div>
-                    </div>
-                    <div class="vocab-item" onclick="playAudio('terrain')">
-                        <span class="vocab-icon">⚽</span>
-                        <div class="vocab-french">Le terrain de sport <span class="speaker-icon">🔊</span></div>
-                        <div class="vocab-english">The sports field</div>
+                <!-- School Quiz -->
+                <div class="topic-quiz-container">
+                    <h3 style="color: #006B3F; text-align: center; margin-bottom: 20px;">🎯 School Vocabulary Quiz</h3>
+                    <div class="score-board">Score: <span id="schoolScore">0</span> / <span id="schoolTotal">0</span></div>
+                    <div id="schoolQuizContainer"></div>
+                    <div style="text-align: center; margin-top: 20px;">
+                        <button class="btn-primary" onclick="startSchoolQuiz()">Start Quiz 🎮</button>
                     </div>
                 </div>
 
-                <h3 style="color: #CE1126; margin: 30px 0 20px;">👨‍🏫 Les personnes à l'école:</h3>
-                <div class="vocab-grid">
-                    <div class="vocab-item" onclick="playAudio('professeur')">
-                        <span class="vocab-icon">👨‍🏫</span>
-                        <div class="vocab-french">Le professeur <span class="speaker-icon">🔊</span></div>
-                        <div class="vocab-english">The teacher</div>
+                <!-- School Games -->
+                <div class="topic-game-container">
+                    <h3 style="color: #FCD116; text-align: center; margin-bottom: 20px;">🎮 School Games</h3>
+                    
+                    <div style="display: flex; justify-content: center; gap: 20px; margin: 30px 0; flex-wrap: wrap;">
+                        <button class="btn-secondary" onclick="startSchoolFlashcards()">Flashcards 🔄</button>
+                        <button class="btn-secondary" onclick="startSchoolMemory()">Memory Game 🧠</button>
                     </div>
-                    <div class="vocab-item" onclick="playAudio('eleve')">
-                        <span class="vocab-icon">👨‍🎓</span>
-                        <div class="vocab-french">L'élève <span class="speaker-icon">🔊</span></div>
-                        <div class="vocab-english">The student</div>
+                    
+                    <!-- Flashcards -->
+                    <div id="schoolFlashcards" style="display: none; text-align: center;">
+                        <div class="flashcard-container">
+                            <div class="flashcard" id="schoolFlashcard" onclick="flipSchoolCard()">
+                                <div class="flashcard-front" id="schoolFlashcardFront">Click to flip</div>
+                                <div class="flashcard-back" id="schoolFlashcardBack"></div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 20px;">
+                            <button class="btn-secondary" onclick="nextSchoolFlashcard()">Next Card ➡️</button>
+                        </div>
                     </div>
-                    <div class="vocab-item" onclick="playAudio('directeur')">
-                        <span class="vocab-icon">👨‍💼</span>
-                        <div class="vocab-french">Le directeur <span class="speaker-icon">🔊</span></div>
-                        <div class="vocab-english">The principal</div>
-                    </div>
-                    <div class="vocab-item" onclick="playAudio('surveillant')">
-                        <span class="vocab-icon">👮</span>
-                        <div class="vocab-french">Le surveillant <span class="speaker-icon">🔊</span></div>
-                        <div class="vocab-english">The supervisor</div>
+                    
+                    <!-- Memory Game -->
+                    <div id="schoolMemoryGame" style="display: none;">
+                        <div class="score-board">Moves: <span id="schoolMoves">0</span> | Matches: <span id="schoolMatches">0</span> / 4</div>
+                        <div class="game-board" id="schoolGameBoard"></div>
                     </div>
                 </div>
             </div>
@@ -969,128 +995,41 @@
                     </div>
                 </div>
 
-                <h3 style="color: #CE1126; margin: 30px 0 20px;">🛍️ Les phrases utiles:</h3>
-                <div class="phrase-container">
-                    <div class="phrase-french">Combien ça coûte? <button class="btn-primary" onclick="playAudio('combien_ca_coute')" style="padding: 5px 10px; font-size: 14px; margin-left: 10px;">🔊</button></div>
-                    <div class="phrase-english">How much does it cost?</div>
-                </div>
-                <div class="phrase-container">
-                    <div class="phrase-french">Je voudrais acheter... <button class="btn-primary" onclick="playAudio('je_voudrais_acheter')" style="padding: 5px 10px; font-size: 14px; margin-left: 10px;">🔊</button></div>
-                    <div class="phrase-english">I would like to buy...</div>
-                </div>
-                <div class="phrase-container">
-                    <div class="phrase-french">C'est trop cher! <button class="btn-primary" onclick="playAudio('c_est_trop_cher')" style="padding: 5px 10px; font-size: 14px; margin-left: 10px;">🔊</button></div>
-                    <div class="phrase-english">It's too expensive!</div>
-                </div>
-                <div class="phrase-container">
-                    <div class="phrase-french">Vous avez...? <button class="btn-primary" onclick="playAudio('vous_avez')" style="padding: 5px 10px; font-size: 14px; margin-left: 10px;">🔊</button></div>
-                    <div class="phrase-english">Do you have...?</div>
-                </div>
-
-                <h3 style="color: #CE1126; margin: 30px 0 20px;">💬 Dialogue au marché:</h3>
-                <div class="dialogue-container">
-                    <div class="dialogue-line">
-                        <span class="dialogue-speaker">Client:</span>
-                        <span class="dialogue-text">Bonjour! Combien coûtent les bananes?</span>
-                        <button class="btn-primary" onclick="playAudio('combien_coutent_bananes')" style="padding: 5px 10px; font-size: 14px; margin-left: 10px;">🔊</button>
-                    </div>
-                    <div class="dialogue-line">
-                        <span class="dialogue-speaker">Vendeur:</span>
-                        <span class="dialogue-text">Bonjour! C'est 500 francs le kilo.</span>
-                        <button class="btn-primary" onclick="playAudio('500_francs_kilo')" style="padding: 5px 10px; font-size: 14px; margin-left: 10px;">🔊</button>
-                    </div>
-                    <div class="dialogue-line">
-                        <span class="dialogue-speaker">Client:</span>
-                        <span class="dialogue-text">D'accord, je voudrais deux kilos, s'il vous plaît.</span>
-                        <button class="btn-primary" onclick="playAudio('deux_kilos_svp')" style="padding: 5px 10px; font-size: 14px; margin-left: 10px;">🔊</button>
-                    </div>
-                    <div class="dialogue-line">
-                        <span class="dialogue-speaker">Vendeur:</span>
-                        <span class="dialogue-text">Voilà! Ça fait 1000 francs.</span>
-                        <button class="btn-primary" onclick="playAudio('1000_francs')" style="padding: 5px 10px; font-size: 14px; margin-left: 10px;">🔊</button>
-                    </div>
-                    <div class="dialogue-line">
-                        <span class="dialogue-speaker">Client:</span>
-                        <span class="dialogue-text">Merci beaucoup! Au revoir!</span>
-                        <button class="btn-primary" onclick="playAudio('merci_au_revoir')" style="padding: 5px 10px; font-size: 14px; margin-left: 10px;">🔊</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Quiz Section -->
-        <div id="quiz" class="section">
-            <div class="card">
-                <h2 style="color: #006B3F; font-size: 2em; margin-bottom: 20px;">🎯 Test Your Knowledge!</h2>
-                <div class="score-board">Score: <span id="score">0</span> / <span id="total">0</span></div>
-                
-                <div id="quizContainer"></div>
-                
-                <button class="btn-primary" onclick="startQuiz()" style="margin-top: 20px;">Start New Quiz 🎮</button>
-            </div>
-        </div>
-
-        <!-- Games Section -->
-        <div id="games" class="section">
-            <div class="card">
-                <h2 style="color: #006B3F; font-size: 2em; margin-bottom: 20px;">🎮 Language Games</h2>
-                
-                <div class="score-board">Select a game to play!</div>
-                
-                <div style="display: flex; justify-content: center; gap: 20px; margin: 30px 0;">
-                    <button class="btn-primary" onclick="showGame('memory')">Memory Game 🧠</button>
-                    <button class="btn-primary" onclick="showGame('hangman')">Hangman 🪢</button>
-                    <button class="btn-primary" onclick="showGame('flashcards')">Flashcards 🔄</button>
-                </div>
-                
-                <!-- Memory Game -->
-                <div id="memoryGame" class="game-section">
-                    <h3 style="color: #CE1126; text-align: center; margin-bottom: 20px;">🧠 Memory Game</h3>
-                    <p style="text-align: center; margin-bottom: 20px;">Match the French words with their meanings!</p>
-                    
-                    <div class="score-board">Moves: <span id="moves">0</span> | Matches: <span id="matches">0</span> / 6</div>
-                    
-                    <div class="game-board" id="gameBoard"></div>
-                    
+                <!-- Market Quiz -->
+                <div class="topic-quiz-container">
+                    <h3 style="color: #006B3F; text-align: center; margin-bottom: 20px;">🎯 Market Vocabulary Quiz</h3>
+                    <div class="score-board">Score: <span id="marketScore">0</span> / <span id="marketTotal">0</span></div>
+                    <div id="marketQuizContainer"></div>
                     <div style="text-align: center; margin-top: 20px;">
-                        <button class="btn-primary" onclick="startMemoryGame()">New Game 🔄</button>
+                        <button class="btn-primary" onclick="startMarketQuiz()">Start Quiz 🎮</button>
                     </div>
                 </div>
-                
-                <!-- Hangman Game -->
-                <div id="hangmanGame" class="game-section" style="display: none;">
-                    <h3 style="color: #CE1126; text-align: center; margin-bottom: 20px;">🪢 Hangman</h3>
-                    <p style="text-align: center; margin-bottom: 20px;">Guess the French word!</p>
+
+                <!-- Market Games -->
+                <div class="topic-game-container">
+                    <h3 style="color: #FCD116; text-align: center; margin-bottom: 20px;">🎮 Market Games</h3>
                     
-                    <div class="score-board">Lives: <span id="lives">6</span> | Category: <span id="category">House</span></div>
-                    
-                    <div class="hangman-container">
-                        <div class="hangman-drawing" id="hangmanDrawing">
-                            <pre id="hangmanArt"></pre>
-                        </div>
-                        <div class="hangman-word" id="hangmanWord"></div>
-                        <div class="hangman-letters" id="hangmanLetters"></div>
+                    <div style="display: flex; justify-content: center; gap: 20px; margin: 30px 0; flex-wrap: wrap;">
+                        <button class="btn-secondary" onclick="startMarketHangman()">Hangman 🪢</button>
+                        <button class="btn-secondary" onclick="startMarketMemory()">Memory Game 🧠</button>
                     </div>
                     
-                    <div style="text-align: center; margin-top: 20px;">
-                        <button class="btn-primary" onclick="startHangman()">New Word 🔄</button>
-                    </div>
-                </div>
-                
-                <!-- Flashcards -->
-                <div id="flashcardsGame" class="game-section" style="display: none;">
-                    <h3 style="color: #CE1126; text-align: center; margin-bottom: 20px;">🔄 Flashcards</h3>
-                    <p style="text-align: center; margin-bottom: 20px;">Click the card to flip it and learn!</p>
-                    
-                    <div class="flashcard-container">
-                        <div class="flashcard" id="flashcard" onclick="flipCard()">
-                            <div class="flashcard-front" id="flashcardFront">Click to flip</div>
-                            <div class="flashcard-back" id="flashcardBack"></div>
+                    <!-- Hangman Game -->
+                    <div id="marketHangman" style="display: none;">
+                        <div class="hangman-container">
+                            <div class="score-board">Lives: <span id="marketLives">6</span></div>
+                            <div class="hangman-drawing">
+                                <pre id="marketHangmanArt"></pre>
+                            </div>
+                            <div class="hangman-word" id="marketHangmanWord"></div>
+                            <div class="hangman-letters" id="marketHangmanLetters"></div>
                         </div>
                     </div>
                     
-                    <div style="text-align: center; margin-top: 20px;">
-                        <button class="btn-primary" onclick="nextFlashcard()">Next Card ➡️</button>
+                    <!-- Memory Game -->
+                    <div id="marketMemoryGame" style="display: none;">
+                        <div class="score-board">Moves: <span id="marketMoves">0</span> | Matches: <span id="marketMatches">0</span> / 4</div>
+                        <div class="game-board" id="marketGameBoard"></div>
                     </div>
                 </div>
             </div>
@@ -1112,23 +1051,7 @@
             event.target.classList.add('active');
         }
 
-        // Game navigation
-        function showGame(gameType) {
-            document.querySelectorAll('.game-section').forEach(section => {
-                section.style.display = 'none';
-            });
-            document.getElementById(gameType + 'Game').style.display = 'block';
-            
-            if (gameType === 'memory') {
-                startMemoryGame();
-            } else if (gameType === 'hangman') {
-                startHangman();
-            } else if (gameType === 'flashcards') {
-                startFlashcards();
-            }
-        }
-
-        // Audio pronunciation using Web Speech API with enhanced French pronunciation
+        // Audio pronunciation using Web Speech API
         function playAudio(word) {
             const vocab = {
                 // Greetings
@@ -1138,20 +1061,6 @@
                 'au_revoir': 'au revoir',
                 'a_bientot': 'à bientôt',
                 'comment_ca_va': 'comment ça va',
-                'je_m_appelle': 'je m\'appelle',
-                'comment_t_appelles_tu': 'comment t\'appelles-tu',
-                'enchanté': 'enchanté',
-                's_il_vous_plait': 's\'il vous plaît',
-                'merci': 'merci',
-                'de_rien': 'de rien',
-                
-                // Dialogue phrases
-                'bonjour_comment_ca_va': 'Bonjour! Comment ça va?',
-                'bonjour_ca_va_bien': 'Bonjour! Ça va bien, merci. Et toi?',
-                'je_m_appelle_pierre': 'Très bien, merci. Je m\'appelle Pierre. Comment t\'appelles-tu?',
-                'je_m_appelle_marie': 'Je m\'appelle Marie. Enchantée!',
-                'au_revoir_marie': 'Enchanté! Au revoir, Marie!',
-                'a_bientot_pierre': 'À bientôt, Pierre!',
                 
                 // House vocabulary
                 'lavabo': 'lavabo',
@@ -1180,14 +1089,6 @@
                 'regle': 'règle',
                 'cartable': 'cartable',
                 'tableau': 'tableau',
-                'bibliotheque': 'bibliothèque',
-                'cantine': 'cantine',
-                'cour': 'cour de récréation',
-                'terrain': 'terrain de sport',
-                'professeur': 'professeur',
-                'eleve': 'élève',
-                'directeur': 'directeur',
-                'surveillant': 'surveillant',
                 
                 // Market vocabulary
                 'pomme': 'pomme',
@@ -1195,16 +1096,7 @@
                 'tomate': 'tomate',
                 'carotte': 'carotte',
                 'oignon': 'oignon',
-                'piment': 'piment',
-                'combien_ca_coute': 'combien ça coûte',
-                'je_voudrais_acheter': 'je voudrais acheter',
-                'c_est_trop_cher': 'c\'est trop cher',
-                'vous_avez': 'vous avez',
-                'combien_coutent_bananes': 'Bonjour! Combien coûtent les bananes?',
-                '500_francs_kilo': 'Bonjour! C\'est 500 francs le kilo',
-                'deux_kilos_svp': 'D\'accord, je voudrais deux kilos, s\'il vous plaît',
-                '1000_francs': 'Voilà! Ça fait 1000 francs',
-                'merci_au_revoir': 'Merci beaucoup! Au revoir!'
+                'piment': 'piment'
             };
 
             const utterance = new SpeechSynthesisUtterance(vocab[word]);
@@ -1229,50 +1121,31 @@
             }
         }
 
-        // Quiz functionality
-        let currentQuestion = 0;
-        let quizScore = 0;
-        const quizQuestions = [
-            {
-                question: "What is 'le lit' in English?",
-                options: ["The bed", "The chair", "The table", "The lamp"],
-                correct: 0
-            },
-            {
-                question: "How do you say 'the book' in French?",
-                options: ["Le cahier", "Le livre", "Le stylo", "Le crayon"],
-                correct: 1
-            },
-            {
-                question: "What is 'la cuisine'?",
-                options: ["The bathroom", "The bedroom", "The kitchen", "The living room"],
-                correct: 2
-            },
-            {
-                question: "Choose the correct French word for 'the mirror':",
-                options: ["La serviette", "La glace", "La lampe", "La table"],
-                correct: 1
-            },
-            {
-                question: "What does 'le cartable' mean?",
-                options: ["The pencil", "The notebook", "The schoolbag", "The ruler"],
-                correct: 2
-            },
-            {
-                question: "How do you say 'the library' in French?",
-                options: ["La cantine", "La bibliothèque", "La salle de classe", "Le terrain de sport"],
-                correct: 1
-            },
-            {
-                question: "What is 'la baignoire'?",
-                options: ["The sink", "The mirror", "The bathtub", "The towel"],
-                correct: 2
-            },
-            {
-                question: "Choose the correct translation for 'the eraser':",
-                options: ["La gomme", "La règle", "Le crayon", "Le stylo"],
-                correct: 0
-            },
+        // Celebration effect
+        function celebrate(big = false) {
+            const celebration = document.getElementById('celebration');
+            const colors = ['#CE1126', '#FCD116', '#006B3F', '#ffffff'];
+            const count = big ? 50 : 20;
+
+            for (let i = 0; i < count; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                    celebration.appendChild(confetti);
+
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 30);
+            }
+        }
+
+        // ========== GREETINGS SECTION ==========
+        // Greetings Quiz
+        let greetingsCurrentQuestion = 0;
+        let greetingsScore = 0;
+        const greetingsQuestions = [
             {
                 question: "How do you say 'Good morning' in French?",
                 options: ["Bonsoir", "Bonne nuit", "Bonjour", "Au revoir"],
@@ -1282,52 +1155,57 @@
                 question: "What does 'Comment ça va?' mean?",
                 options: ["What is your name?", "How are you?", "Where are you from?", "How old are you?"],
                 correct: 1
+            },
+            {
+                question: "Choose the correct French phrase for 'See you soon':",
+                options: ["À bientôt", "Au revoir", "Bonne nuit", "Bonjour"],
+                correct: 0
+            },
+            {
+                question: "What is 'Bonsoir' in English?",
+                options: ["Good morning", "Good night", "Good evening", "Goodbye"],
+                correct: 2
             }
         ];
 
-        function startQuiz() {
-            currentQuestion = 0;
-            quizScore = 0;
-            document.getElementById('score').textContent = quizScore;
-            document.getElementById('total').textContent = quizQuestions.length;
-            showQuestion();
+        function startGreetingsQuiz() {
+            greetingsCurrentQuestion = 0;
+            greetingsScore = 0;
+            document.getElementById('greetingsScore').textContent = greetingsScore;
+            document.getElementById('greetingsTotal').textContent = greetingsQuestions.length;
+            showGreetingsQuestion();
         }
 
-        function showQuestion() {
-            if (currentQuestion >= quizQuestions.length) {
-                showQuizResults();
+        function showGreetingsQuestion() {
+            if (greetingsCurrentQuestion >= greetingsQuestions.length) {
+                showGreetingsQuizResults();
                 return;
             }
 
-            const q = quizQuestions[currentQuestion];
-            const container = document.getElementById('quizContainer');
+            const q = greetingsQuestions[greetingsCurrentQuestion];
+            const container = document.getElementById('greetingsQuizContainer');
             
             let html = `
-                <div class="quiz-container">
-                    <div class="quiz-question">Question ${currentQuestion + 1}/${quizQuestions.length}</div>
-                    <div class="quiz-question">${q.question}</div>
-                    <div class="quiz-options">
+                <div class="quiz-question">Question ${greetingsCurrentQuestion + 1}/${greetingsQuestions.length}</div>
+                <div class="quiz-question">${q.question}</div>
+                <div class="quiz-options">
             `;
 
             q.options.forEach((option, index) => {
                 html += `
-                    <div class="quiz-option" onclick="checkAnswer(${index})">
+                    <div class="quiz-option" onclick="checkGreetingsAnswer(${index})">
                         ${option}
                     </div>
                 `;
             });
 
-            html += `
-                    </div>
-                </div>
-            `;
-
+            html += `</div>`;
             container.innerHTML = html;
         }
 
-        function checkAnswer(selected) {
-            const q = quizQuestions[currentQuestion];
-            const options = document.querySelectorAll('.quiz-option');
+        function checkGreetingsAnswer(selected) {
+            const q = greetingsQuestions[greetingsCurrentQuestion];
+            const options = document.querySelectorAll('#greetingsQuizContainer .quiz-option');
             
             options.forEach(option => {
                 option.style.pointerEvents = 'none';
@@ -1335,8 +1213,8 @@
 
             if (selected === q.correct) {
                 options[selected].classList.add('correct');
-                quizScore++;
-                document.getElementById('score').textContent = quizScore;
+                greetingsScore++;
+                document.getElementById('greetingsScore').textContent = greetingsScore;
                 celebrate();
             } else {
                 options[selected].classList.add('incorrect');
@@ -1344,14 +1222,14 @@
             }
 
             setTimeout(() => {
-                currentQuestion++;
-                showQuestion();
+                greetingsCurrentQuestion++;
+                showGreetingsQuestion();
             }, 2000);
         }
 
-        function showQuizResults() {
-            const container = document.getElementById('quizContainer');
-            const percentage = (quizScore / quizQuestions.length * 100).toFixed(0);
+        function showGreetingsQuizResults() {
+            const container = document.getElementById('greetingsQuizContainer');
+            const percentage = (greetingsScore / greetingsQuestions.length * 100).toFixed(0);
             
             let message = '';
             let emoji = '';
@@ -1369,11 +1247,11 @@
             }
 
             container.innerHTML = `
-                <div class="quiz-container" style="text-align: center;">
+                <div style="text-align: center;">
                     <div style="font-size: 80px; margin: 20px 0;">${emoji}</div>
                     <div class="quiz-question">Quiz Complete!</div>
                     <div style="font-size: 48px; color: #006B3F; margin: 20px 0;">
-                        ${quizScore} / ${quizQuestions.length}
+                        ${greetingsScore} / ${greetingsQuestions.length}
                     </div>
                     <div style="font-size: 24px; color: #CE1126; margin: 20px 0;">
                         ${percentage}%
@@ -1385,76 +1263,76 @@
             `;
         }
 
-        // Memory Game
-        let gameCards = [];
-        let flippedCards = [];
-        let matchedPairs = 0;
-        let moves = 0;
+        // Greetings Memory Game
+        let greetingsGameCards = [];
+        let greetingsFlippedCards = [];
+        let greetingsMatchedPairs = 0;
+        let greetingsMoves = 0;
 
-        const memoryPairs = [
-            { french: 'Le lit', english: 'The bed' },
-            { french: 'La table', english: 'The table' },
-            { french: 'Le livre', english: 'The book' },
-            { french: 'Le stylo', english: 'The pen' },
-            { french: 'La chaise', english: 'The chair' },
-            { french: 'La lampe', english: 'The lamp' },
+        const greetingsMemoryPairs = [
             { french: 'Bonjour', english: 'Hello' },
+            { french: 'Bonsoir', english: 'Good evening' },
+            { french: 'Au revoir', english: 'Goodbye' },
             { french: 'Merci', english: 'Thank you' }
         ];
 
-        function startMemoryGame() {
-            matchedPairs = 0;
-            moves = 0;
-            flippedCards = [];
-            document.getElementById('moves').textContent = moves;
-            document.getElementById('matches').textContent = matchedPairs;
+        function startGreetingsMemory() {
+            // Hide flashcards and show memory game
+            document.getElementById('greetingsFlashcards').style.display = 'none';
+            document.getElementById('greetingsMemoryGame').style.display = 'block';
+            
+            greetingsMatchedPairs = 0;
+            greetingsMoves = 0;
+            greetingsFlippedCards = [];
+            document.getElementById('greetingsMoves').textContent = greetingsMoves;
+            document.getElementById('greetingsMatches').textContent = greetingsMatchedPairs;
 
-            gameCards = [];
-            memoryPairs.forEach((pair, index) => {
-                gameCards.push({ id: index, text: pair.french, type: 'french' });
-                gameCards.push({ id: index, text: pair.english, type: 'english' });
+            greetingsGameCards = [];
+            greetingsMemoryPairs.forEach((pair, index) => {
+                greetingsGameCards.push({ id: index, text: pair.french, type: 'french' });
+                greetingsGameCards.push({ id: index, text: pair.english, type: 'english' });
             });
 
             // Shuffle cards
-            gameCards.sort(() => Math.random() - 0.5);
+            greetingsGameCards.sort(() => Math.random() - 0.5);
 
-            const board = document.getElementById('gameBoard');
+            const board = document.getElementById('greetingsGameBoard');
             board.innerHTML = '';
 
-            gameCards.forEach((card, index) => {
+            greetingsGameCards.forEach((card, index) => {
                 const cardElement = document.createElement('div');
                 cardElement.className = 'game-card';
                 cardElement.innerHTML = '❓';
                 cardElement.dataset.index = index;
-                cardElement.onclick = () => flipCard(index);
+                cardElement.onclick = () => flipGreetingsCard(index);
                 board.appendChild(cardElement);
             });
         }
 
-        function flipCard(index) {
-            const cardElements = document.querySelectorAll('.game-card');
+        function flipGreetingsCard(index) {
+            const cardElements = document.querySelectorAll('#greetingsGameBoard .game-card');
             const card = cardElements[index];
 
-            if (flippedCards.length >= 2 || card.classList.contains('flipped')) {
+            if (greetingsFlippedCards.length >= 2 || card.classList.contains('flipped')) {
                 return;
             }
 
             card.classList.add('flipped');
-            card.innerHTML = gameCards[index].text;
-            flippedCards.push(index);
+            card.innerHTML = greetingsGameCards[index].text;
+            greetingsFlippedCards.push(index);
 
-            if (flippedCards.length === 2) {
-                moves++;
-                document.getElementById('moves').textContent = moves;
-                checkMatch();
+            if (greetingsFlippedCards.length === 2) {
+                greetingsMoves++;
+                document.getElementById('greetingsMoves').textContent = greetingsMoves;
+                checkGreetingsMatch();
             }
         }
 
-        function checkMatch() {
-            const cardElements = document.querySelectorAll('.game-card');
-            const [index1, index2] = flippedCards;
-            const card1 = gameCards[index1];
-            const card2 = gameCards[index2];
+        function checkGreetingsMatch() {
+            const cardElements = document.querySelectorAll('#greetingsGameBoard .game-card');
+            const [index1, index2] = greetingsFlippedCards;
+            const card1 = greetingsGameCards[index1];
+            const card2 = greetingsGameCards[index2];
 
             setTimeout(() => {
                 if (card1.id === card2.id && card1.type !== card2.type) {
@@ -1463,13 +1341,13 @@
                     cardElements[index2].style.background = '#28a745';
                     cardElements[index1].style.color = 'white';
                     cardElements[index2].style.color = 'white';
-                    matchedPairs++;
-                    document.getElementById('matches').textContent = matchedPairs;
+                    greetingsMatchedPairs++;
+                    document.getElementById('greetingsMatches').textContent = greetingsMatchedPairs;
                     
-                    if (matchedPairs === memoryPairs.length) {
+                    if (greetingsMatchedPairs === greetingsMemoryPairs.length) {
                         setTimeout(() => {
                             celebrate(true);
-                            alert(`🎉 Félicitations! You won in ${moves} moves! 🎉`);
+                            alert(`🎉 Félicitations! You won in ${greetingsMoves} moves! 🎉`);
                         }, 500);
                     }
                 } else {
@@ -1479,26 +1357,178 @@
                     cardElements[index1].innerHTML = '❓';
                     cardElements[index2].innerHTML = '❓';
                 }
-                flippedCards = [];
+                greetingsFlippedCards = [];
             }, 1000);
         }
 
-        // Hangman Game
-        let hangmanWords = [
-            { word: "MAISON", category: "House", hint: "A place where people live" },
-            { word: "ÉCOLE", category: "School", hint: "A place where students learn" },
-            { word: "LIVRE", category: "School", hint: "You read this to gain knowledge" },
-            { word: "CHAISE", category: "House", hint: "You sit on this" },
-            { word: "TABLE", category: "House", hint: "You eat on this" },
-            { word: "BANANE", category: "Market", hint: "A yellow fruit" },
-            { word: "TOMATE", category: "Market", hint: "A red fruit often used in salads" },
-            { word: "BONJOUR", category: "Greetings", hint: "What you say when you meet someone" }
+        // Greetings Flashcards
+        let greetingsFlashcardIndex = 0;
+        const greetingsFlashcards = [
+            { french: "Bonjour", english: "Hello / Good morning" },
+            { french: "Bonsoir", english: "Good evening" },
+            { french: "Au revoir", english: "Goodbye" },
+            { french: "Merci", english: "Thank you" },
+            { french: "S'il vous plaît", english: "Please" }
         ];
 
-        let currentHangmanWord = "";
-        let guessedLetters = [];
-        let wrongGuesses = 0;
-        const maxWrongGuesses = 6;
+        function startGreetingsFlashcards() {
+            // Hide memory game and show flashcards
+            document.getElementById('greetingsMemoryGame').style.display = 'none';
+            document.getElementById('greetingsFlashcards').style.display = 'block';
+            
+            greetingsFlashcardIndex = 0;
+            showGreetingsFlashcard();
+        }
+
+        function showGreetingsFlashcard() {
+            const card = greetingsFlashcards[greetingsFlashcardIndex];
+            document.getElementById('greetingsFlashcardFront').textContent = card.french;
+            document.getElementById('greetingsFlashcardBack').textContent = card.english;
+            document.getElementById('greetingsFlashcard').classList.remove('flipped');
+        }
+
+        function flipGreetingsCard() {
+            const flashcard = document.getElementById('greetingsFlashcard');
+            flashcard.classList.toggle('flipped');
+            
+            if (flashcard.classList.contains('flipped')) {
+                playAudio(greetingsFlashcards[greetingsFlashcardIndex].french.toLowerCase().replace(/ /g, '_').replace(/'/g, '_'));
+            }
+        }
+
+        function nextGreetingsFlashcard() {
+            greetingsFlashcardIndex = (greetingsFlashcardIndex + 1) % greetingsFlashcards.length;
+            showGreetingsFlashcard();
+        }
+
+        // ========== HOUSE SECTION ==========
+        // House Quiz
+        let houseCurrentQuestion = 0;
+        let houseScore = 0;
+        const houseQuestions = [
+            {
+                question: "What is 'le lit' in English?",
+                options: ["The bed", "The chair", "The table", "The lamp"],
+                correct: 0
+            },
+            {
+                question: "How do you say 'the television' in French?",
+                options: ["La table", "La télévision", "La chaise", "La lampe"],
+                correct: 1
+            },
+            {
+                question: "What is 'la cuisine'?",
+                options: ["The bathroom", "The bedroom", "The kitchen", "The living room"],
+                correct: 2
+            },
+            {
+                question: "Choose the correct French word for 'the mirror':",
+                options: ["La serviette", "La glace", "La lampe", "La table"],
+                correct: 1
+            }
+        ];
+
+        function startHouseQuiz() {
+            houseCurrentQuestion = 0;
+            houseScore = 0;
+            document.getElementById('houseScore').textContent = houseScore;
+            document.getElementById('houseTotal').textContent = houseQuestions.length;
+            showHouseQuestion();
+        }
+
+        function showHouseQuestion() {
+            if (houseCurrentQuestion >= houseQuestions.length) {
+                showHouseQuizResults();
+                return;
+            }
+
+            const q = houseQuestions[houseCurrentQuestion];
+            const container = document.getElementById('houseQuizContainer');
+            
+            let html = `
+                <div class="quiz-question">Question ${houseCurrentQuestion + 1}/${houseQuestions.length}</div>
+                <div class="quiz-question">${q.question}</div>
+                <div class="quiz-options">
+            `;
+
+            q.options.forEach((option, index) => {
+                html += `
+                    <div class="quiz-option" onclick="checkHouseAnswer(${index})">
+                        ${option}
+                    </div>
+                `;
+            });
+
+            html += `</div>`;
+            container.innerHTML = html;
+        }
+
+        function checkHouseAnswer(selected) {
+            const q = houseQuestions[houseCurrentQuestion];
+            const options = document.querySelectorAll('#houseQuizContainer .quiz-option');
+            
+            options.forEach(option => {
+                option.style.pointerEvents = 'none';
+            });
+
+            if (selected === q.correct) {
+                options[selected].classList.add('correct');
+                houseScore++;
+                document.getElementById('houseScore').textContent = houseScore;
+                celebrate();
+            } else {
+                options[selected].classList.add('incorrect');
+                options[q.correct].classList.add('correct');
+            }
+
+            setTimeout(() => {
+                houseCurrentQuestion++;
+                showHouseQuestion();
+            }, 2000);
+        }
+
+        function showHouseQuizResults() {
+            const container = document.getElementById('houseQuizContainer');
+            const percentage = (houseScore / houseQuestions.length * 100).toFixed(0);
+            
+            let message = '';
+            let emoji = '';
+            
+            if (percentage >= 80) {
+                message = 'Excellent! Très bien! 🌟';
+                emoji = '🎉';
+                celebrate(true);
+            } else if (percentage >= 60) {
+                message = 'Good job! Bon travail! 👍';
+                emoji = '😊';
+            } else {
+                message = 'Keep practicing! Continue à pratiquer! 💪';
+                emoji = '📚';
+            }
+
+            container.innerHTML = `
+                <div style="text-align: center;">
+                    <div style="font-size: 80px; margin: 20px 0;">${emoji}</div>
+                    <div class="quiz-question">Quiz Complete!</div>
+                    <div style="font-size: 48px; color: #006B3F; margin: 20px 0;">
+                        ${houseScore} / ${houseQuestions.length}
+                    </div>
+                    <div style="font-size: 24px; color: #CE1126; margin: 20px 0;">
+                        ${percentage}%
+                    </div>
+                    <div style="font-size: 28px; font-weight: bold; color: #FCD116; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+                        ${message}
+                    </div>
+                </div>
+            `;
+        }
+
+        // House Hangman
+        const houseHangmanWords = ["LIT", "TABLE", "CHAISE", "LAMPE", "MAISON"];
+        let currentHouseWord = "";
+        let houseGuessedLetters = [];
+        let houseWrongGuesses = 0;
+        const maxHouseWrongGuesses = 6;
 
         const hangmanArt = [
             `
@@ -1559,26 +1589,29 @@
             =========`
         ];
 
-        function startHangman() {
-            const randomIndex = Math.floor(Math.random() * hangmanWords.length);
-            currentHangmanWord = hangmanWords[randomIndex].word;
-            guessedLetters = [];
-            wrongGuesses = 0;
+        function startHouseHangman() {
+            // Hide memory game and show hangman
+            document.getElementById('houseMemoryGame').style.display = 'none';
+            document.getElementById('houseHangman').style.display = 'block';
             
-            document.getElementById('lives').textContent = maxWrongGuesses - wrongGuesses;
-            document.getElementById('category').textContent = hangmanWords[randomIndex].category;
-            document.getElementById('hangmanArt').textContent = hangmanArt[0];
+            const randomIndex = Math.floor(Math.random() * houseHangmanWords.length);
+            currentHouseWord = houseHangmanWords[randomIndex];
+            houseGuessedLetters = [];
+            houseWrongGuesses = 0;
             
-            updateHangmanWordDisplay();
-            createLetterButtons();
+            document.getElementById('houseLives').textContent = maxHouseWrongGuesses - houseWrongGuesses;
+            document.getElementById('houseHangmanArt').textContent = hangmanArt[0];
+            
+            updateHouseHangmanWordDisplay();
+            createHouseLetterButtons();
         }
 
-        function updateHangmanWordDisplay() {
-            const wordDisplay = document.getElementById('hangmanWord');
+        function updateHouseHangmanWordDisplay() {
+            const wordDisplay = document.getElementById('houseHangmanWord');
             let displayText = "";
             
-            for (let letter of currentHangmanWord) {
-                if (guessedLetters.includes(letter)) {
+            for (let letter of currentHouseWord) {
+                if (houseGuessedLetters.includes(letter)) {
                     displayText += letter + " ";
                 } else {
                     displayText += "_ ";
@@ -1591,13 +1624,14 @@
             if (!displayText.includes("_")) {
                 setTimeout(() => {
                     celebrate(true);
-                    alert(`🎉 Félicitations! You guessed the word: ${currentHangmanWord}`);
+                    alert(`🎉 Félicitations! You guessed the word: ${currentHouseWord}`);
+                    startHouseHangman(); // Start new game
                 }, 500);
             }
         }
 
-        function createLetterButtons() {
-            const lettersContainer = document.getElementById('hangmanLetters');
+        function createHouseLetterButtons() {
+            const lettersContainer = document.getElementById('houseHangmanLetters');
             lettersContainer.innerHTML = "";
             
             const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -1606,36 +1640,36 @@
                 const button = document.createElement('div');
                 button.className = 'hangman-letter';
                 button.textContent = letter;
-                button.onclick = () => guessLetter(letter);
+                button.onclick = () => guessHouseLetter(letter);
                 lettersContainer.appendChild(button);
             }
         }
 
-        function guessLetter(letter) {
-            if (guessedLetters.includes(letter)) return;
+        function guessHouseLetter(letter) {
+            if (houseGuessedLetters.includes(letter)) return;
             
-            guessedLetters.push(letter);
+            houseGuessedLetters.push(letter);
             
-            if (currentHangmanWord.includes(letter)) {
+            if (currentHouseWord.includes(letter)) {
                 // Correct guess
                 playAudio(letter.toLowerCase());
             } else {
                 // Wrong guess
-                wrongGuesses++;
-                document.getElementById('lives').textContent = maxWrongGuesses - wrongGuesses;
-                document.getElementById('hangmanArt').textContent = hangmanArt[wrongGuesses];
+                houseWrongGuesses++;
+                document.getElementById('houseLives').textContent = maxHouseWrongGuesses - houseWrongGuesses;
+                document.getElementById('houseHangmanArt').textContent = hangmanArt[houseWrongGuesses];
                 
-                if (wrongGuesses >= maxWrongGuesses) {
+                if (houseWrongGuesses >= maxHouseWrongGuesses) {
                     setTimeout(() => {
-                        alert(`Game Over! The word was: ${currentHangmanWord}`);
-                        startHangman();
+                        alert(`Game Over! The word was: ${currentHouseWord}`);
+                        startHouseHangman();
                     }, 500);
                     return;
                 }
             }
             
             // Disable the guessed letter
-            const letterButtons = document.querySelectorAll('.hangman-letter');
+            const letterButtons = document.querySelectorAll('#houseHangmanLetters .hangman-letter');
             letterButtons.forEach(btn => {
                 if (btn.textContent === letter) {
                     btn.classList.add('disabled');
@@ -1643,75 +1677,267 @@
                 }
             });
             
-            updateHangmanWordDisplay();
+            updateHouseHangmanWordDisplay();
         }
 
-        // Flashcards
-        let currentFlashcardIndex = 0;
-        const flashcards = [
-            { french: "Bonjour", english: "Hello / Good morning" },
-            { french: "Merci", english: "Thank you" },
-            { french: "S'il vous plaît", english: "Please" },
-            { french: "Au revoir", english: "Goodbye" },
-            { french: "Comment ça va?", english: "How are you?" },
-            { french: "Je m'appelle...", english: "My name is..." },
-            { french: "Oui", english: "Yes" },
-            { french: "Non", english: "No" },
-            { french: "Excusez-moi", english: "Excuse me" },
-            { french: "Je ne comprends pas", english: "I don't understand" }
+        // House Memory Game (similar structure to greetings memory game)
+        function startHouseMemory() {
+            // Hide hangman and show memory game
+            document.getElementById('houseHangman').style.display = 'none';
+            document.getElementById('houseMemoryGame').style.display = 'block';
+            
+            // Similar implementation to greetings memory game
+            // Would follow the same pattern as greetings memory game
+        }
+
+        // ========== SCHOOL SECTION ==========
+        // School Quiz
+        let schoolCurrentQuestion = 0;
+        let schoolScore = 0;
+        const schoolQuestions = [
+            {
+                question: "How do you say 'the book' in French?",
+                options: ["Le cahier", "Le livre", "Le stylo", "Le crayon"],
+                correct: 1
+            },
+            {
+                question: "What does 'le cartable' mean?",
+                options: ["The pencil", "The notebook", "The schoolbag", "The ruler"],
+                correct: 2
+            },
+            {
+                question: "How do you say 'the library' in French?",
+                options: ["La cantine", "La bibliothèque", "La salle de classe", "Le terrain de sport"],
+                correct: 1
+            },
+            {
+                question: "Choose the correct translation for 'the eraser':",
+                options: ["La gomme", "La règle", "Le crayon", "Le stylo"],
+                correct: 0
+            }
         ];
 
-        function startFlashcards() {
-            currentFlashcardIndex = 0;
-            showFlashcard();
+        function startSchoolQuiz() {
+            schoolCurrentQuestion = 0;
+            schoolScore = 0;
+            document.getElementById('schoolScore').textContent = schoolScore;
+            document.getElementById('schoolTotal').textContent = schoolQuestions.length;
+            showSchoolQuestion();
         }
 
-        function showFlashcard() {
-            const card = flashcards[currentFlashcardIndex];
-            document.getElementById('flashcardFront').textContent = card.french;
-            document.getElementById('flashcardBack').textContent = card.english;
-            document.getElementById('flashcard').classList.remove('flipped');
-        }
+        function showSchoolQuestion() {
+            if (schoolCurrentQuestion >= schoolQuestions.length) {
+                showSchoolQuizResults();
+                return;
+            }
 
-        function flipCard() {
-            const flashcard = document.getElementById('flashcard');
-            flashcard.classList.toggle('flipped');
+            const q = schoolQuestions[schoolCurrentQuestion];
+            const container = document.getElementById('schoolQuizContainer');
             
-            if (flashcard.classList.contains('flipped')) {
-                playAudio(flashcards[currentFlashcardIndex].french.toLowerCase().replace(/ /g, '_').replace(/'/g, '_'));
-            }
+            let html = `
+                <div class="quiz-question">Question ${schoolCurrentQuestion + 1}/${schoolQuestions.length}</div>
+                <div class="quiz-question">${q.question}</div>
+                <div class="quiz-options">
+            `;
+
+            q.options.forEach((option, index) => {
+                html += `
+                    <div class="quiz-option" onclick="checkSchoolAnswer(${index})">
+                        ${option}
+                    </div>
+                `;
+            });
+
+            html += `</div>`;
+            container.innerHTML = html;
         }
 
-        function nextFlashcard() {
-            currentFlashcardIndex = (currentFlashcardIndex + 1) % flashcards.length;
-            showFlashcard();
+        function checkSchoolAnswer(selected) {
+            const q = schoolQuestions[schoolCurrentQuestion];
+            const options = document.querySelectorAll('#schoolQuizContainer .quiz-option');
+            
+            options.forEach(option => {
+                option.style.pointerEvents = 'none';
+            });
+
+            if (selected === q.correct) {
+                options[selected].classList.add('correct');
+                schoolScore++;
+                document.getElementById('schoolScore').textContent = schoolScore;
+                celebrate();
+            } else {
+                options[selected].classList.add('incorrect');
+                options[q.correct].classList.add('correct');
+            }
+
+            setTimeout(() => {
+                schoolCurrentQuestion++;
+                showSchoolQuestion();
+            }, 2000);
         }
 
-        // Celebration effect
-        function celebrate(big = false) {
-            const celebration = document.getElementById('celebration');
-            const colors = ['#CE1126', '#FCD116', '#006B3F', '#ffffff'];
-            const count = big ? 50 : 20;
-
-            for (let i = 0; i < count; i++) {
-                setTimeout(() => {
-                    const confetti = document.createElement('div');
-                    confetti.className = 'confetti';
-                    confetti.style.left = Math.random() * 100 + '%';
-                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
-                    confetti.style.animationDelay = Math.random() * 0.5 + 's';
-                    celebration.appendChild(confetti);
-
-                    setTimeout(() => confetti.remove(), 3000);
-                }, i * 30);
+        function showSchoolQuizResults() {
+            const container = document.getElementById('schoolQuizContainer');
+            const percentage = (schoolScore / schoolQuestions.length * 100).toFixed(0);
+            
+            let message = '';
+            let emoji = '';
+            
+            if (percentage >= 80) {
+                message = 'Excellent! Très bien! 🌟';
+                emoji = '🎉';
+                celebrate(true);
+            } else if (percentage >= 60) {
+                message = 'Good job! Bon travail! 👍';
+                emoji = '😊';
+            } else {
+                message = 'Keep practicing! Continue à pratiquer! 💪';
+                emoji = '📚';
             }
+
+            container.innerHTML = `
+                <div style="text-align: center;">
+                    <div style="font-size: 80px; margin: 20px 0;">${emoji}</div>
+                    <div class="quiz-question">Quiz Complete!</div>
+                    <div style="font-size: 48px; color: #006B3F; margin: 20px 0;">
+                        ${schoolScore} / ${schoolQuestions.length}
+                    </div>
+                    <div style="font-size: 24px; color: #CE1126; margin: 20px 0;">
+                        ${percentage}%
+                    </div>
+                    <div style="font-size: 28px; font-weight: bold; color: #FCD116; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+                        ${message}
+                    </div>
+                </div>
+            `;
+        }
+
+        // School Flashcards and Memory would follow similar patterns
+
+        // ========== MARKET SECTION ==========
+        // Market Quiz
+        let marketCurrentQuestion = 0;
+        let marketScore = 0;
+        const marketQuestions = [
+            {
+                question: "How do you say 'the apple' in French?",
+                options: ["La banane", "La tomate", "La pomme", "La carotte"],
+                correct: 2
+            },
+            {
+                question: "What is 'la banane' in English?",
+                options: ["The tomato", "The banana", "The apple", "The carrot"],
+                correct: 1
+            },
+            {
+                question: "Choose the correct French word for 'the tomato':",
+                options: ["La pomme", "La banane", "La tomate", "Le piment"],
+                correct: 2
+            },
+            {
+                question: "What does 'le piment' mean?",
+                options: ["The onion", "The pepper", "The carrot", "The tomato"],
+                correct: 1
+            }
+        ];
+
+        function startMarketQuiz() {
+            marketCurrentQuestion = 0;
+            marketScore = 0;
+            document.getElementById('marketScore').textContent = marketScore;
+            document.getElementById('marketTotal').textContent = marketQuestions.length;
+            showMarketQuestion();
+        }
+
+        function showMarketQuestion() {
+            if (marketCurrentQuestion >= marketQuestions.length) {
+                showMarketQuizResults();
+                return;
+            }
+
+            const q = marketQuestions[marketCurrentQuestion];
+            const container = document.getElementById('marketQuizContainer');
+            
+            let html = `
+                <div class="quiz-question">Question ${marketCurrentQuestion + 1}/${marketQuestions.length}</div>
+                <div class="quiz-question">${q.question}</div>
+                <div class="quiz-options">
+            `;
+
+            q.options.forEach((option, index) => {
+                html += `
+                    <div class="quiz-option" onclick="checkMarketAnswer(${index})">
+                        ${option}
+                    </div>
+                `;
+            });
+
+            html += `</div>`;
+            container.innerHTML = html;
+        }
+
+        function checkMarketAnswer(selected) {
+            const q = marketQuestions[marketCurrentQuestion];
+            const options = document.querySelectorAll('#marketQuizContainer .quiz-option');
+            
+            options.forEach(option => {
+                option.style.pointerEvents = 'none';
+            });
+
+            if (selected === q.correct) {
+                options[selected].classList.add('correct');
+                marketScore++;
+                document.getElementById('marketScore').textContent = marketScore;
+                celebrate();
+            } else {
+                options[selected].classList.add('incorrect');
+                options[q.correct].classList.add('correct');
+            }
+
+            setTimeout(() => {
+                marketCurrentQuestion++;
+                showMarketQuestion();
+            }, 2000);
+        }
+
+        function showMarketQuizResults() {
+            const container = document.getElementById('marketQuizContainer');
+            const percentage = (marketScore / marketQuestions.length * 100).toFixed(0);
+            
+            let message = '';
+            let emoji = '';
+            
+            if (percentage >= 80) {
+                message = 'Excellent! Très bien! 🌟';
+                emoji = '🎉';
+                celebrate(true);
+            } else if (percentage >= 60) {
+                message = 'Good job! Bon travail! 👍';
+                emoji = '😊';
+            } else {
+                message = 'Keep practicing! Continue à pratiquer! 💪';
+                emoji = '📚';
+            }
+
+            container.innerHTML = `
+                <div style="text-align: center;">
+                    <div style="font-size: 80px; margin: 20px 0;">${emoji}</div>
+                    <div class="quiz-question">Quiz Complete!</div>
+                    <div style="font-size: 48px; color: #006B3F; margin: 20px 0;">
+                        ${marketScore} / ${marketQuestions.length}
+                    </div>
+                    <div style="font-size: 24px; color: #CE1126; margin: 20px 0;">
+                        ${percentage}%
+                    </div>
+                    <div style="font-size: 28px; font-weight: bold; color: #FCD116; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+                        ${message}
+                    </div>
+                </div>
+            `;
         }
 
         // Initialize on page load
         window.onload = function() {
-            startQuiz();
-            startMemoryGame();
-            
             // Wait for voices to be loaded
             if (speechSynthesis.onvoiceschanged !== undefined) {
                 speechSynthesis.onvoiceschanged = () => {

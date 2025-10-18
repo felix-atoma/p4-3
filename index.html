@@ -375,6 +375,13 @@
             font-size: 1.1em;
         }
 
+        .dialogue-translation {
+            font-size: 0.9em;
+            color: #666;
+            font-style: italic;
+            margin-top: 5px;
+        }
+
         .dialogue-audio-btn {
             background: #006B3F;
             color: white;
@@ -701,7 +708,7 @@
                     <li><strong>Unité 1:</strong> Salutations (Greetings) - Learn how to greet people</li>
                     <li><strong>Unité 2:</strong> Chez Moi (My House) - Learn about rooms and household items</li>
                     <li><strong>Unité 3:</strong> À l'École (At School) - Discover school vocabulary</li>
-                    <li><strong>Unité 4:</strong> Au Marché (At the Market) - Learn shopping vocabulary</li>
+                    <li><strong>Unité 4:</strong> Au Marché (At the Market) - Learn shopping vocabulary with Ghana Cedis</li>
                     <li><strong>Interactive Quizzes & Games</strong> - Test your knowledge in each topic</li>
                     <li><strong>Audio Dialogues</strong> - Practice real conversations</li>
                     <li><strong>Pronunciation Tips</strong> - Learn to speak like a native</li>
@@ -776,31 +783,37 @@
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Kofi:</span>
                         <span class="dialogue-text">Bonjour! Comment ça va?</span>
+                        <div class="dialogue-translation">Hello! How are you?</div>
                         <button class="dialogue-audio-btn" onclick="playDialogue('greeting1')">🔊 Play</button>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Ama:</span>
                         <span class="dialogue-text">Bonjour! Ça va bien, merci. Et toi?</span>
+                        <div class="dialogue-translation">Hello! I'm fine, thank you. And you?</div>
                         <button class="dialogue-audio-btn" onclick="playDialogue('greeting2')">🔊 Play</button>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Kofi:</span>
                         <span class="dialogue-text">Très bien, merci. Je m'appelle Kofi. Comment t'appelles-tu?</span>
+                        <div class="dialogue-translation">Very well, thank you. My name is Kofi. What's your name?</div>
                         <button class="dialogue-audio-btn" onclick="playDialogue('greeting3')">🔊 Play</button>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Ama:</span>
                         <span class="dialogue-text">Je m'appelle Ama. Enchantée!</span>
+                        <div class="dialogue-translation">My name is Ama. Nice to meet you!</div>
                         <button class="dialogue-audio-btn" onclick="playDialogue('greeting4')">🔊 Play</button>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Kofi:</span>
                         <span class="dialogue-text">Enchanté! Au revoir, Ama!</span>
+                        <div class="dialogue-translation">Nice to meet you! Goodbye, Ama!</div>
                         <button class="dialogue-audio-btn" onclick="playDialogue('greeting5')">🔊 Play</button>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Ama:</span>
                         <span class="dialogue-text">À bientôt, Kofi!</span>
+                        <div class="dialogue-translation">See you soon, Kofi!</div>
                         <button class="dialogue-audio-btn" onclick="playDialogue('greeting6')">🔊 Play</button>
                     </div>
                 </div>
@@ -984,32 +997,38 @@
                     <h3 class="dialogue-title">💬 Practice Dialogue - Describing My House</h3>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Friend:</span>
-                        <span class="dialogue-text">Ta maison est grande? (Is your house big?)</span>
+                        <span class="dialogue-text">Ta maison est grande?</span>
+                        <div class="dialogue-translation">Is your house big?</div>
                         <button class="dialogue-audio-btn" onclick="playDialogue('house1')">🔊 Play</button>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">You:</span>
                         <span class="dialogue-text">Oui, j'ai un salon, une cuisine et trois chambres.</span>
+                        <div class="dialogue-translation">Yes, I have a living room, a kitchen and three bedrooms.</div>
                         <button class="dialogue-audio-btn" onclick="playDialogue('house2')">🔊 Play</button>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Friend:</span>
                         <span class="dialogue-text">Il y a une télévision dans le salon?</span>
+                        <div class="dialogue-translation">Is there a television in the living room?</div>
                         <button class="dialogue-audio-btn" onclick="playDialogue('house3')">🔊 Play</button>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">You:</span>
                         <span class="dialogue-text">Oui, et il y a un grand fauteuil confortable.</span>
+                        <div class="dialogue-translation">Yes, and there is a big comfortable armchair.</div>
                         <button class="dialogue-audio-btn" onclick="playDialogue('house4')">🔊 Play</button>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Friend:</span>
                         <span class="dialogue-text">Et la cuisine? Tu aimes cuisiner?</span>
+                        <div class="dialogue-translation">And the kitchen? Do you like cooking?</div>
                         <button class="dialogue-audio-btn" onclick="playDialogue('house5')">🔊 Play</button>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">You:</span>
                         <span class="dialogue-text">Oui, j'ai une nouvelle cuisinière et un grand four.</span>
+                        <div class="dialogue-translation">Yes, I have a new stove and a big oven.</div>
                         <button class="dialogue-audio-btn" onclick="playDialogue('house6')">🔊 Play</button>
                     </div>
                 </div>
@@ -1130,31 +1149,37 @@
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Teacher:</span>
                         <span class="dialogue-text">Bonjour les élèves! Sortez vos cahiers et vos stylos.</span>
+                        <div class="dialogue-translation">Good morning students! Take out your notebooks and pens.</div>
                         <button class="dialogue-audio-btn" onclick="playDialogue('school1')">🔊 Play</button>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Student:</span>
                         <span class="dialogue-text">Madame, j'ai oublié mon crayon. Puis-je emprunter un stylo?</span>
+                        <div class="dialogue-translation">Madam, I forgot my pencil. Can I borrow a pen?</div>
                         <button class="dialogue-audio-btn" onclick="playDialogue('school2')">🔊 Play</button>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Teacher:</span>
                         <span class="dialogue-text">Bien sûr. Regardez le tableau, s'il vous plaît.</span>
+                        <div class="dialogue-translation">Of course. Look at the board, please.</div>
                         <button class="dialogue-audio-btn" onclick="playDialogue('school3')">🔊 Play</button>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Student:</span>
                         <span class="dialogue-text">J'ai une question. Où est la bibliothèque?</span>
+                        <div class="dialogue-translation">I have a question. Where is the library?</div>
                         <button class="dialogue-audio-btn" onclick="playDialogue('school4')">🔊 Play</button>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Teacher:</span>
                         <span class="dialogue-text">La bibliothèque est au premier étage, à gauche.</span>
+                        <div class="dialogue-translation">The library is on the first floor, on the left.</div>
                         <button class="dialogue-audio-btn" onclick="playDialogue('school5')">🔊 Play</button>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Student:</span>
                         <span class="dialogue-text">Merci beaucoup, madame!</span>
+                        <div class="dialogue-translation">Thank you very much, madam!</div>
                         <button class="dialogue-audio-btn" onclick="playDialogue('school6')">🔊 Play</button>
                     </div>
                 </div>
@@ -1239,6 +1264,36 @@
                     </div>
                 </div>
 
+                <!-- Currency Conversion Section -->
+                <div class="card" style="background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);">
+                    <h3 style="color: #CE1126; text-align: center; margin-bottom: 20px;">💰 Ghana Cedis (GHS) - Useful Phrases</h3>
+                    <div class="vocab-grid">
+                        <div class="phrase-container">
+                            <div class="phrase-french">Combien ça coûte?</div>
+                            <div class="phrase-english">How much does it cost?</div>
+                        </div>
+                        <div class="phrase-container">
+                            <div class="phrase-french">C'est combien?</div>
+                            <div class="phrase-english">How much is it?</div>
+                        </div>
+                        <div class="phrase-container">
+                            <div class="phrase-french">C'est trop cher</div>
+                            <div class="phrase-english">It's too expensive</div>
+                        </div>
+                        <div class="phrase-container">
+                            <div class="phrase-french">Je voudrais...</div>
+                            <div class="phrase-english">I would like...</div>
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin-top: 20px; padding: 15px; background: white; border-radius: 10px;">
+                        <h4 style="color: #006B3F;">Common Market Prices in Ghana</h4>
+                        <p style="margin: 10px 0;">🍎 Pommes: 5-10 GHS per kg</p>
+                        <p style="margin: 10px 0;">🍌 Bananes: 2-5 GHS per bunch</p>
+                        <p style="margin: 10px 0;">🍅 Tomates: 3-8 GHS per kg</p>
+                        <p style="margin: 10px 0;">🥕 Carottes: 4-7 GHS per kg</p>
+                    </div>
+                </div>
+
                 <!-- Pronunciation Tips -->
                 <div class="pronunciation-tips">
                     <h3 class="pronunciation-title">🎯 Pronunciation Tips - Market Items</h3>
@@ -1266,31 +1321,37 @@
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Customer:</span>
                         <span class="dialogue-text">Bonjour! Combien coûtent les bananes?</span>
+                        <div class="dialogue-translation">Hello! How much do the bananas cost?</div>
                         <button class="dialogue-audio-btn" onclick="playDialogue('market1')">🔊 Play</button>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Vendor:</span>
-                        <span class="dialogue-text">Bonjour! C'est 500 francs le kilo.</span>
+                        <span class="dialogue-text">Bonjour! C'est 5 cedis le kilo.</span>
+                        <div class="dialogue-translation">Hello! It's 5 cedis per kilo.</div>
                         <button class="dialogue-audio-btn" onclick="playDialogue('market2')">🔊 Play</button>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Customer:</span>
                         <span class="dialogue-text">D'accord, je voudrais deux kilos, s'il vous plaît.</span>
+                        <div class="dialogue-translation">Okay, I would like two kilos, please.</div>
                         <button class="dialogue-audio-btn" onclick="playDialogue('market3')">🔊 Play</button>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Vendor:</span>
-                        <span class="dialogue-text">Voilà! Ça fait 1000 francs. Vous voulez autre chose?</span>
+                        <span class="dialogue-text">Voilà! Ça fait 10 cedis. Vous voulez autre chose?</span>
+                        <div class="dialogue-translation">Here you go! That makes 10 cedis. Do you want anything else?</div>
                         <button class="dialogue-audio-btn" onclick="playDialogue('market4')">🔊 Play</button>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Customer:</span>
                         <span class="dialogue-text">Oui, donnez-moi aussi un kilo de tomates et des carottes.</span>
+                        <div class="dialogue-translation">Yes, also give me one kilo of tomatoes and some carrots.</div>
                         <button class="dialogue-audio-btn" onclick="playDialogue('market5')">🔊 Play</button>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Vendor:</span>
-                        <span class="dialogue-text">Avec plaisir! Au total, ça fait 2500 francs. Merci beaucoup!</span>
+                        <span class="dialogue-text">Avec plaisir! Au total, ça fait 25 cedis. Merci beaucoup!</span>
+                        <div class="dialogue-translation">With pleasure! In total, that makes 25 cedis. Thank you very much!</div>
                         <button class="dialogue-audio-btn" onclick="playDialogue('market6')">🔊 Play</button>
                     </div>
                 </div>
@@ -1448,13 +1509,13 @@
                 'school5': 'La bibliothèque est au premier étage, à gauche.',
                 'school6': 'Merci beaucoup, madame!',
                 
-                // Market dialogues
+                // Market dialogues (updated to use cedis)
                 'market1': 'Bonjour! Combien coûtent les bananes?',
-                'market2': 'Bonjour! C\'est 500 francs le kilo.',
+                'market2': 'Bonjour! C\'est 5 cedis le kilo.',
                 'market3': 'D\'accord, je voudrais deux kilos, s\'il vous plaît.',
-                'market4': 'Voilà! Ça fait 1000 francs. Vous voulez autre chose?',
+                'market4': 'Voilà! Ça fait 10 cedis. Vous voulez autre chose?',
                 'market5': 'Oui, donnez-moi aussi un kilo de tomates et des carottes.',
-                'market6': 'Avec plaisir! Au total, ça fait 2500 francs. Merci beaucoup!'
+                'market6': 'Avec plaisir! Au total, ça fait 25 cedis. Merci beaucoup!'
             };
 
             const utterance = new SpeechSynthesisUtterance(dialogues[dialogueId]);
@@ -1871,6 +1932,899 @@
                     </div>
                 </div>
             `;
+        }
+
+        // House Hangman Game
+        let houseHangmanWord = '';
+        let houseHangmanGuessed = [];
+        let houseHangmanLives = 6;
+        const houseHangmanWords = ['LIT', 'TABLE', 'CHAISE', 'LAMPE', 'CUISINE', 'SALON'];
+
+        function startHouseHangman() {
+            // Hide memory game and show hangman
+            document.getElementById('houseMemoryGame').style.display = 'none';
+            document.getElementById('houseHangman').style.display = 'block';
+            
+            houseHangmanLives = 6;
+            houseHangmanGuessed = [];
+            document.getElementById('houseLives').textContent = houseHangmanLives;
+            
+            // Select random word
+            houseHangmanWord = houseHangmanWords[Math.floor(Math.random() * houseHangmanWords.length)];
+            
+            updateHouseHangmanDisplay();
+            createHouseHangmanLetters();
+        }
+
+        function updateHouseHangmanDisplay() {
+            const wordDisplay = document.getElementById('houseHangmanWord');
+            const artDisplay = document.getElementById('houseHangmanArt');
+            
+            // Update word display
+            let displayWord = '';
+            for (let letter of houseHangmanWord) {
+                if (houseHangmanGuessed.includes(letter)) {
+                    displayWord += letter + ' ';
+                } else {
+                    displayWord += '_ ';
+                }
+            }
+            wordDisplay.textContent = displayWord;
+            
+            // Update hangman art
+            const hangmanArt = [
+                `
+                   -----
+                   |   |
+                   |
+                   |
+                   |
+                   |
+                ----------
+                `,
+                `
+                   -----
+                   |   |
+                   |   O
+                   |
+                   |
+                   |
+                ----------
+                `,
+                `
+                   -----
+                   |   |
+                   |   O
+                   |   |
+                   |
+                   |
+                ----------
+                `,
+                `
+                   -----
+                   |   |
+                   |   O
+                   |  /|
+                   |
+                   |
+                ----------
+                `,
+                `
+                   -----
+                   |   |
+                   |   O
+                   |  /|\\
+                   |
+                   |
+                ----------
+                `,
+                `
+                   -----
+                   |   |
+                   |   O
+                   |  /|\\
+                   |  /
+                   |
+                ----------
+                `,
+                `
+                   -----
+                   |   |
+                   |   O
+                   |  /|\\
+                   |  / \\
+                   |
+                ----------
+                `
+            ];
+            
+            artDisplay.textContent = hangmanArt[6 - houseHangmanLives];
+            
+            // Check if game is over
+            if (houseHangmanLives <= 0) {
+                setTimeout(() => {
+                    alert(`Game Over! The word was: ${houseHangmanWord}`);
+                    startHouseHangman(); // Restart game
+                }, 500);
+            } else if (!displayWord.includes('_')) {
+                setTimeout(() => {
+                    celebrate(true);
+                    alert(`🎉 Félicitations! You guessed the word: ${houseHangmanWord}`);
+                    startHouseHangman(); // Restart game
+                }, 500);
+            }
+        }
+
+        function createHouseHangmanLetters() {
+            const lettersContainer = document.getElementById('houseHangmanLetters');
+            lettersContainer.innerHTML = '';
+            
+            for (let i = 65; i <= 90; i++) {
+                const letter = String.fromCharCode(i);
+                const letterElement = document.createElement('div');
+                letterElement.className = 'hangman-letter';
+                letterElement.textContent = letter;
+                letterElement.onclick = () => guessHouseHangmanLetter(letter);
+                lettersContainer.appendChild(letterElement);
+            }
+        }
+
+        function guessHouseHangmanLetter(letter) {
+            if (houseHangmanGuessed.includes(letter)) return;
+            
+            houseHangmanGuessed.push(letter);
+            
+            if (!houseHangmanWord.includes(letter)) {
+                houseHangmanLives--;
+                document.getElementById('houseLives').textContent = houseHangmanLives;
+            }
+            
+            // Disable the guessed letter
+            const letterElements = document.querySelectorAll('#houseHangmanLetters .hangman-letter');
+            letterElements.forEach(el => {
+                if (el.textContent === letter) {
+                    el.classList.add('disabled');
+                }
+            });
+            
+            updateHouseHangmanDisplay();
+        }
+
+        // House Memory Game
+        let houseGameCards = [];
+        let houseFlippedCards = [];
+        let houseMatchedPairs = 0;
+        let houseMoves = 0;
+
+        const houseMemoryPairs = [
+            { french: 'Lit', english: 'Bed' },
+            { french: 'Table', english: 'Table' },
+            { french: 'Chaise', english: 'Chair' },
+            { french: 'Lampe', english: 'Lamp' }
+        ];
+
+        function startHouseMemory() {
+            // Hide hangman and show memory game
+            document.getElementById('houseHangman').style.display = 'none';
+            document.getElementById('houseMemoryGame').style.display = 'block';
+            
+            houseMatchedPairs = 0;
+            houseMoves = 0;
+            houseFlippedCards = [];
+            document.getElementById('houseMoves').textContent = houseMoves;
+            document.getElementById('houseMatches').textContent = houseMatchedPairs;
+
+            houseGameCards = [];
+            houseMemoryPairs.forEach((pair, index) => {
+                houseGameCards.push({ id: index, text: pair.french, type: 'french' });
+                houseGameCards.push({ id: index, text: pair.english, type: 'english' });
+            });
+
+            // Shuffle cards
+            houseGameCards.sort(() => Math.random() - 0.5);
+
+            const board = document.getElementById('houseGameBoard');
+            board.innerHTML = '';
+
+            houseGameCards.forEach((card, index) => {
+                const cardElement = document.createElement('div');
+                cardElement.className = 'game-card';
+                cardElement.innerHTML = '❓';
+                cardElement.dataset.index = index;
+                cardElement.onclick = () => flipHouseCard(index);
+                board.appendChild(cardElement);
+            });
+        }
+
+        function flipHouseCard(index) {
+            const cardElements = document.querySelectorAll('#houseGameBoard .game-card');
+            const card = cardElements[index];
+
+            if (houseFlippedCards.length >= 2 || card.classList.contains('flipped')) {
+                return;
+            }
+
+            card.classList.add('flipped');
+            card.innerHTML = houseGameCards[index].text;
+            houseFlippedCards.push(index);
+
+            if (houseFlippedCards.length === 2) {
+                houseMoves++;
+                document.getElementById('houseMoves').textContent = houseMoves;
+                checkHouseMatch();
+            }
+        }
+
+        function checkHouseMatch() {
+            const cardElements = document.querySelectorAll('#houseGameBoard .game-card');
+            const [index1, index2] = houseFlippedCards;
+            const card1 = houseGameCards[index1];
+            const card2 = houseGameCards[index2];
+
+            setTimeout(() => {
+                if (card1.id === card2.id && card1.type !== card2.type) {
+                    // Match found!
+                    cardElements[index1].style.background = '#28a745';
+                    cardElements[index2].style.background = '#28a745';
+                    cardElements[index1].style.color = 'white';
+                    cardElements[index2].style.color = 'white';
+                    houseMatchedPairs++;
+                    document.getElementById('houseMatches').textContent = houseMatchedPairs;
+                    
+                    if (houseMatchedPairs === houseMemoryPairs.length) {
+                        setTimeout(() => {
+                            celebrate(true);
+                            alert(`🎉 Félicitations! You won in ${houseMoves} moves! 🎉`);
+                        }, 500);
+                    }
+                } else {
+                    // No match
+                    cardElements[index1].classList.remove('flipped');
+                    cardElements[index2].classList.remove('flipped');
+                    cardElements[index1].innerHTML = '❓';
+                    cardElements[index2].innerHTML = '❓';
+                }
+                houseFlippedCards = [];
+            }, 1000);
+        }
+
+        // ========== SCHOOL SECTION ==========
+        // School Quiz
+        let schoolCurrentQuestion = 0;
+        let schoolScore = 0;
+        const schoolQuestions = [
+            {
+                question: "What is 'le livre' in English?",
+                options: ["The notebook", "The book", "The pencil", "The pen"],
+                correct: 1
+            },
+            {
+                question: "How do you say 'the pencil' in French?",
+                options: ["Le stylo", "Le crayon", "Le cahier", "La gomme"],
+                correct: 1
+            },
+            {
+                question: "What is 'la règle'?",
+                options: ["The ruler", "The eraser", "The schoolbag", "The blackboard"],
+                correct: 0
+            },
+            {
+                question: "Choose the correct French word for 'the notebook':",
+                options: ["Le livre", "Le cahier", "Le stylo", "Le cartable"],
+                correct: 1
+            }
+        ];
+
+        function startSchoolQuiz() {
+            schoolCurrentQuestion = 0;
+            schoolScore = 0;
+            document.getElementById('schoolScore').textContent = schoolScore;
+            document.getElementById('schoolTotal').textContent = schoolQuestions.length;
+            showSchoolQuestion();
+        }
+
+        function showSchoolQuestion() {
+            if (schoolCurrentQuestion >= schoolQuestions.length) {
+                showSchoolQuizResults();
+                return;
+            }
+
+            const q = schoolQuestions[schoolCurrentQuestion];
+            const container = document.getElementById('schoolQuizContainer');
+            
+            let html = `
+                <div class="quiz-question">Question ${schoolCurrentQuestion + 1}/${schoolQuestions.length}</div>
+                <div class="quiz-question">${q.question}</div>
+                <div class="quiz-options">
+            `;
+
+            q.options.forEach((option, index) => {
+                html += `
+                    <div class="quiz-option" onclick="checkSchoolAnswer(${index})">
+                        ${option}
+                    </div>
+                `;
+            });
+
+            html += `</div>`;
+            container.innerHTML = html;
+        }
+
+        function checkSchoolAnswer(selected) {
+            const q = schoolQuestions[schoolCurrentQuestion];
+            const options = document.querySelectorAll('#schoolQuizContainer .quiz-option');
+            
+            options.forEach(option => {
+                option.style.pointerEvents = 'none';
+            });
+
+            if (selected === q.correct) {
+                options[selected].classList.add('correct');
+                schoolScore++;
+                document.getElementById('schoolScore').textContent = schoolScore;
+                celebrate();
+            } else {
+                options[selected].classList.add('incorrect');
+                options[q.correct].classList.add('correct');
+            }
+
+            setTimeout(() => {
+                schoolCurrentQuestion++;
+                showSchoolQuestion();
+            }, 2000);
+        }
+
+        function showSchoolQuizResults() {
+            const container = document.getElementById('schoolQuizContainer');
+            const percentage = (schoolScore / schoolQuestions.length * 100).toFixed(0);
+            
+            let message = '';
+            let emoji = '';
+            
+            if (percentage >= 80) {
+                message = 'Excellent! Très bien! 🌟';
+                emoji = '🎉';
+                celebrate(true);
+            } else if (percentage >= 60) {
+                message = 'Good job! Bon travail! 👍';
+                emoji = '😊';
+            } else {
+                message = 'Keep practicing! Continue à pratiquer! 💪';
+                emoji = '📚';
+            }
+
+            container.innerHTML = `
+                <div style="text-align: center;">
+                    <div style="font-size: 80px; margin: 20px 0;">${emoji}</div>
+                    <div class="quiz-question">Quiz Complete!</div>
+                    <div style="font-size: 48px; color: #006B3F; margin: 20px 0;">
+                        ${schoolScore} / ${schoolQuestions.length}
+                    </div>
+                    <div style="font-size: 24px; color: #CE1126; margin: 20px 0;">
+                        ${percentage}%
+                    </div>
+                    <div style="font-size: 28px; font-weight: bold; color: #FCD116; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+                        ${message}
+                    </div>
+                </div>
+            `;
+        }
+
+        // School Flashcards
+        let schoolFlashcardIndex = 0;
+        const schoolFlashcards = [
+            { french: "Livre", english: "Book" },
+            { french: "Cahier", english: "Notebook" },
+            { french: "Crayon", english: "Pencil" },
+            { french: "Stylo", english: "Pen" },
+            { french: "Gomme", english: "Eraser" },
+            { french: "Règle", english: "Ruler" },
+            { french: "Cartable", english: "Schoolbag" },
+            { french: "Tableau", english: "Blackboard" }
+        ];
+
+        function startSchoolFlashcards() {
+            // Hide memory game and show flashcards
+            document.getElementById('schoolMemoryGame').style.display = 'none';
+            document.getElementById('schoolFlashcards').style.display = 'block';
+            
+            schoolFlashcardIndex = 0;
+            showSchoolFlashcard();
+        }
+
+        function showSchoolFlashcard() {
+            const card = schoolFlashcards[schoolFlashcardIndex];
+            document.getElementById('schoolFlashcardFront').textContent = card.french;
+            document.getElementById('schoolFlashcardBack').textContent = card.english;
+            document.getElementById('schoolFlashcard').classList.remove('flipped');
+        }
+
+        function flipSchoolCard() {
+            const flashcard = document.getElementById('schoolFlashcard');
+            flashcard.classList.toggle('flipped');
+            
+            if (flashcard.classList.contains('flipped')) {
+                playAudio(schoolFlashcards[schoolFlashcardIndex].french.toLowerCase());
+            }
+        }
+
+        function nextSchoolFlashcard() {
+            schoolFlashcardIndex = (schoolFlashcardIndex + 1) % schoolFlashcards.length;
+            showSchoolFlashcard();
+        }
+
+        // School Memory Game
+        let schoolGameCards = [];
+        let schoolFlippedCards = [];
+        let schoolMatchedPairs = 0;
+        let schoolMoves = 0;
+
+        const schoolMemoryPairs = [
+            { french: 'Livre', english: 'Book' },
+            { french: 'Cahier', english: 'Notebook' },
+            { french: 'Crayon', english: 'Pencil' },
+            { french: 'Stylo', english: 'Pen' }
+        ];
+
+        function startSchoolMemory() {
+            // Hide flashcards and show memory game
+            document.getElementById('schoolFlashcards').style.display = 'none';
+            document.getElementById('schoolMemoryGame').style.display = 'block';
+            
+            schoolMatchedPairs = 0;
+            schoolMoves = 0;
+            schoolFlippedCards = [];
+            document.getElementById('schoolMoves').textContent = schoolMoves;
+            document.getElementById('schoolMatches').textContent = schoolMatchedPairs;
+
+            schoolGameCards = [];
+            schoolMemoryPairs.forEach((pair, index) => {
+                schoolGameCards.push({ id: index, text: pair.french, type: 'french' });
+                schoolGameCards.push({ id: index, text: pair.english, type: 'english' });
+            });
+
+            // Shuffle cards
+            schoolGameCards.sort(() => Math.random() - 0.5);
+
+            const board = document.getElementById('schoolGameBoard');
+            board.innerHTML = '';
+
+            schoolGameCards.forEach((card, index) => {
+                const cardElement = document.createElement('div');
+                cardElement.className = 'game-card';
+                cardElement.innerHTML = '❓';
+                cardElement.dataset.index = index;
+                cardElement.onclick = () => flipSchoolMemoryCard(index);
+                board.appendChild(cardElement);
+            });
+        }
+
+        function flipSchoolMemoryCard(index) {
+            const cardElements = document.querySelectorAll('#schoolGameBoard .game-card');
+            const card = cardElements[index];
+
+            if (schoolFlippedCards.length >= 2 || card.classList.contains('flipped')) {
+                return;
+            }
+
+            card.classList.add('flipped');
+            card.innerHTML = schoolGameCards[index].text;
+            schoolFlippedCards.push(index);
+
+            if (schoolFlippedCards.length === 2) {
+                schoolMoves++;
+                document.getElementById('schoolMoves').textContent = schoolMoves;
+                checkSchoolMatch();
+            }
+        }
+
+        function checkSchoolMatch() {
+            const cardElements = document.querySelectorAll('#schoolGameBoard .game-card');
+            const [index1, index2] = schoolFlippedCards;
+            const card1 = schoolGameCards[index1];
+            const card2 = schoolGameCards[index2];
+
+            setTimeout(() => {
+                if (card1.id === card2.id && card1.type !== card2.type) {
+                    // Match found!
+                    cardElements[index1].style.background = '#28a745';
+                    cardElements[index2].style.background = '#28a745';
+                    cardElements[index1].style.color = 'white';
+                    cardElements[index2].style.color = 'white';
+                    schoolMatchedPairs++;
+                    document.getElementById('schoolMatches').textContent = schoolMatchedPairs;
+                    
+                    if (schoolMatchedPairs === schoolMemoryPairs.length) {
+                        setTimeout(() => {
+                            celebrate(true);
+                            alert(`🎉 Félicitations! You won in ${schoolMoves} moves! 🎉`);
+                        }, 500);
+                    }
+                } else {
+                    // No match
+                    cardElements[index1].classList.remove('flipped');
+                    cardElements[index2].classList.remove('flipped');
+                    cardElements[index1].innerHTML = '❓';
+                    cardElements[index2].innerHTML = '❓';
+                }
+                schoolFlippedCards = [];
+            }, 1000);
+        }
+
+        // ========== MARKET SECTION ==========
+        // Market Quiz
+        let marketCurrentQuestion = 0;
+        let marketScore = 0;
+        const marketQuestions = [
+            {
+                question: "What is 'la pomme' in English?",
+                options: ["The banana", "The tomato", "The apple", "The carrot"],
+                correct: 2
+            },
+            {
+                question: "How do you say 'the banana' in French?",
+                options: ["La tomate", "La pomme", "La banane", "La carotte"],
+                correct: 2
+            },
+            {
+                question: "What is 'la carotte'?",
+                options: ["The onion", "The pepper", "The carrot", "The tomato"],
+                correct: 2
+            },
+            {
+                question: "Choose the correct French word for 'the onion':",
+                options: ["Le piment", "La tomate", "L'oignon", "La pomme"],
+                correct: 2
+            }
+        ];
+
+        function startMarketQuiz() {
+            marketCurrentQuestion = 0;
+            marketScore = 0;
+            document.getElementById('marketScore').textContent = marketScore;
+            document.getElementById('marketTotal').textContent = marketQuestions.length;
+            showMarketQuestion();
+        }
+
+        function showMarketQuestion() {
+            if (marketCurrentQuestion >= marketQuestions.length) {
+                showMarketQuizResults();
+                return;
+            }
+
+            const q = marketQuestions[marketCurrentQuestion];
+            const container = document.getElementById('marketQuizContainer');
+            
+            let html = `
+                <div class="quiz-question">Question ${marketCurrentQuestion + 1}/${marketQuestions.length}</div>
+                <div class="quiz-question">${q.question}</div>
+                <div class="quiz-options">
+            `;
+
+            q.options.forEach((option, index) => {
+                html += `
+                    <div class="quiz-option" onclick="checkMarketAnswer(${index})">
+                        ${option}
+                    </div>
+                `;
+            });
+
+            html += `</div>`;
+            container.innerHTML = html;
+        }
+
+        function checkMarketAnswer(selected) {
+            const q = marketQuestions[marketCurrentQuestion];
+            const options = document.querySelectorAll('#marketQuizContainer .quiz-option');
+            
+            options.forEach(option => {
+                option.style.pointerEvents = 'none';
+            });
+
+            if (selected === q.correct) {
+                options[selected].classList.add('correct');
+                marketScore++;
+                document.getElementById('marketScore').textContent = marketScore;
+                celebrate();
+            } else {
+                options[selected].classList.add('incorrect');
+                options[q.correct].classList.add('correct');
+            }
+
+            setTimeout(() => {
+                marketCurrentQuestion++;
+                showMarketQuestion();
+            }, 2000);
+        }
+
+        function showMarketQuizResults() {
+            const container = document.getElementById('marketQuizContainer');
+            const percentage = (marketScore / marketQuestions.length * 100).toFixed(0);
+            
+            let message = '';
+            let emoji = '';
+            
+            if (percentage >= 80) {
+                message = 'Excellent! Très bien! 🌟';
+                emoji = '🎉';
+                celebrate(true);
+            } else if (percentage >= 60) {
+                message = 'Good job! Bon travail! 👍';
+                emoji = '😊';
+            } else {
+                message = 'Keep practicing! Continue à pratiquer! 💪';
+                emoji = '📚';
+            }
+
+            container.innerHTML = `
+                <div style="text-align: center;">
+                    <div style="font-size: 80px; margin: 20px 0;">${emoji}</div>
+                    <div class="quiz-question">Quiz Complete!</div>
+                    <div style="font-size: 48px; color: #006B3F; margin: 20px 0;">
+                        ${marketScore} / ${marketQuestions.length}
+                    </div>
+                    <div style="font-size: 24px; color: #CE1126; margin: 20px 0;">
+                        ${percentage}%
+                    </div>
+                    <div style="font-size: 28px; font-weight: bold; color: #FCD116; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+                        ${message}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Market Hangman Game
+        let marketHangmanWord = '';
+        let marketHangmanGuessed = [];
+        let marketHangmanLives = 6;
+        const marketHangmanWords = ['POMME', 'BANANE', 'TOMATE', 'CAROTTE', 'OIGNON', 'PIMENT'];
+
+        function startMarketHangman() {
+            // Hide memory game and show hangman
+            document.getElementById('marketMemoryGame').style.display = 'none';
+            document.getElementById('marketHangman').style.display = 'block';
+            
+            marketHangmanLives = 6;
+            marketHangmanGuessed = [];
+            document.getElementById('marketLives').textContent = marketHangmanLives;
+            
+            // Select random word
+            marketHangmanWord = marketHangmanWords[Math.floor(Math.random() * marketHangmanWords.length)];
+            
+            updateMarketHangmanDisplay();
+            createMarketHangmanLetters();
+        }
+
+        function updateMarketHangmanDisplay() {
+            const wordDisplay = document.getElementById('marketHangmanWord');
+            const artDisplay = document.getElementById('marketHangmanArt');
+            
+            // Update word display
+            let displayWord = '';
+            for (let letter of marketHangmanWord) {
+                if (marketHangmanGuessed.includes(letter)) {
+                    displayWord += letter + ' ';
+                } else {
+                    displayWord += '_ ';
+                }
+            }
+            wordDisplay.textContent = displayWord;
+            
+            // Update hangman art
+            const hangmanArt = [
+                `
+                   -----
+                   |   |
+                   |
+                   |
+                   |
+                   |
+                ----------
+                `,
+                `
+                   -----
+                   |   |
+                   |   O
+                   |
+                   |
+                   |
+                ----------
+                `,
+                `
+                   -----
+                   |   |
+                   |   O
+                   |   |
+                   |
+                   |
+                ----------
+                `,
+                `
+                   -----
+                   |   |
+                   |   O
+                   |  /|
+                   |
+                   |
+                ----------
+                `,
+                `
+                   -----
+                   |   |
+                   |   O
+                   |  /|\\
+                   |
+                   |
+                ----------
+                `,
+                `
+                   -----
+                   |   |
+                   |   O
+                   |  /|\\
+                   |  /
+                   |
+                ----------
+                `,
+                `
+                   -----
+                   |   |
+                   |   O
+                   |  /|\\
+                   |  / \\
+                   |
+                ----------
+                `
+            ];
+            
+            artDisplay.textContent = hangmanArt[6 - marketHangmanLives];
+            
+            // Check if game is over
+            if (marketHangmanLives <= 0) {
+                setTimeout(() => {
+                    alert(`Game Over! The word was: ${marketHangmanWord}`);
+                    startMarketHangman(); // Restart game
+                }, 500);
+            } else if (!displayWord.includes('_')) {
+                setTimeout(() => {
+                    celebrate(true);
+                    alert(`🎉 Félicitations! You guessed the word: ${marketHangmanWord}`);
+                    startMarketHangman(); // Restart game
+                }, 500);
+            }
+        }
+
+        function createMarketHangmanLetters() {
+            const lettersContainer = document.getElementById('marketHangmanLetters');
+            lettersContainer.innerHTML = '';
+            
+            for (let i = 65; i <= 90; i++) {
+                const letter = String.fromCharCode(i);
+                const letterElement = document.createElement('div');
+                letterElement.className = 'hangman-letter';
+                letterElement.textContent = letter;
+                letterElement.onclick = () => guessMarketHangmanLetter(letter);
+                lettersContainer.appendChild(letterElement);
+            }
+        }
+
+        function guessMarketHangmanLetter(letter) {
+            if (marketHangmanGuessed.includes(letter)) return;
+            
+            marketHangmanGuessed.push(letter);
+            
+            if (!marketHangmanWord.includes(letter)) {
+                marketHangmanLives--;
+                document.getElementById('marketLives').textContent = marketHangmanLives;
+            }
+            
+            // Disable the guessed letter
+            const letterElements = document.querySelectorAll('#marketHangmanLetters .hangman-letter');
+            letterElements.forEach(el => {
+                if (el.textContent === letter) {
+                    el.classList.add('disabled');
+                }
+            });
+            
+            updateMarketHangmanDisplay();
+        }
+
+        // Market Memory Game
+        let marketGameCards = [];
+        let marketFlippedCards = [];
+        let marketMatchedPairs = 0;
+        let marketMoves = 0;
+
+        const marketMemoryPairs = [
+            { french: 'Pomme', english: 'Apple' },
+            { french: 'Banane', english: 'Banana' },
+            { french: 'Tomate', english: 'Tomato' },
+            { french: 'Carotte', english: 'Carrot' }
+        ];
+
+        function startMarketMemory() {
+            // Hide hangman and show memory game
+            document.getElementById('marketHangman').style.display = 'none';
+            document.getElementById('marketMemoryGame').style.display = 'block';
+            
+            marketMatchedPairs = 0;
+            marketMoves = 0;
+            marketFlippedCards = [];
+            document.getElementById('marketMoves').textContent = marketMoves;
+            document.getElementById('marketMatches').textContent = marketMatchedPairs;
+
+            marketGameCards = [];
+            marketMemoryPairs.forEach((pair, index) => {
+                marketGameCards.push({ id: index, text: pair.french, type: 'french' });
+                marketGameCards.push({ id: index, text: pair.english, type: 'english' });
+            });
+
+            // Shuffle cards
+            marketGameCards.sort(() => Math.random() - 0.5);
+
+            const board = document.getElementById('marketGameBoard');
+            board.innerHTML = '';
+
+            marketGameCards.forEach((card, index) => {
+                const cardElement = document.createElement('div');
+                cardElement.className = 'game-card';
+                cardElement.innerHTML = '❓';
+                cardElement.dataset.index = index;
+                cardElement.onclick = () => flipMarketCard(index);
+                board.appendChild(cardElement);
+            });
+        }
+
+        function flipMarketCard(index) {
+            const cardElements = document.querySelectorAll('#marketGameBoard .game-card');
+            const card = cardElements[index];
+
+            if (marketFlippedCards.length >= 2 || card.classList.contains('flipped')) {
+                return;
+            }
+
+            card.classList.add('flipped');
+            card.innerHTML = marketGameCards[index].text;
+            marketFlippedCards.push(index);
+
+            if (marketFlippedCards.length === 2) {
+                marketMoves++;
+                document.getElementById('marketMoves').textContent = marketMoves;
+                checkMarketMatch();
+            }
+        }
+
+        function checkMarketMatch() {
+            const cardElements = document.querySelectorAll('#marketGameBoard .game-card');
+            const [index1, index2] = marketFlippedCards;
+            const card1 = marketGameCards[index1];
+            const card2 = marketGameCards[index2];
+
+            setTimeout(() => {
+                if (card1.id === card2.id && card1.type !== card2.type) {
+                    // Match found!
+                    cardElements[index1].style.background = '#28a745';
+                    cardElements[index2].style.background = '#28a745';
+                    cardElements[index1].style.color = 'white';
+                    cardElements[index2].style.color = 'white';
+                    marketMatchedPairs++;
+                    document.getElementById('marketMatches').textContent = marketMatchedPairs;
+                    
+                    if (marketMatchedPairs === marketMemoryPairs.length) {
+                        setTimeout(() => {
+                            celebrate(true);
+                            alert(`🎉 Félicitations! You won in ${marketMoves} moves! 🎉`);
+                        }, 500);
+                    }
+                } else {
+                    // No match
+                    cardElements[index1].classList.remove('flipped');
+                    cardElements[index2].classList.remove('flipped');
+                    cardElements[index1].innerHTML = '❓';
+                    cardElements[index2].innerHTML = '❓';
+                }
+                marketFlippedCards = [];
+            }, 1000);
         }
 
         // Initialize on page load

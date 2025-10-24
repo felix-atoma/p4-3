@@ -17,6 +17,115 @@
             overflow-x: hidden;
         }
 
+        /* Toast Notification Styles */
+        .toast-container {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            z-index: 10000;
+            max-width: 350px;
+        }
+
+        .toast {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 10px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border-left: 5px solid #006B3F;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transform: translateX(400px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            min-height: 80px;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .toast.success {
+            border-left-color: #28a745;
+        }
+
+        .toast.warning {
+            border-left-color: #ffc107;
+        }
+
+        .toast.error {
+            border-left-color: #dc3545;
+        }
+
+        .toast.info {
+            border-left-color: #006B3F;
+        }
+
+        .toast-icon {
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .toast.success .toast-icon {
+            background: #28a745;
+            color: white;
+        }
+
+        .toast.warning .toast-icon {
+            background: #ffc107;
+            color: #212529;
+        }
+
+        .toast.error .toast-icon {
+            background: #dc3545;
+            color: white;
+        }
+
+        .toast.info .toast-icon {
+            background: #006B3F;
+            color: white;
+        }
+
+        .toast-content {
+            flex: 1;
+        }
+
+        .toast-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 4px;
+            font-size: 16px;
+        }
+
+        .toast-message {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .toast-close {
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: #999;
+            cursor: pointer;
+            padding: 4px;
+            margin-left: 8px;
+            transition: color 0.3s ease;
+        }
+
+        .toast-close:hover {
+            color: #333;
+        }
+
         /* Ghana Flag Colors */
         .ghana-stripe {
             height: 8px;
@@ -369,6 +478,14 @@
             min-width: 100px;
         }
 
+        .dialogue-speaker.male {
+            color: #006B3F;
+        }
+
+        .dialogue-speaker.female {
+            color: #CE1126;
+        }
+
         .dialogue-text {
             flex: 1;
             margin: 0 15px;
@@ -713,11 +830,19 @@
             .dialogue-speaker { min-width: auto; margin-bottom: 5px; }
             .dialogue-text { margin: 0; }
             .dialogue-audio-btn { margin-top: 10px; }
+            .toast-container {
+                right: 10px;
+                left: 10px;
+                max-width: none;
+            }
         }
     </style>
 </head>
 <body>
     <div class="ghana-stripe"></div>
+    
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
     
     <header>
         <h1>🇬🇭 Apprendre le Français 🇫🇷</h1>
@@ -828,7 +953,7 @@
                         🔊 Play Full Conversation
                     </button>
                     <div class="dialogue-line">
-                        <span class="dialogue-speaker">Kofi:</span>
+                        <span class="dialogue-speaker male">Kofi:</span>
                         <span class="dialogue-text">Bonjour! Comment ça va?</span>
                         <div class="dialogue-translation">Hello! How are you?</div>
                         <div>
@@ -836,7 +961,7 @@
                         </div>
                     </div>
                     <div class="dialogue-line">
-                        <span class="dialogue-speaker">Ama:</span>
+                        <span class="dialogue-speaker female">Ama:</span>
                         <span class="dialogue-text">Bonjour! Ça va bien, merci. Et toi?</span>
                         <div class="dialogue-translation">Hello! I'm fine, thank you. And you?</div>
                         <div>
@@ -844,7 +969,7 @@
                         </div>
                     </div>
                     <div class="dialogue-line">
-                        <span class="dialogue-speaker">Kofi:</span>
+                        <span class="dialogue-speaker male">Kofi:</span>
                         <span class="dialogue-text">Très bien, merci. Je m'appelle Kofi. Comment t'appelles-tu?</span>
                         <div class="dialogue-translation">Very well, thank you. My name is Kofi. What's your name?</div>
                         <div>
@@ -852,7 +977,7 @@
                         </div>
                     </div>
                     <div class="dialogue-line">
-                        <span class="dialogue-speaker">Ama:</span>
+                        <span class="dialogue-speaker female">Ama:</span>
                         <span class="dialogue-text">Je m'appelle Ama. Enchantée!</span>
                         <div class="dialogue-translation">My name is Ama. Nice to meet you!</div>
                         <div>
@@ -860,7 +985,7 @@
                         </div>
                     </div>
                     <div class="dialogue-line">
-                        <span class="dialogue-speaker">Kofi:</span>
+                        <span class="dialogue-speaker male">Kofi:</span>
                         <span class="dialogue-text">Enchanté! Au revoir, Ama!</span>
                         <div class="dialogue-translation">Nice to meet you! Goodbye, Ama!</div>
                         <div>
@@ -868,7 +993,7 @@
                         </div>
                     </div>
                     <div class="dialogue-line">
-                        <span class="dialogue-speaker">Ama:</span>
+                        <span class="dialogue-speaker female">Ama:</span>
                         <span class="dialogue-text">À bientôt, Kofi!</span>
                         <div class="dialogue-translation">See you soon, Kofi!</div>
                         <div>
@@ -1090,7 +1215,7 @@
                         🔊 Play Full Conversation
                     </button>
                     <div class="dialogue-line">
-                        <span class="dialogue-speaker">Friend:</span>
+                        <span class="dialogue-speaker female">Ama:</span>
                         <span class="dialogue-text">Ta maison est grande?</span>
                         <div class="dialogue-translation">Is your house big?</div>
                         <div>
@@ -1098,7 +1223,7 @@
                         </div>
                     </div>
                     <div class="dialogue-line">
-                        <span class="dialogue-speaker">You:</span>
+                        <span class="dialogue-speaker male">Kofi:</span>
                         <span class="dialogue-text">Oui, j'ai un salon, une cuisine et trois chambres.</span>
                         <div class="dialogue-translation">Yes, I have a living room, a kitchen and three bedrooms.</div>
                         <div>
@@ -1106,7 +1231,7 @@
                         </div>
                     </div>
                     <div class="dialogue-line">
-                        <span class="dialogue-speaker">Friend:</span>
+                        <span class="dialogue-speaker female">Ama:</span>
                         <span class="dialogue-text">Il y a une télévision dans le salon?</span>
                         <div class="dialogue-translation">Is there a television in the living room?</div>
                         <div>
@@ -1114,7 +1239,7 @@
                         </div>
                     </div>
                     <div class="dialogue-line">
-                        <span class="dialogue-speaker">You:</span>
+                        <span class="dialogue-speaker male">Kofi:</span>
                         <span class="dialogue-text">Oui, et il y a un grand fauteuil confortable.</span>
                         <div class="dialogue-translation">Yes, and there is a big comfortable armchair.</div>
                         <div>
@@ -1122,7 +1247,7 @@
                         </div>
                     </div>
                     <div class="dialogue-line">
-                        <span class="dialogue-speaker">Friend:</span>
+                        <span class="dialogue-speaker female">Ama:</span>
                         <span class="dialogue-text">Et la cuisine? Tu aimes cuisiner?</span>
                         <div class="dialogue-translation">And the kitchen? Do you like cooking?</div>
                         <div>
@@ -1130,7 +1255,7 @@
                         </div>
                     </div>
                     <div class="dialogue-line">
-                        <span class="dialogue-speaker">You:</span>
+                        <span class="dialogue-speaker male">Kofi:</span>
                         <span class="dialogue-text">Oui, j'ai une nouvelle cuisinière et un grand four.</span>
                         <div class="dialogue-translation">Yes, I have a new stove and a big oven.</div>
                         <div>
@@ -1272,7 +1397,7 @@
                         🔊 Play Full Conversation
                     </button>
                     <div class="dialogue-line">
-                        <span class="dialogue-speaker">Teacher:</span>
+                        <span class="dialogue-speaker female">Teacher:</span>
                         <span class="dialogue-text">Bonjour les élèves! Sortez vos cahiers et vos stylos.</span>
                         <div class="dialogue-translation">Good morning students! Take out your notebooks and pens.</div>
                         <div>
@@ -1280,7 +1405,7 @@
                         </div>
                     </div>
                     <div class="dialogue-line">
-                        <span class="dialogue-speaker">Student:</span>
+                        <span class="dialogue-speaker male">Student:</span>
                         <span class="dialogue-text">Madame, j'ai oublié mon crayon. Puis-je emprunter un stylo?</span>
                         <div class="dialogue-translation">Madam, I forgot my pencil. Can I borrow a pen?</div>
                         <div>
@@ -1288,7 +1413,7 @@
                         </div>
                     </div>
                     <div class="dialogue-line">
-                        <span class="dialogue-speaker">Teacher:</span>
+                        <span class="dialogue-speaker female">Teacher:</span>
                         <span class="dialogue-text">Bien sûr. Regardez le tableau, s'il vous plaît.</span>
                         <div class="dialogue-translation">Of course. Look at the board, please.</div>
                         <div>
@@ -1296,7 +1421,7 @@
                         </div>
                     </div>
                     <div class="dialogue-line">
-                        <span class="dialogue-speaker">Student:</span>
+                        <span class="dialogue-speaker male">Student:</span>
                         <span class="dialogue-text">J'ai une question. Où est la bibliothèque?</span>
                         <div class="dialogue-translation">I have a question. Where is the library?</div>
                         <div>
@@ -1304,7 +1429,7 @@
                         </div>
                     </div>
                     <div class="dialogue-line">
-                        <span class="dialogue-speaker">Teacher:</span>
+                        <span class="dialogue-speaker female">Teacher:</span>
                         <span class="dialogue-text">La bibliothèque est au premier étage, à gauche.</span>
                         <div class="dialogue-translation">The library is on the first floor, on the left.</div>
                         <div>
@@ -1312,7 +1437,7 @@
                         </div>
                     </div>
                     <div class="dialogue-line">
-                        <span class="dialogue-speaker">Student:</span>
+                        <span class="dialogue-speaker male">Student:</span>
                         <span class="dialogue-text">Merci beaucoup, madame!</span>
                         <div class="dialogue-translation">Thank you very much, madam!</div>
                         <div>
@@ -1471,7 +1596,7 @@
                         🔊 Play Full Conversation
                     </button>
                     <div class="dialogue-line">
-                        <span class="dialogue-speaker">Customer:</span>
+                        <span class="dialogue-speaker female">Customer:</span>
                         <span class="dialogue-text">Bonjour! Combien coûtent les bananes?</span>
                         <div class="dialogue-translation">Hello! How much do the bananas cost?</div>
                         <div>
@@ -1479,7 +1604,7 @@
                         </div>
                     </div>
                     <div class="dialogue-line">
-                        <span class="dialogue-speaker">Vendor:</span>
+                        <span class="dialogue-speaker male">Vendor:</span>
                         <span class="dialogue-text">Bonjour! C'est 5 cedis le kilo.</span>
                         <div class="dialogue-translation">Hello! It's 5 cedis per kilo.</div>
                         <div>
@@ -1487,7 +1612,7 @@
                         </div>
                     </div>
                     <div class="dialogue-line">
-                        <span class="dialogue-speaker">Customer:</span>
+                        <span class="dialogue-speaker female">Customer:</span>
                         <span class="dialogue-text">D'accord, je voudrais deux kilos, s'il vous plaît.</span>
                         <div class="dialogue-translation">Okay, I would like two kilos, please.</div>
                         <div>
@@ -1495,7 +1620,7 @@
                         </div>
                     </div>
                     <div class="dialogue-line">
-                        <span class="dialogue-speaker">Vendor:</span>
+                        <span class="dialogue-speaker male">Vendor:</span>
                         <span class="dialogue-text">Voilà! Ça fait 10 cedis. Vous voulez autre chose?</span>
                         <div class="dialogue-translation">Here you go! That makes 10 cedis. Do you want anything else?</div>
                         <div>
@@ -1503,7 +1628,7 @@
                         </div>
                     </div>
                     <div class="dialogue-line">
-                        <span class="dialogue-speaker">Customer:</span>
+                        <span class="dialogue-speaker female">Customer:</span>
                         <span class="dialogue-text">Oui, donnez-moi aussi un kilo de tomates et des carottes.</span>
                         <div class="dialogue-translation">Yes, also give me one kilo of tomatoes and some carrots.</div>
                         <div>
@@ -1511,7 +1636,7 @@
                         </div>
                     </div>
                     <div class="dialogue-line">
-                        <span class="dialogue-speaker">Vendor:</span>
+                        <span class="dialogue-speaker male">Vendor:</span>
                         <span class="dialogue-text">Avec plaisir! Au total, ça fait 25 cedis. Merci beaucoup!</span>
                         <div class="dialogue-translation">With pleasure! In total, that makes 25 cedis. Thank you very much!</div>
                         <div>
@@ -1564,6 +1689,46 @@
     <div class="celebration" id="celebration"></div>
 
     <script>
+        // Toast Notification System
+        function showToast(title, message, type = 'info', duration = 5000) {
+            const toastContainer = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            
+            const icons = {
+                success: '✓',
+                warning: '⚠',
+                error: '✕',
+                info: 'ℹ'
+            };
+            
+            toast.innerHTML = `
+                <div class="toast-icon">${icons[type]}</div>
+                <div class="toast-content">
+                    <div class="toast-title">${title}</div>
+                    <div class="toast-message">${message}</div>
+                </div>
+                <button class="toast-close" onclick="this.parentElement.remove()">×</button>
+            `;
+            
+            toastContainer.appendChild(toast);
+            
+            // Animate in
+            setTimeout(() => toast.classList.add('show'), 100);
+            
+            // Auto remove
+            if (duration > 0) {
+                setTimeout(() => {
+                    if (toast.parentElement) {
+                        toast.classList.remove('show');
+                        setTimeout(() => toast.remove(), 300);
+                    }
+                }, duration);
+            }
+            
+            return toast;
+        }
+
         // Navigation
         function showSection(sectionId) {
             document.querySelectorAll('.section').forEach(section => {
@@ -1574,6 +1739,22 @@
             });
             document.getElementById(sectionId).classList.add('active');
             event.target.classList.add('active');
+            
+            // Show toast when navigating to new section
+            const sectionNames = {
+                'home': 'Home',
+                'greetings': 'Greetings',
+                'house': 'My House',
+                'school': 'At School',
+                'market': 'At the Market'
+            };
+            
+            showToast(
+                `Section Changed`, 
+                `Now viewing: ${sectionNames[sectionId]}`, 
+                'info', 
+                3000
+            );
         }
 
         // Audio pronunciation using Web Speech API with articles
@@ -1650,6 +1831,14 @@
                 utterance.voice = frenchVoice;
             }
             
+            // Show toast notification
+            showToast(
+                'Pronunciation', 
+                `Playing: "${fullText}"`, 
+                'info', 
+                3000
+            );
+            
             speechSynthesis.speak(utterance);
 
             // Visual feedback
@@ -1665,36 +1854,36 @@
         function playDialogueSentence(dialogueId) {
             const dialogues = {
                 // Greetings dialogues
-                'greeting1': { text: 'Bonjour! Comment ça va?', translation: 'Hello! How are you?' },
-                'greeting2': { text: 'Bonjour! Ça va bien, merci. Et toi?', translation: 'Hello! I\'m fine, thank you. And you?' },
-                'greeting3': { text: 'Très bien, merci. Je m\'appelle Kofi. Comment t\'appelles-tu?', translation: 'Very well, thank you. My name is Kofi. What\'s your name?' },
-                'greeting4': { text: 'Je m\'appelle Ama. Enchantée!', translation: 'My name is Ama. Nice to meet you!' },
-                'greeting5': { text: 'Enchanté! Au revoir, Ama!', translation: 'Nice to meet you! Goodbye, Ama!' },
-                'greeting6': { text: 'À bientôt, Kofi!', translation: 'See you soon, Kofi!' },
+                'greeting1': { text: 'Bonjour! Comment ça va?', translation: 'Hello! How are you?', speaker: 'male' },
+                'greeting2': { text: 'Bonjour! Ça va bien, merci. Et toi?', translation: 'Hello! I\'m fine, thank you. And you?', speaker: 'female' },
+                'greeting3': { text: 'Très bien, merci. Je m\'appelle Kofi. Comment t\'appelles-tu?', translation: 'Very well, thank you. My name is Kofi. What\'s your name?', speaker: 'male' },
+                'greeting4': { text: 'Je m\'appelle Ama. Enchantée!', translation: 'My name is Ama. Nice to meet you!', speaker: 'female' },
+                'greeting5': { text: 'Enchanté! Au revoir, Ama!', translation: 'Nice to meet you! Goodbye, Ama!', speaker: 'male' },
+                'greeting6': { text: 'À bientôt, Kofi!', translation: 'See you soon, Kofi!', speaker: 'female' },
                 
                 // House dialogues
-                'house1': { text: 'Ta maison est grande?', translation: 'Is your house big?' },
-                'house2': { text: 'Oui, j\'ai un salon, une cuisine et trois chambres.', translation: 'Yes, I have a living room, a kitchen and three bedrooms.' },
-                'house3': { text: 'Il y a une télévision dans le salon?', translation: 'Is there a television in the living room?' },
-                'house4': { text: 'Oui, et il y a un grand fauteuil confortable.', translation: 'Yes, and there is a big comfortable armchair.' },
-                'house5': { text: 'Et la cuisine? Tu aimes cuisiner?', translation: 'And the kitchen? Do you like cooking?' },
-                'house6': { text: 'Oui, j\'ai une nouvelle cuisinière et un grand four.', translation: 'Yes, I have a new stove and a big oven.' },
+                'house1': { text: 'Ta maison est grande?', translation: 'Is your house big?', speaker: 'female' },
+                'house2': { text: 'Oui, j\'ai un salon, une cuisine et trois chambres.', translation: 'Yes, I have a living room, a kitchen and three bedrooms.', speaker: 'male' },
+                'house3': { text: 'Il y a une télévision dans le salon?', translation: 'Is there a television in the living room?', speaker: 'female' },
+                'house4': { text: 'Oui, et il y a un grand fauteuil confortable.', translation: 'Yes, and there is a big comfortable armchair.', speaker: 'male' },
+                'house5': { text: 'Et la cuisine? Tu aimes cuisiner?', translation: 'And the kitchen? Do you like cooking?', speaker: 'female' },
+                'house6': { text: 'Oui, j\'ai une nouvelle cuisinière et un grand four.', translation: 'Yes, I have a new stove and a big oven.', speaker: 'male' },
                 
                 // School dialogues
-                'school1': { text: 'Bonjour les élèves! Sortez vos cahiers et vos stylos.', translation: 'Good morning students! Take out your notebooks and pens.' },
-                'school2': { text: 'Madame, j\'ai oublié mon crayon. Puis-je emprunter un stylo?', translation: 'Madam, I forgot my pencil. Can I borrow a pen?' },
-                'school3': { text: 'Bien sûr. Regardez le tableau, s\'il vous plaît.', translation: 'Of course. Look at the board, please.' },
-                'school4': { text: 'J\'ai une question. Où est la bibliothèque?', translation: 'I have a question. Where is the library?' },
-                'school5': { text: 'La bibliothèque est au premier étage, à gauche.', translation: 'The library is on the first floor, on the left.' },
-                'school6': { text: 'Merci beaucoup, madame!', translation: 'Thank you very much, madam!' },
+                'school1': { text: 'Bonjour les élèves! Sortez vos cahiers et vos stylos.', translation: 'Good morning students! Take out your notebooks and pens.', speaker: 'female' },
+                'school2': { text: 'Madame, j\'ai oublié mon crayon. Puis-je emprunter un stylo?', translation: 'Madam, I forgot my pencil. Can I borrow a pen?', speaker: 'male' },
+                'school3': { text: 'Bien sûr. Regardez le tableau, s\'il vous plaît.', translation: 'Of course. Look at the board, please.', speaker: 'female' },
+                'school4': { text: 'J\'ai une question. Où est la bibliothèque?', translation: 'I have a question. Where is the library?', speaker: 'male' },
+                'school5': { text: 'La bibliothèque est au premier étage, à gauche.', translation: 'The library is on the first floor, on the left.', speaker: 'female' },
+                'school6': { text: 'Merci beaucoup, madame!', translation: 'Thank you very much, madam!', speaker: 'male' },
                 
                 // Market dialogues (updated to use cedis)
-                'market1': { text: 'Bonjour! Combien coûtent les bananes?', translation: 'Hello! How much do the bananas cost?' },
-                'market2': { text: 'Bonjour! C\'est 5 cedis le kilo.', translation: 'Hello! It\'s 5 cedis per kilo.' },
-                'market3': { text: 'D\'accord, je voudrais deux kilos, s\'il vous plaît.', translation: 'Okay, I would like two kilos, please.' },
-                'market4': { text: 'Voilà! Ça fait 10 cedis. Vous voulez autre chose?', translation: 'Here you go! That makes 10 cedis. Do you want anything else?' },
-                'market5': { text: 'Oui, donnez-moi aussi un kilo de tomates et des carottes.', translation: 'Yes, also give me one kilo of tomatoes and some carrots.' },
-                'market6': { text: 'Avec plaisir! Au total, ça fait 25 cedis. Merci beaucoup!', translation: 'With pleasure! In total, that makes 25 cedis. Thank you very much!' }
+                'market1': { text: 'Bonjour! Combien coûtent les bananes?', translation: 'Hello! How much do the bananas cost?', speaker: 'female' },
+                'market2': { text: 'Bonjour! C\'est 5 cedis le kilo.', translation: 'Hello! It\'s 5 cedis per kilo.', speaker: 'male' },
+                'market3': { text: 'D\'accord, je voudrais deux kilos, s\'il vous plaît.', translation: 'Okay, I would like two kilos, please.', speaker: 'female' },
+                'market4': { text: 'Voilà! Ça fait 10 cedis. Vous voulez autre chose?', translation: 'Here you go! That makes 10 cedis. Do you want anything else?', speaker: 'male' },
+                'market5': { text: 'Oui, donnez-moi aussi un kilo de tomates et des carottes.', translation: 'Yes, also give me one kilo of tomatoes and some carrots.', speaker: 'female' },
+                'market6': { text: 'Avec plaisir! Au total, ça fait 25 cedis. Merci beaucoup!', translation: 'With pleasure! In total, that makes 25 cedis. Thank you very much!', speaker: 'male' }
             };
 
             const dialogue = dialogues[dialogueId];
@@ -1702,82 +1891,132 @@
             utterance.lang = 'fr-FR';
             utterance.rate = 0.7; // Slower for dialogues
             
-            // Try to use a French voice if available
+            // Try to use different voices for male/female if available
             const voices = speechSynthesis.getVoices();
-            const frenchVoice = voices.find(voice => voice.lang === 'fr-FR');
+            let selectedVoice = voices.find(voice => voice.lang === 'fr-FR');
             
-            if (frenchVoice) {
-                utterance.voice = frenchVoice;
+            if (selectedVoice) {
+                // Simple attempt to differentiate voices (this is limited by browser support)
+                if (dialogue.speaker === 'male') {
+                    // Prefer deeper voices for male
+                    const maleVoices = voices.filter(v => v.lang === 'fr-FR' && v.name.toLowerCase().includes('male') || v.name.toLowerCase().includes('homme'));
+                    if (maleVoices.length > 0) selectedVoice = maleVoices[0];
+                } else {
+                    // Prefer higher voices for female
+                    const femaleVoices = voices.filter(v => v.lang === 'fr-FR' && v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('femme'));
+                    if (femaleVoices.length > 0) selectedVoice = femaleVoices[0];
+                }
+                utterance.voice = selectedVoice;
             }
+            
+            // Show toast with speaker info
+            const speakerName = dialogue.speaker === 'male' ? 'Kofi' : (dialogue.speaker === 'female' ? 'Ama' : 'Speaker');
+            showToast(
+                `${speakerName} says:`, 
+                dialogue.text, 
+                'info', 
+                4000
+            );
             
             // Play the French dialogue
             speechSynthesis.speak(utterance);
         }
 
-        // Full Conversation Function
+        // Full Conversation Function with male/female voices
         function playFullConversation(topic) {
             const conversations = {
                 'greetings': [
-                    { text: 'Bonjour! Comment ça va?', speaker: 'Kofi' },
-                    { text: 'Bonjour! Ça va bien, merci. Et toi?', speaker: 'Ama' },
-                    { text: 'Très bien, merci. Je m\'appelle Kofi. Comment t\'appelles-tu?', speaker: 'Kofi' },
-                    { text: 'Je m\'appelle Ama. Enchantée!', speaker: 'Ama' },
-                    { text: 'Enchanté! Au revoir, Ama!', speaker: 'Kofi' },
-                    { text: 'À bientôt, Kofi!', speaker: 'Ama' }
+                    { text: 'Bonjour! Comment ça va?', speaker: 'male', name: 'Kofi' },
+                    { text: 'Bonjour! Ça va bien, merci. Et toi?', speaker: 'female', name: 'Ama' },
+                    { text: 'Très bien, merci. Je m\'appelle Kofi. Comment t\'appelles-tu?', speaker: 'male', name: 'Kofi' },
+                    { text: 'Je m\'appelle Ama. Enchantée!', speaker: 'female', name: 'Ama' },
+                    { text: 'Enchanté! Au revoir, Ama!', speaker: 'male', name: 'Kofi' },
+                    { text: 'À bientôt, Kofi!', speaker: 'female', name: 'Ama' }
                 ],
                 'house': [
-                    { text: 'Ta maison est grande?', speaker: 'Friend' },
-                    { text: 'Oui, j\'ai un salon, une cuisine et trois chambres.', speaker: 'You' },
-                    { text: 'Il y a une télévision dans le salon?', speaker: 'Friend' },
-                    { text: 'Oui, et il y a un grand fauteuil confortable.', speaker: 'You' },
-                    { text: 'Et la cuisine? Tu aimes cuisiner?', speaker: 'Friend' },
-                    { text: 'Oui, j\'ai une nouvelle cuisinière et un grand four.', speaker: 'You' }
+                    { text: 'Ta maison est grande?', speaker: 'female', name: 'Ama' },
+                    { text: 'Oui, j\'ai un salon, une cuisine et trois chambres.', speaker: 'male', name: 'Kofi' },
+                    { text: 'Il y a une télévision dans le salon?', speaker: 'female', name: 'Ama' },
+                    { text: 'Oui, et il y a un grand fauteuil confortable.', speaker: 'male', name: 'Kofi' },
+                    { text: 'Et la cuisine? Tu aimes cuisiner?', speaker: 'female', name: 'Ama' },
+                    { text: 'Oui, j\'ai une nouvelle cuisinière et un grand four.', speaker: 'male', name: 'Kofi' }
                 ],
                 'school': [
-                    { text: 'Bonjour les élèves! Sortez vos cahiers et vos stylos.', speaker: 'Teacher' },
-                    { text: 'Madame, j\'ai oublié mon crayon. Puis-je emprunter un stylo?', speaker: 'Student' },
-                    { text: 'Bien sûr. Regardez le tableau, s\'il vous plaît.', speaker: 'Teacher' },
-                    { text: 'J\'ai une question. Où est la bibliothèque?', speaker: 'Student' },
-                    { text: 'La bibliothèque est au premier étage, à gauche.', speaker: 'Teacher' },
-                    { text: 'Merci beaucoup, madame!', speaker: 'Student' }
+                    { text: 'Bonjour les élèves! Sortez vos cahiers et vos stylos.', speaker: 'female', name: 'Teacher' },
+                    { text: 'Madame, j\'ai oublié mon crayon. Puis-je emprunter un stylo?', speaker: 'male', name: 'Student' },
+                    { text: 'Bien sûr. Regardez le tableau, s\'il vous plaît.', speaker: 'female', name: 'Teacher' },
+                    { text: 'J\'ai une question. Où est la bibliothèque?', speaker: 'male', name: 'Student' },
+                    { text: 'La bibliothèque est au premier étage, à gauche.', speaker: 'female', name: 'Teacher' },
+                    { text: 'Merci beaucoup, madame!', speaker: 'male', name: 'Student' }
                 ],
                 'market': [
-                    { text: 'Bonjour! Combien coûtent les bananes?', speaker: 'Customer' },
-                    { text: 'Bonjour! C\'est 5 cedis le kilo.', speaker: 'Vendor' },
-                    { text: 'D\'accord, je voudrais deux kilos, s\'il vous plaît.', speaker: 'Customer' },
-                    { text: 'Voilà! Ça fait 10 cedis. Vous voulez autre chose?', speaker: 'Vendor' },
-                    { text: 'Oui, donnez-moi aussi un kilo de tomates et des carottes.', speaker: 'Customer' },
-                    { text: 'Avec plaisir! Au total, ça fait 25 cedis. Merci beaucoup!', speaker: 'Vendor' }
+                    { text: 'Bonjour! Combien coûtent les bananes?', speaker: 'female', name: 'Customer' },
+                    { text: 'Bonjour! C\'est 5 cedis le kilo.', speaker: 'male', name: 'Vendor' },
+                    { text: 'D\'accord, je voudrais deux kilos, s\'il vous plaît.', speaker: 'female', name: 'Customer' },
+                    { text: 'Voilà! Ça fait 10 cedis. Vous voulez autre chose?', speaker: 'male', name: 'Vendor' },
+                    { text: 'Oui, donnez-moi aussi un kilo de tomates et des carottes.', speaker: 'female', name: 'Customer' },
+                    { text: 'Avec plaisir! Au total, ça fait 25 cedis. Merci beaucoup!', speaker: 'male', name: 'Vendor' }
                 ]
             };
 
             const conversation = conversations[topic];
             let index = 0;
 
+            // Show starting toast
+            showToast(
+                'Conversation Started', 
+                `Playing ${topic} dialogue between male and female voices`, 
+                'info', 
+                3000
+            );
+
             function playNextLine() {
-                if (index >= conversation.length) return;
+                if (index >= conversation.length) {
+                    showToast(
+                        'Conversation Complete', 
+                        'Great job! Practice makes perfect.', 
+                        'success', 
+                        4000
+                    );
+                    return;
+                }
 
                 const line = conversation[index];
                 const utterance = new SpeechSynthesisUtterance(line.text);
                 utterance.lang = 'fr-FR';
                 utterance.rate = 0.7;
                 
-                // Try to use a French voice if available
+                // Try to use different voices for male/female
                 const voices = speechSynthesis.getVoices();
-                const frenchVoice = voices.find(voice => voice.lang === 'fr-FR');
+                let selectedVoice = voices.find(voice => voice.lang === 'fr-FR');
                 
-                if (frenchVoice) {
-                    utterance.voice = frenchVoice;
+                if (selectedVoice) {
+                    if (line.speaker === 'male') {
+                        const maleVoices = voices.filter(v => v.lang === 'fr-FR' && (v.name.toLowerCase().includes('male') || v.name.toLowerCase().includes('homme')));
+                        if (maleVoices.length > 0) selectedVoice = maleVoices[0];
+                    } else {
+                        const femaleVoices = voices.filter(v => v.lang === 'fr-FR' && (v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('femme')));
+                        if (femaleVoices.length > 0) selectedVoice = femaleVoices[0];
+                    }
+                    utterance.voice = selectedVoice;
                 }
                 
                 // Highlight the current line being spoken
                 highlightDialogueLine(topic, index);
                 
+                // Show who's speaking in toast
+                showToast(
+                    `${line.name}:`, 
+                    line.text, 
+                    'info', 
+                    4000
+                );
+
                 utterance.onend = function() {
                     // Remove highlight after speaking
                     removeDialogueLineHighlight(topic, index);
                     index++;
-                    setTimeout(playNextLine, 500); // Small pause between lines
+                    setTimeout(playNextLine, 1000); // Pause between lines
                 };
                 
                 speechSynthesis.speak(utterance);
@@ -1823,6 +2062,16 @@
                     setTimeout(() => confetti.remove(), 3000);
                 }, i * 30);
             }
+            
+            // Show celebration toast for big celebrations
+            if (big) {
+                showToast(
+                    'Excellent! 🎉', 
+                    'Très bien! You\'re doing great!', 
+                    'success', 
+                    5000
+                );
+            }
         }
 
         // ========== GREETINGS SECTION ==========
@@ -1858,6 +2107,13 @@
             document.getElementById('greetingsScore').textContent = greetingsScore;
             document.getElementById('greetingsTotal').textContent = greetingsQuestions.length;
             showGreetingsQuestion();
+            
+            showToast(
+                'Quiz Started!', 
+                'Good luck with the Greetings quiz!', 
+                'info', 
+                3000
+            );
         }
 
         function showGreetingsQuestion() {
@@ -1900,9 +2156,11 @@
                 greetingsScore++;
                 document.getElementById('greetingsScore').textContent = greetingsScore;
                 celebrate();
+                showToast('Correct! ✅', 'Well done!', 'success', 2000);
             } else {
                 options[selected].classList.add('incorrect');
                 options[q.correct].classList.add('correct');
+                showToast('Incorrect ❌', 'Better luck next time!', 'error', 2000);
             }
 
             setTimeout(() => {
@@ -1945,6 +2203,14 @@
                     </div>
                 </div>
             `;
+            
+            // Show final results toast
+            showToast(
+                'Quiz Complete!', 
+                `Your score: ${greetingsScore}/${greetingsQuestions.length} (${percentage}%)`, 
+                percentage >= 60 ? 'success' : 'warning', 
+                5000
+            );
         }
 
         // Greetings Memory Game
@@ -1991,6 +2257,8 @@
                 cardElement.onclick = () => flipGreetingsCard(index);
                 board.appendChild(cardElement);
             });
+            
+            showToast('Memory Game Started!', 'Match French words with their English translations', 'info', 3000);
         }
 
         function flipGreetingsCard(index) {
@@ -2028,10 +2296,12 @@
                     greetingsMatchedPairs++;
                     document.getElementById('greetingsMatches').textContent = greetingsMatchedPairs;
                     
+                    showToast('Match Found! ✅', `${card1.text} = ${card2.text}`, 'success', 2000);
+                    
                     if (greetingsMatchedPairs === greetingsMemoryPairs.length) {
                         setTimeout(() => {
                             celebrate(true);
-                            alert(`🎉 Félicitations! You won in ${greetingsMoves} moves! 🎉`);
+                            showToast('Congratulations! 🎉', `You won in ${greetingsMoves} moves!`, 'success', 5000);
                         }, 500);
                     }
                 } else {
@@ -2062,6 +2332,8 @@
             
             greetingsFlashcardIndex = 0;
             showGreetingsFlashcard();
+            
+            showToast('Flashcards Started!', 'Click cards to flip and learn vocabulary', 'info', 3000);
         }
 
         function showGreetingsFlashcard() {
@@ -2118,6 +2390,13 @@
             document.getElementById('houseScore').textContent = houseScore;
             document.getElementById('houseTotal').textContent = houseQuestions.length;
             showHouseQuestion();
+            
+            showToast(
+                'Quiz Started!', 
+                'Good luck with the House vocabulary quiz!', 
+                'info', 
+                3000
+            );
         }
 
         function showHouseQuestion() {
@@ -2160,9 +2439,11 @@
                 houseScore++;
                 document.getElementById('houseScore').textContent = houseScore;
                 celebrate();
+                showToast('Correct! ✅', 'Well done!', 'success', 2000);
             } else {
                 options[selected].classList.add('incorrect');
                 options[q.correct].classList.add('correct');
+                showToast('Incorrect ❌', 'Better luck next time!', 'error', 2000);
             }
 
             setTimeout(() => {
@@ -2205,6 +2486,14 @@
                     </div>
                 </div>
             `;
+            
+            // Show final results toast
+            showToast(
+                'Quiz Complete!', 
+                `Your score: ${houseScore}/${houseQuestions.length} (${percentage}%)`, 
+                percentage >= 60 ? 'success' : 'warning', 
+                5000
+            );
         }
 
         // House Hangman Game
@@ -2227,6 +2516,8 @@
             
             updateHouseHangmanDisplay();
             createHouseHangmanLetters();
+            
+            showToast('Hangman Started!', 'Guess the French house vocabulary word', 'info', 3000);
         }
 
         function updateHouseHangmanDisplay() {
@@ -2316,13 +2607,13 @@
             // Check if game is over
             if (houseHangmanLives <= 0) {
                 setTimeout(() => {
-                    alert(`Game Over! The word was: ${houseHangmanWord}`);
+                    showToast('Game Over!', `The word was: ${houseHangmanWord}`, 'error', 4000);
                     startHouseHangman(); // Restart game
                 }, 500);
             } else if (!displayWord.includes('_')) {
                 setTimeout(() => {
                     celebrate(true);
-                    alert(`🎉 Félicitations! You guessed the word: ${houseHangmanWord}`);
+                    showToast('Congratulations! 🎉', `You guessed: ${houseHangmanWord}`, 'success', 5000);
                     startHouseHangman(); // Restart game
                 }, 500);
             }
@@ -2350,6 +2641,9 @@
             if (!houseHangmanWord.includes(letter)) {
                 houseHangmanLives--;
                 document.getElementById('houseLives').textContent = houseHangmanLives;
+                showToast('Wrong letter!', `"${letter}" is not in the word`, 'warning', 2000);
+            } else {
+                showToast('Good guess!', `"${letter}" is in the word`, 'success', 2000);
             }
             
             // Disable the guessed letter
@@ -2407,6 +2701,8 @@
                 cardElement.onclick = () => flipHouseCard(index);
                 board.appendChild(cardElement);
             });
+            
+            showToast('Memory Game Started!', 'Match French words with their English translations', 'info', 3000);
         }
 
         function flipHouseCard(index) {
@@ -2444,10 +2740,12 @@
                     houseMatchedPairs++;
                     document.getElementById('houseMatches').textContent = houseMatchedPairs;
                     
+                    showToast('Match Found! ✅', `${card1.text} = ${card2.text}`, 'success', 2000);
+                    
                     if (houseMatchedPairs === houseMemoryPairs.length) {
                         setTimeout(() => {
                             celebrate(true);
-                            alert(`🎉 Félicitations! You won in ${houseMoves} moves! 🎉`);
+                            showToast('Congratulations! 🎉', `You won in ${houseMoves} moves!`, 'success', 5000);
                         }, 500);
                     }
                 } else {
@@ -2494,6 +2792,13 @@
             document.getElementById('schoolScore').textContent = schoolScore;
             document.getElementById('schoolTotal').textContent = schoolQuestions.length;
             showSchoolQuestion();
+            
+            showToast(
+                'Quiz Started!', 
+                'Good luck with the School vocabulary quiz!', 
+                'info', 
+                3000
+            );
         }
 
         function showSchoolQuestion() {
@@ -2536,9 +2841,11 @@
                 schoolScore++;
                 document.getElementById('schoolScore').textContent = schoolScore;
                 celebrate();
+                showToast('Correct! ✅', 'Well done!', 'success', 2000);
             } else {
                 options[selected].classList.add('incorrect');
                 options[q.correct].classList.add('correct');
+                showToast('Incorrect ❌', 'Better luck next time!', 'error', 2000);
             }
 
             setTimeout(() => {
@@ -2581,6 +2888,14 @@
                     </div>
                 </div>
             `;
+            
+            // Show final results toast
+            showToast(
+                'Quiz Complete!', 
+                `Your score: ${schoolScore}/${schoolQuestions.length} (${percentage}%)`, 
+                percentage >= 60 ? 'success' : 'warning', 
+                5000
+            );
         }
 
         // School Flashcards
@@ -2603,6 +2918,8 @@
             
             schoolFlashcardIndex = 0;
             showSchoolFlashcard();
+            
+            showToast('Flashcards Started!', 'Click cards to flip and learn vocabulary', 'info', 3000);
         }
 
         function showSchoolFlashcard() {
@@ -2670,6 +2987,8 @@
                 cardElement.onclick = () => flipSchoolMemoryCard(index);
                 board.appendChild(cardElement);
             });
+            
+            showToast('Memory Game Started!', 'Match French words with their English translations', 'info', 3000);
         }
 
         function flipSchoolMemoryCard(index) {
@@ -2707,10 +3026,12 @@
                     schoolMatchedPairs++;
                     document.getElementById('schoolMatches').textContent = schoolMatchedPairs;
                     
+                    showToast('Match Found! ✅', `${card1.text} = ${card2.text}`, 'success', 2000);
+                    
                     if (schoolMatchedPairs === schoolMemoryPairs.length) {
                         setTimeout(() => {
                             celebrate(true);
-                            alert(`🎉 Félicitations! You won in ${schoolMoves} moves! 🎉`);
+                            showToast('Congratulations! 🎉', `You won in ${schoolMoves} moves!`, 'success', 5000);
                         }, 500);
                     }
                 } else {
@@ -2757,6 +3078,13 @@
             document.getElementById('marketScore').textContent = marketScore;
             document.getElementById('marketTotal').textContent = marketQuestions.length;
             showMarketQuestion();
+            
+            showToast(
+                'Quiz Started!', 
+                'Good luck with the Market vocabulary quiz!', 
+                'info', 
+                3000
+            );
         }
 
         function showMarketQuestion() {
@@ -2799,9 +3127,11 @@
                 marketScore++;
                 document.getElementById('marketScore').textContent = marketScore;
                 celebrate();
+                showToast('Correct! ✅', 'Well done!', 'success', 2000);
             } else {
                 options[selected].classList.add('incorrect');
                 options[q.correct].classList.add('correct');
+                showToast('Incorrect ❌', 'Better luck next time!', 'error', 2000);
             }
 
             setTimeout(() => {
@@ -2844,6 +3174,14 @@
                     </div>
                 </div>
             `;
+            
+            // Show final results toast
+            showToast(
+                'Quiz Complete!', 
+                `Your score: ${marketScore}/${marketQuestions.length} (${percentage}%)`, 
+                percentage >= 60 ? 'success' : 'warning', 
+                5000
+            );
         }
 
         // Market Hangman Game
@@ -2866,6 +3204,8 @@
             
             updateMarketHangmanDisplay();
             createMarketHangmanLetters();
+            
+            showToast('Hangman Started!', 'Guess the French market vocabulary word', 'info', 3000);
         }
 
         function updateMarketHangmanDisplay() {
@@ -2955,13 +3295,13 @@
             // Check if game is over
             if (marketHangmanLives <= 0) {
                 setTimeout(() => {
-                    alert(`Game Over! The word was: ${marketHangmanWord}`);
+                    showToast('Game Over!', `The word was: ${marketHangmanWord}`, 'error', 4000);
                     startMarketHangman(); // Restart game
                 }, 500);
             } else if (!displayWord.includes('_')) {
                 setTimeout(() => {
                     celebrate(true);
-                    alert(`🎉 Félicitations! You guessed the word: ${marketHangmanWord}`);
+                    showToast('Congratulations! 🎉', `You guessed: ${marketHangmanWord}`, 'success', 5000);
                     startMarketHangman(); // Restart game
                 }, 500);
             }
@@ -2989,6 +3329,9 @@
             if (!marketHangmanWord.includes(letter)) {
                 marketHangmanLives--;
                 document.getElementById('marketLives').textContent = marketHangmanLives;
+                showToast('Wrong letter!', `"${letter}" is not in the word`, 'warning', 2000);
+            } else {
+                showToast('Good guess!', `"${letter}" is in the word`, 'success', 2000);
             }
             
             // Disable the guessed letter
@@ -3046,6 +3389,8 @@
                 cardElement.onclick = () => flipMarketCard(index);
                 board.appendChild(cardElement);
             });
+            
+            showToast('Memory Game Started!', 'Match French words with their English translations', 'info', 3000);
         }
 
         function flipMarketCard(index) {
@@ -3083,10 +3428,12 @@
                     marketMatchedPairs++;
                     document.getElementById('marketMatches').textContent = marketMatchedPairs;
                     
+                    showToast('Match Found! ✅', `${card1.text} = ${card2.text}`, 'success', 2000);
+                    
                     if (marketMatchedPairs === marketMemoryPairs.length) {
                         setTimeout(() => {
                             celebrate(true);
-                            alert(`🎉 Félicitations! You won in ${marketMoves} moves! 🎉`);
+                            showToast('Congratulations! 🎉', `You won in ${marketMoves} moves!`, 'success', 5000);
                         }, 500);
                     }
                 } else {
@@ -3108,6 +3455,16 @@
                     // Voices are now loaded
                 };
             }
+            
+            // Show welcome toast
+            setTimeout(() => {
+                showToast(
+                    'Welcome! 🇬🇭🇫🇷', 
+                    'Click on any word to hear French pronunciation!', 
+                    'info', 
+                    5000
+                );
+            }, 1000);
         };
     </script>
 </body>

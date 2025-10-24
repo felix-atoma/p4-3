@@ -391,11 +391,33 @@
             cursor: pointer;
             font-size: 14px;
             transition: all 0.3s ease;
+            margin-left: 5px;
         }
 
         .dialogue-audio-btn:hover {
             background: #005a33;
             transform: scale(1.05);
+        }
+
+        .full-conversation-btn {
+            background: #CE1126;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            margin: 20px auto;
+            display: block;
+        }
+
+        .full-conversation-btn:hover {
+            background: #a01020;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
         }
 
         .pronunciation-tips {
@@ -690,6 +712,7 @@
             .dialogue-line { flex-direction: column; align-items: flex-start; }
             .dialogue-speaker { min-width: auto; margin-bottom: 5px; }
             .dialogue-text { margin: 0; }
+            .dialogue-audio-btn { margin-top: 10px; }
         }
     </style>
 </head>
@@ -801,47 +824,56 @@
                 <!-- Greetings Dialogue -->
                 <div class="dialogue-section">
                     <h3 class="dialogue-title">💬 Practice Dialogue - Meeting New Friends</h3>
+                    <button class="full-conversation-btn" onclick="playFullConversation('greetings')">
+                        🔊 Play Full Conversation
+                    </button>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Kofi:</span>
                         <span class="dialogue-text">Bonjour! Comment ça va?</span>
                         <div class="dialogue-translation">Hello! How are you?</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('greeting1', 'male')">👨 Play</button>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('greeting1', 'female')">👩 Play</button>
+                        <div>
+                            <button class="dialogue-audio-btn" onclick="playDialogueSentence('greeting1')">🔊 Play</button>
+                        </div>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Ama:</span>
                         <span class="dialogue-text">Bonjour! Ça va bien, merci. Et toi?</span>
                         <div class="dialogue-translation">Hello! I'm fine, thank you. And you?</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('greeting2', 'male')">👨 Play</button>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('greeting2', 'female')">👩 Play</button>
+                        <div>
+                            <button class="dialogue-audio-btn" onclick="playDialogueSentence('greeting2')">🔊 Play</button>
+                        </div>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Kofi:</span>
                         <span class="dialogue-text">Très bien, merci. Je m'appelle Kofi. Comment t'appelles-tu?</span>
                         <div class="dialogue-translation">Very well, thank you. My name is Kofi. What's your name?</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('greeting3', 'male')">👨 Play</button>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('greeting3', 'female')">👩 Play</button>
+                        <div>
+                            <button class="dialogue-audio-btn" onclick="playDialogueSentence('greeting3')">🔊 Play</button>
+                        </div>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Ama:</span>
                         <span class="dialogue-text">Je m'appelle Ama. Enchantée!</span>
                         <div class="dialogue-translation">My name is Ama. Nice to meet you!</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('greeting4', 'male')">👨 Play</button>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('greeting4', 'female')">👩 Play</button>
+                        <div>
+                            <button class="dialogue-audio-btn" onclick="playDialogueSentence('greeting4')">🔊 Play</button>
+                        </div>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Kofi:</span>
                         <span class="dialogue-text">Enchanté! Au revoir, Ama!</span>
                         <div class="dialogue-translation">Nice to meet you! Goodbye, Ama!</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('greeting5', 'male')">👨 Play</button>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('greeting5', 'female')">👩 Play</button>
+                        <div>
+                            <button class="dialogue-audio-btn" onclick="playDialogueSentence('greeting5')">🔊 Play</button>
+                        </div>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Ama:</span>
                         <span class="dialogue-text">À bientôt, Kofi!</span>
                         <div class="dialogue-translation">See you soon, Kofi!</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('greeting6', 'male')">👨 Play</button>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('greeting6', 'female')">👩 Play</button>
+                        <div>
+                            <button class="dialogue-audio-btn" onclick="playDialogueSentence('greeting6')">🔊 Play</button>
+                        </div>
                     </div>
                 </div>
 
@@ -1054,47 +1086,56 @@
                 <!-- House Dialogue -->
                 <div class="dialogue-section">
                     <h3 class="dialogue-title">💬 Practice Dialogue - Describing My House</h3>
+                    <button class="full-conversation-btn" onclick="playFullConversation('house')">
+                        🔊 Play Full Conversation
+                    </button>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Friend:</span>
                         <span class="dialogue-text">Ta maison est grande?</span>
                         <div class="dialogue-translation">Is your house big?</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('house1', 'male')">👨 Play</button>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('house1', 'female')">👩 Play</button>
+                        <div>
+                            <button class="dialogue-audio-btn" onclick="playDialogueSentence('house1')">🔊 Play</button>
+                        </div>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">You:</span>
                         <span class="dialogue-text">Oui, j'ai un salon, une cuisine et trois chambres.</span>
                         <div class="dialogue-translation">Yes, I have a living room, a kitchen and three bedrooms.</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('house2', 'male')">👨 Play</button>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('house2', 'female')">👩 Play</button>
+                        <div>
+                            <button class="dialogue-audio-btn" onclick="playDialogueSentence('house2')">🔊 Play</button>
+                        </div>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Friend:</span>
                         <span class="dialogue-text">Il y a une télévision dans le salon?</span>
                         <div class="dialogue-translation">Is there a television in the living room?</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('house3', 'male')">👨 Play</button>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('house3', 'female')">👩 Play</button>
+                        <div>
+                            <button class="dialogue-audio-btn" onclick="playDialogueSentence('house3')">🔊 Play</button>
+                        </div>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">You:</span>
                         <span class="dialogue-text">Oui, et il y a un grand fauteuil confortable.</span>
                         <div class="dialogue-translation">Yes, and there is a big comfortable armchair.</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('house4', 'male')">👨 Play</button>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('house4', 'female')">👩 Play</button>
+                        <div>
+                            <button class="dialogue-audio-btn" onclick="playDialogueSentence('house4')">🔊 Play</button>
+                        </div>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Friend:</span>
                         <span class="dialogue-text">Et la cuisine? Tu aimes cuisiner?</span>
                         <div class="dialogue-translation">And the kitchen? Do you like cooking?</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('house5', 'male')">👨 Play</button>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('house5', 'female')">👩 Play</button>
+                        <div>
+                            <button class="dialogue-audio-btn" onclick="playDialogueSentence('house5')">🔊 Play</button>
+                        </div>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">You:</span>
                         <span class="dialogue-text">Oui, j'ai une nouvelle cuisinière et un grand four.</span>
                         <div class="dialogue-translation">Yes, I have a new stove and a big oven.</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('house6', 'male')">👨 Play</button>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('house6', 'female')">👩 Play</button>
+                        <div>
+                            <button class="dialogue-audio-btn" onclick="playDialogueSentence('house6')">🔊 Play</button>
+                        </div>
                     </div>
                 </div>
 
@@ -1227,47 +1268,56 @@
                 <!-- School Dialogue -->
                 <div class="dialogue-section">
                     <h3 class="dialogue-title">💬 Practice Dialogue - In the Classroom</h3>
+                    <button class="full-conversation-btn" onclick="playFullConversation('school')">
+                        🔊 Play Full Conversation
+                    </button>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Teacher:</span>
                         <span class="dialogue-text">Bonjour les élèves! Sortez vos cahiers et vos stylos.</span>
                         <div class="dialogue-translation">Good morning students! Take out your notebooks and pens.</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('school1', 'male')">👨 Play</button>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('school1', 'female')">👩 Play</button>
+                        <div>
+                            <button class="dialogue-audio-btn" onclick="playDialogueSentence('school1')">🔊 Play</button>
+                        </div>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Student:</span>
                         <span class="dialogue-text">Madame, j'ai oublié mon crayon. Puis-je emprunter un stylo?</span>
                         <div class="dialogue-translation">Madam, I forgot my pencil. Can I borrow a pen?</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('school2', 'male')">👨 Play</button>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('school2', 'female')">👩 Play</button>
+                        <div>
+                            <button class="dialogue-audio-btn" onclick="playDialogueSentence('school2')">🔊 Play</button>
+                        </div>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Teacher:</span>
                         <span class="dialogue-text">Bien sûr. Regardez le tableau, s'il vous plaît.</span>
                         <div class="dialogue-translation">Of course. Look at the board, please.</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('school3', 'male')">👨 Play</button>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('school3', 'female')">👩 Play</button>
+                        <div>
+                            <button class="dialogue-audio-btn" onclick="playDialogueSentence('school3')">🔊 Play</button>
+                        </div>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Student:</span>
                         <span class="dialogue-text">J'ai une question. Où est la bibliothèque?</span>
                         <div class="dialogue-translation">I have a question. Where is the library?</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('school4', 'male')">👨 Play</button>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('school4', 'female')">👩 Play</button>
+                        <div>
+                            <button class="dialogue-audio-btn" onclick="playDialogueSentence('school4')">🔊 Play</button>
+                        </div>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Teacher:</span>
                         <span class="dialogue-text">La bibliothèque est au premier étage, à gauche.</span>
                         <div class="dialogue-translation">The library is on the first floor, on the left.</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('school5', 'male')">👨 Play</button>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('school5', 'female')">👩 Play</button>
+                        <div>
+                            <button class="dialogue-audio-btn" onclick="playDialogueSentence('school5')">🔊 Play</button>
+                        </div>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Student:</span>
                         <span class="dialogue-text">Merci beaucoup, madame!</span>
                         <div class="dialogue-translation">Thank you very much, madam!</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('school6', 'male')">👨 Play</button>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('school6', 'female')">👩 Play</button>
+                        <div>
+                            <button class="dialogue-audio-btn" onclick="playDialogueSentence('school6')">🔊 Play</button>
+                        </div>
                     </div>
                 </div>
 
@@ -1417,47 +1467,56 @@
                 <!-- Market Dialogue -->
                 <div class="dialogue-section">
                     <h3 class="dialogue-title">💬 Practice Dialogue - Shopping at the Market</h3>
+                    <button class="full-conversation-btn" onclick="playFullConversation('market')">
+                        🔊 Play Full Conversation
+                    </button>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Customer:</span>
                         <span class="dialogue-text">Bonjour! Combien coûtent les bananes?</span>
                         <div class="dialogue-translation">Hello! How much do the bananas cost?</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('market1', 'male')">👨 Play</button>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('market1', 'female')">👩 Play</button>
+                        <div>
+                            <button class="dialogue-audio-btn" onclick="playDialogueSentence('market1')">🔊 Play</button>
+                        </div>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Vendor:</span>
                         <span class="dialogue-text">Bonjour! C'est 5 cedis le kilo.</span>
                         <div class="dialogue-translation">Hello! It's 5 cedis per kilo.</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('market2', 'male')">👨 Play</button>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('market2', 'female')">👩 Play</button>
+                        <div>
+                            <button class="dialogue-audio-btn" onclick="playDialogueSentence('market2')">🔊 Play</button>
+                        </div>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Customer:</span>
                         <span class="dialogue-text">D'accord, je voudrais deux kilos, s'il vous plaît.</span>
                         <div class="dialogue-translation">Okay, I would like two kilos, please.</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('market3', 'male')">👨 Play</button>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('market3', 'female')">👩 Play</button>
+                        <div>
+                            <button class="dialogue-audio-btn" onclick="playDialogueSentence('market3')">🔊 Play</button>
+                        </div>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Vendor:</span>
                         <span class="dialogue-text">Voilà! Ça fait 10 cedis. Vous voulez autre chose?</span>
                         <div class="dialogue-translation">Here you go! That makes 10 cedis. Do you want anything else?</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('market4', 'male')">👨 Play</button>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('market4', 'female')">👩 Play</button>
+                        <div>
+                            <button class="dialogue-audio-btn" onclick="playDialogueSentence('market4')">🔊 Play</button>
+                        </div>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Customer:</span>
                         <span class="dialogue-text">Oui, donnez-moi aussi un kilo de tomates et des carottes.</span>
                         <div class="dialogue-translation">Yes, also give me one kilo of tomatoes and some carrots.</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('market5', 'male')">👨 Play</button>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('market5', 'female')">👩 Play</button>
+                        <div>
+                            <button class="dialogue-audio-btn" onclick="playDialogueSentence('market5')">🔊 Play</button>
+                        </div>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Vendor:</span>
                         <span class="dialogue-text">Avec plaisir! Au total, ça fait 25 cedis. Merci beaucoup!</span>
                         <div class="dialogue-translation">With pleasure! In total, that makes 25 cedis. Thank you very much!</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('market6', 'male')">👨 Play</button>
-                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('market6', 'female')">👩 Play</button>
+                        <div>
+                            <button class="dialogue-audio-btn" onclick="playDialogueSentence('market6')">🔊 Play</button>
+                        </div>
                     </div>
                 </div>
 
@@ -1602,8 +1661,8 @@
             }
         }
 
-        // Dialogue Audio Function with Male/Female Voices
-        function playDialogueWithVoice(dialogueId, gender) {
+        // Dialogue Audio Function - Single Sentence
+        function playDialogueSentence(dialogueId) {
             const dialogues = {
                 // Greetings dialogues
                 'greeting1': { text: 'Bonjour! Comment ça va?', translation: 'Hello! How are you?' },
@@ -1645,18 +1704,7 @@
             
             // Try to use a French voice if available
             const voices = speechSynthesis.getVoices();
-            let frenchVoice;
-            
-            if (gender === 'male') {
-                frenchVoice = voices.find(voice => voice.lang === 'fr-FR' && voice.name.toLowerCase().includes('homme') || voice.name.toLowerCase().includes('male'));
-            } else {
-                frenchVoice = voices.find(voice => voice.lang === 'fr-FR' && voice.name.toLowerCase().includes('femme') || voice.name.toLowerCase().includes('female'));
-            }
-            
-            // Fallback to any French voice
-            if (!frenchVoice) {
-                frenchVoice = voices.find(voice => voice.lang === 'fr-FR');
-            }
+            const frenchVoice = voices.find(voice => voice.lang === 'fr-FR');
             
             if (frenchVoice) {
                 utterance.voice = frenchVoice;
@@ -1664,14 +1712,97 @@
             
             // Play the French dialogue
             speechSynthesis.speak(utterance);
-            
-            // After a delay, play the English translation
-            setTimeout(() => {
-                const translationUtterance = new SpeechSynthesisUtterance(dialogue.translation);
-                translationUtterance.lang = 'en-US';
-                translationUtterance.rate = 0.7;
-                speechSynthesis.speak(translationUtterance);
-            }, 2000);
+        }
+
+        // Full Conversation Function
+        function playFullConversation(topic) {
+            const conversations = {
+                'greetings': [
+                    { text: 'Bonjour! Comment ça va?', speaker: 'Kofi' },
+                    { text: 'Bonjour! Ça va bien, merci. Et toi?', speaker: 'Ama' },
+                    { text: 'Très bien, merci. Je m\'appelle Kofi. Comment t\'appelles-tu?', speaker: 'Kofi' },
+                    { text: 'Je m\'appelle Ama. Enchantée!', speaker: 'Ama' },
+                    { text: 'Enchanté! Au revoir, Ama!', speaker: 'Kofi' },
+                    { text: 'À bientôt, Kofi!', speaker: 'Ama' }
+                ],
+                'house': [
+                    { text: 'Ta maison est grande?', speaker: 'Friend' },
+                    { text: 'Oui, j\'ai un salon, une cuisine et trois chambres.', speaker: 'You' },
+                    { text: 'Il y a une télévision dans le salon?', speaker: 'Friend' },
+                    { text: 'Oui, et il y a un grand fauteuil confortable.', speaker: 'You' },
+                    { text: 'Et la cuisine? Tu aimes cuisiner?', speaker: 'Friend' },
+                    { text: 'Oui, j\'ai une nouvelle cuisinière et un grand four.', speaker: 'You' }
+                ],
+                'school': [
+                    { text: 'Bonjour les élèves! Sortez vos cahiers et vos stylos.', speaker: 'Teacher' },
+                    { text: 'Madame, j\'ai oublié mon crayon. Puis-je emprunter un stylo?', speaker: 'Student' },
+                    { text: 'Bien sûr. Regardez le tableau, s\'il vous plaît.', speaker: 'Teacher' },
+                    { text: 'J\'ai une question. Où est la bibliothèque?', speaker: 'Student' },
+                    { text: 'La bibliothèque est au premier étage, à gauche.', speaker: 'Teacher' },
+                    { text: 'Merci beaucoup, madame!', speaker: 'Student' }
+                ],
+                'market': [
+                    { text: 'Bonjour! Combien coûtent les bananes?', speaker: 'Customer' },
+                    { text: 'Bonjour! C\'est 5 cedis le kilo.', speaker: 'Vendor' },
+                    { text: 'D\'accord, je voudrais deux kilos, s\'il vous plaît.', speaker: 'Customer' },
+                    { text: 'Voilà! Ça fait 10 cedis. Vous voulez autre chose?', speaker: 'Vendor' },
+                    { text: 'Oui, donnez-moi aussi un kilo de tomates et des carottes.', speaker: 'Customer' },
+                    { text: 'Avec plaisir! Au total, ça fait 25 cedis. Merci beaucoup!', speaker: 'Vendor' }
+                ]
+            };
+
+            const conversation = conversations[topic];
+            let index = 0;
+
+            function playNextLine() {
+                if (index >= conversation.length) return;
+
+                const line = conversation[index];
+                const utterance = new SpeechSynthesisUtterance(line.text);
+                utterance.lang = 'fr-FR';
+                utterance.rate = 0.7;
+                
+                // Try to use a French voice if available
+                const voices = speechSynthesis.getVoices();
+                const frenchVoice = voices.find(voice => voice.lang === 'fr-FR');
+                
+                if (frenchVoice) {
+                    utterance.voice = frenchVoice;
+                }
+                
+                // Highlight the current line being spoken
+                highlightDialogueLine(topic, index);
+                
+                utterance.onend = function() {
+                    // Remove highlight after speaking
+                    removeDialogueLineHighlight(topic, index);
+                    index++;
+                    setTimeout(playNextLine, 500); // Small pause between lines
+                };
+                
+                speechSynthesis.speak(utterance);
+            }
+
+            playNextLine();
+        }
+
+        // Helper function to highlight the current dialogue line
+        function highlightDialogueLine(topic, index) {
+            const dialogueLines = document.querySelectorAll(`#${topic} .dialogue-line`);
+            if (dialogueLines[index]) {
+                dialogueLines[index].style.background = '#FCD116';
+                dialogueLines[index].style.transform = 'scale(1.02)';
+                dialogueLines[index].style.transition = 'all 0.3s ease';
+            }
+        }
+
+        // Helper function to remove highlight from dialogue line
+        function removeDialogueLineHighlight(topic, index) {
+            const dialogueLines = document.querySelectorAll(`#${topic} .dialogue-line`);
+            if (dialogueLines[index]) {
+                dialogueLines[index].style.background = 'white';
+                dialogueLines[index].style.transform = 'scale(1)';
+            }
         }
 
         // Celebration effect
@@ -2980,4 +3111,4 @@
         };
     </script>
 </body>
-</html>
+</html>m

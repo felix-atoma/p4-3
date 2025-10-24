@@ -601,6 +601,27 @@
             text-align: center;
         }
 
+        .gender-indicator {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 8px;
+            text-align: center;
+            line-height: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .masculine {
+            background-color: #006B3F;
+        }
+
+        .feminine {
+            background-color: #CE1126;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -724,32 +745,32 @@
 
                 <h3 style="color: #CE1126; margin: 30px 0 20px;">📝 Basic Greetings:</h3>
                 <div class="vocab-grid">
-                    <div class="vocab-item" onclick="playAudio('bonjour')">
+                    <div class="vocab-item" onclick="playAudioWithArticle('greeting', 'bonjour')">
                         <span class="vocab-icon">🌞</span>
                         <div class="vocab-french">Bonjour <span class="speaker-icon">🔊</span></div>
                         <div class="vocab-english">Good morning / Hello</div>
                     </div>
-                    <div class="vocab-item" onclick="playAudio('bonsoir')">
+                    <div class="vocab-item" onclick="playAudioWithArticle('greeting', 'bonsoir')">
                         <span class="vocab-icon">🌙</span>
                         <div class="vocab-french">Bonsoir <span class="speaker-icon">🔊</span></div>
                         <div class="vocab-english">Good evening</div>
                     </div>
-                    <div class="vocab-item" onclick="playAudio('bonne_nuit')">
+                    <div class="vocab-item" onclick="playAudioWithArticle('greeting', 'bonne_nuit')">
                         <span class="vocab-icon">😴</span>
                         <div class="vocab-french">Bonne nuit <span class="speaker-icon">🔊</span></div>
                         <div class="vocab-english">Good night</div>
                     </div>
-                    <div class="vocab-item" onclick="playAudio('au_revoir')">
+                    <div class="vocab-item" onclick="playAudioWithArticle('greeting', 'au_revoir')">
                         <span class="vocab-icon">👋</span>
                         <div class="vocab-french">Au revoir <span class="speaker-icon">🔊</span></div>
                         <div class="vocab-english">Goodbye</div>
                     </div>
-                    <div class="vocab-item" onclick="playAudio('a_bientot')">
+                    <div class="vocab-item" onclick="playAudioWithArticle('greeting', 'a_bientot')">
                         <span class="vocab-icon">⏰</span>
                         <div class="vocab-french">À bientôt <span class="speaker-icon">🔊</span></div>
                         <div class="vocab-english">See you soon</div>
                     </div>
-                    <div class="vocab-item" onclick="playAudio('comment_ca_va')">
+                    <div class="vocab-item" onclick="playAudioWithArticle('greeting', 'comment_ca_va')">
                         <span class="vocab-icon">🙂</span>
                         <div class="vocab-french">Comment ça va? <span class="speaker-icon">🔊</span></div>
                         <div class="vocab-english">How are you?</div>
@@ -784,37 +805,43 @@
                         <span class="dialogue-speaker">Kofi:</span>
                         <span class="dialogue-text">Bonjour! Comment ça va?</span>
                         <div class="dialogue-translation">Hello! How are you?</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogue('greeting1')">🔊 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('greeting1', 'male')">👨 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('greeting1', 'female')">👩 Play</button>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Ama:</span>
                         <span class="dialogue-text">Bonjour! Ça va bien, merci. Et toi?</span>
                         <div class="dialogue-translation">Hello! I'm fine, thank you. And you?</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogue('greeting2')">🔊 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('greeting2', 'male')">👨 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('greeting2', 'female')">👩 Play</button>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Kofi:</span>
                         <span class="dialogue-text">Très bien, merci. Je m'appelle Kofi. Comment t'appelles-tu?</span>
                         <div class="dialogue-translation">Very well, thank you. My name is Kofi. What's your name?</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogue('greeting3')">🔊 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('greeting3', 'male')">👨 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('greeting3', 'female')">👩 Play</button>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Ama:</span>
                         <span class="dialogue-text">Je m'appelle Ama. Enchantée!</span>
                         <div class="dialogue-translation">My name is Ama. Nice to meet you!</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogue('greeting4')">🔊 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('greeting4', 'male')">👨 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('greeting4', 'female')">👩 Play</button>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Kofi:</span>
                         <span class="dialogue-text">Enchanté! Au revoir, Ama!</span>
                         <div class="dialogue-translation">Nice to meet you! Goodbye, Ama!</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogue('greeting5')">🔊 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('greeting5', 'male')">👨 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('greeting5', 'female')">👩 Play</button>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Ama:</span>
                         <span class="dialogue-text">À bientôt, Kofi!</span>
                         <div class="dialogue-translation">See you soon, Kofi!</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogue('greeting6')">🔊 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('greeting6', 'male')">👨 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('greeting6', 'female')">👩 Play</button>
                     </div>
                 </div>
 
@@ -869,24 +896,32 @@
                     <div class="room-section">
                         <div class="room-title">🚿 LA SALLE DE BAIN</div>
                         <div class="vocab-grid">
-                            <div class="vocab-item" onclick="playAudio('lavabo')">
+                            <div class="vocab-item" onclick="playAudioWithArticle('house', 'lavabo')">
                                 <span class="vocab-icon">🚰</span>
-                                <div class="vocab-french">Le lavabo <span class="speaker-icon">🔊</span></div>
+                                <div class="vocab-french">
+                                    <span class="gender-indicator masculine">M</span>Le lavabo <span class="speaker-icon">🔊</span>
+                                </div>
                                 <div class="vocab-english">The sink</div>
                             </div>
-                            <div class="vocab-item" onclick="playAudio('baignoire')">
+                            <div class="vocab-item" onclick="playAudioWithArticle('house', 'baignoire')">
                                 <span class="vocab-icon">🛁</span>
-                                <div class="vocab-french">La baignoire <span class="speaker-icon">🔊</span></div>
+                                <div class="vocab-french">
+                                    <span class="gender-indicator feminine">F</span>La baignoire <span class="speaker-icon">🔊</span>
+                                </div>
                                 <div class="vocab-english">The bathtub</div>
                             </div>
-                            <div class="vocab-item" onclick="playAudio('glace')">
+                            <div class="vocab-item" onclick="playAudioWithArticle('house', 'glace')">
                                 <span class="vocab-icon">🪞</span>
-                                <div class="vocab-french">La glace <span class="speaker-icon">🔊</span></div>
+                                <div class="vocab-french">
+                                    <span class="gender-indicator feminine">F</span>La glace <span class="speaker-icon">🔊</span>
+                                </div>
                                 <div class="vocab-english">The mirror</div>
                             </div>
-                            <div class="vocab-item" onclick="playAudio('serviette')">
+                            <div class="vocab-item" onclick="playAudioWithArticle('house', 'serviette')">
                                 <span class="vocab-icon">🧻</span>
-                                <div class="vocab-french">La serviette <span class="speaker-icon">🔊</span></div>
+                                <div class="vocab-french">
+                                    <span class="gender-indicator feminine">F</span>La serviette <span class="speaker-icon">🔊</span>
+                                </div>
                                 <div class="vocab-english">The towel</div>
                             </div>
                         </div>
@@ -895,24 +930,32 @@
                     <div class="room-section">
                         <div class="room-title">🛏️ LA CHAMBRE</div>
                         <div class="vocab-grid">
-                            <div class="vocab-item" onclick="playAudio('lit')">
+                            <div class="vocab-item" onclick="playAudioWithArticle('house', 'lit')">
                                 <span class="vocab-icon">🛏️</span>
-                                <div class="vocab-french">Le lit <span class="speaker-icon">🔊</span></div>
+                                <div class="vocab-french">
+                                    <span class="gender-indicator masculine">M</span>Le lit <span class="speaker-icon">🔊</span>
+                                </div>
                                 <div class="vocab-english">The bed</div>
                             </div>
-                            <div class="vocab-item" onclick="playAudio('armoire')">
+                            <div class="vocab-item" onclick="playAudioWithArticle('house', 'armoire')">
                                 <span class="vocab-icon">🚪</span>
-                                <div class="vocab-french">L'armoire <span class="speaker-icon">🔊</span></div>
+                                <div class="vocab-french">
+                                    <span class="gender-indicator feminine">F</span>L'armoire <span class="speaker-icon">🔊</span>
+                                </div>
                                 <div class="vocab-english">The wardrobe</div>
                             </div>
-                            <div class="vocab-item" onclick="playAudio('oreiller')">
+                            <div class="vocab-item" onclick="playAudioWithArticle('house', 'oreiller')">
                                 <span class="vocab-icon">🛌</span>
-                                <div class="vocab-french">L'oreiller <span class="speaker-icon">🔊</span></div>
+                                <div class="vocab-french">
+                                    <span class="gender-indicator masculine">M</span>L'oreiller <span class="speaker-icon">🔊</span>
+                                </div>
                                 <div class="vocab-english">The pillow</div>
                             </div>
-                            <div class="vocab-item" onclick="playAudio('lampe')">
+                            <div class="vocab-item" onclick="playAudioWithArticle('house', 'lampe')">
                                 <span class="vocab-icon">💡</span>
-                                <div class="vocab-french">La lampe <span class="speaker-icon">🔊</span></div>
+                                <div class="vocab-french">
+                                    <span class="gender-indicator feminine">F</span>La lampe <span class="speaker-icon">🔊</span>
+                                </div>
                                 <div class="vocab-english">The lamp</div>
                             </div>
                         </div>
@@ -921,24 +964,32 @@
                     <div class="room-section">
                         <div class="room-title">🍳 LA CUISINE</div>
                         <div class="vocab-grid">
-                            <div class="vocab-item" onclick="playAudio('cuisiniere')">
+                            <div class="vocab-item" onclick="playAudioWithArticle('house', 'cuisiniere')">
                                 <span class="vocab-icon">🔥</span>
-                                <div class="vocab-french">La cuisinière <span class="speaker-icon">🔊</span></div>
+                                <div class="vocab-french">
+                                    <span class="gender-indicator feminine">F</span>La cuisinière <span class="speaker-icon">🔊</span>
+                                </div>
                                 <div class="vocab-english">The stove</div>
                             </div>
-                            <div class="vocab-item" onclick="playAudio('four')">
+                            <div class="vocab-item" onclick="playAudioWithArticle('house', 'four')">
                                 <span class="vocab-icon">🔲</span>
-                                <div class="vocab-french">Le four <span class="speaker-icon">🔊</span></div>
+                                <div class="vocab-french">
+                                    <span class="gender-indicator masculine">M</span>Le four <span class="speaker-icon">🔊</span>
+                                </div>
                                 <div class="vocab-english">The oven</div>
                             </div>
-                            <div class="vocab-item" onclick="playAudio('casserole')">
+                            <div class="vocab-item" onclick="playAudioWithArticle('house', 'casserole')">
                                 <span class="vocab-icon">🍳</span>
-                                <div class="vocab-french">La casserole <span class="speaker-icon">🔊</span></div>
+                                <div class="vocab-french">
+                                    <span class="gender-indicator feminine">F</span>La casserole <span class="speaker-icon">🔊</span>
+                                </div>
                                 <div class="vocab-english">The pot</div>
                             </div>
-                            <div class="vocab-item" onclick="playAudio('assiette')">
+                            <div class="vocab-item" onclick="playAudioWithArticle('house', 'assiette')">
                                 <span class="vocab-icon">🍽️</span>
-                                <div class="vocab-french">L'assiette <span class="speaker-icon">🔊</span></div>
+                                <div class="vocab-french">
+                                    <span class="gender-indicator feminine">F</span>L'assiette <span class="speaker-icon">🔊</span>
+                                </div>
                                 <div class="vocab-english">The plate</div>
                             </div>
                         </div>
@@ -947,24 +998,32 @@
                     <div class="room-section">
                         <div class="room-title">🛋️ LE SALON</div>
                         <div class="vocab-grid">
-                            <div class="vocab-item" onclick="playAudio('television')">
+                            <div class="vocab-item" onclick="playAudioWithArticle('house', 'television')">
                                 <span class="vocab-icon">📺</span>
-                                <div class="vocab-french">La télévision <span class="speaker-icon">🔊</span></div>
+                                <div class="vocab-french">
+                                    <span class="gender-indicator feminine">F</span>La télévision <span class="speaker-icon">🔊</span>
+                                </div>
                                 <div class="vocab-english">The television</div>
                             </div>
-                            <div class="vocab-item" onclick="playAudio('fauteuil')">
+                            <div class="vocab-item" onclick="playAudioWithArticle('house', 'fauteuil')">
                                 <span class="vocab-icon">🪑</span>
-                                <div class="vocab-french">Le fauteuil <span class="speaker-icon">🔊</span></div>
+                                <div class="vocab-french">
+                                    <span class="gender-indicator masculine">M</span>Le fauteuil <span class="speaker-icon">🔊</span>
+                                </div>
                                 <div class="vocab-english">The armchair</div>
                             </div>
-                            <div class="vocab-item" onclick="playAudio('table')">
+                            <div class="vocab-item" onclick="playAudioWithArticle('house', 'table')">
                                 <span class="vocab-icon">🪑</span>
-                                <div class="vocab-french">La table <span class="speaker-icon">🔊</span></div>
+                                <div class="vocab-french">
+                                    <span class="gender-indicator feminine">F</span>La table <span class="speaker-icon">🔊</span>
+                                </div>
                                 <div class="vocab-english">The table</div>
                             </div>
-                            <div class="vocab-item" onclick="playAudio('chaise')">
+                            <div class="vocab-item" onclick="playAudioWithArticle('house', 'chaise')">
                                 <span class="vocab-icon">🪑</span>
-                                <div class="vocab-french">La chaise <span class="speaker-icon">🔊</span></div>
+                                <div class="vocab-french">
+                                    <span class="gender-indicator feminine">F</span>La chaise <span class="speaker-icon">🔊</span>
+                                </div>
                                 <div class="vocab-english">The chair</div>
                             </div>
                         </div>
@@ -999,37 +1058,43 @@
                         <span class="dialogue-speaker">Friend:</span>
                         <span class="dialogue-text">Ta maison est grande?</span>
                         <div class="dialogue-translation">Is your house big?</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogue('house1')">🔊 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('house1', 'male')">👨 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('house1', 'female')">👩 Play</button>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">You:</span>
                         <span class="dialogue-text">Oui, j'ai un salon, une cuisine et trois chambres.</span>
                         <div class="dialogue-translation">Yes, I have a living room, a kitchen and three bedrooms.</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogue('house2')">🔊 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('house2', 'male')">👨 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('house2', 'female')">👩 Play</button>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Friend:</span>
                         <span class="dialogue-text">Il y a une télévision dans le salon?</span>
                         <div class="dialogue-translation">Is there a television in the living room?</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogue('house3')">🔊 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('house3', 'male')">👨 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('house3', 'female')">👩 Play</button>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">You:</span>
                         <span class="dialogue-text">Oui, et il y a un grand fauteuil confortable.</span>
                         <div class="dialogue-translation">Yes, and there is a big comfortable armchair.</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogue('house4')">🔊 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('house4', 'male')">👨 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('house4', 'female')">👩 Play</button>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Friend:</span>
                         <span class="dialogue-text">Et la cuisine? Tu aimes cuisiner?</span>
                         <div class="dialogue-translation">And the kitchen? Do you like cooking?</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogue('house5')">🔊 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('house5', 'male')">👨 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('house5', 'female')">👩 Play</button>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">You:</span>
                         <span class="dialogue-text">Oui, j'ai une nouvelle cuisinière et un grand four.</span>
                         <div class="dialogue-translation">Yes, I have a new stove and a big oven.</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogue('house6')">🔊 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('house6', 'male')">👨 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('house6', 'female')">👩 Play</button>
                     </div>
                 </div>
 
@@ -1080,44 +1145,60 @@
                 
                 <h3 style="color: #CE1126; margin: 30px 0 20px;">📚 Dans la salle de classe:</h3>
                 <div class="vocab-grid">
-                    <div class="vocab-item" onclick="playAudio('livre')">
+                    <div class="vocab-item" onclick="playAudioWithArticle('school', 'livre')">
                         <span class="vocab-icon">📖</span>
-                        <div class="vocab-french">Le livre <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-french">
+                            <span class="gender-indicator masculine">M</span>Le livre <span class="speaker-icon">🔊</span>
+                        </div>
                         <div class="vocab-english">The book</div>
                     </div>
-                    <div class="vocab-item" onclick="playAudio('cahier')">
+                    <div class="vocab-item" onclick="playAudioWithArticle('school', 'cahier')">
                         <span class="vocab-icon">📓</span>
-                        <div class="vocab-french">Le cahier <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-french">
+                            <span class="gender-indicator masculine">M</span>Le cahier <span class="speaker-icon">🔊</span>
+                        </div>
                         <div class="vocab-english">The notebook</div>
                     </div>
-                    <div class="vocab-item" onclick="playAudio('crayon')">
+                    <div class="vocab-item" onclick="playAudioWithArticle('school', 'crayon')">
                         <span class="vocab-icon">✏️</span>
-                        <div class="vocab-french">Le crayon <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-french">
+                            <span class="gender-indicator masculine">M</span>Le crayon <span class="speaker-icon">🔊</span>
+                        </div>
                         <div class="vocab-english">The pencil</div>
                     </div>
-                    <div class="vocab-item" onclick="playAudio('stylo')">
+                    <div class="vocab-item" onclick="playAudioWithArticle('school', 'stylo')">
                         <span class="vocab-icon">🖊️</span>
-                        <div class="vocab-french">Le stylo <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-french">
+                            <span class="gender-indicator masculine">M</span>Le stylo <span class="speaker-icon">🔊</span>
+                        </div>
                         <div class="vocab-english">The pen</div>
                     </div>
-                    <div class="vocab-item" onclick="playAudio('gomme')">
+                    <div class="vocab-item" onclick="playAudioWithArticle('school', 'gomme')">
                         <span class="vocab-icon">🧽</span>
-                        <div class="vocab-french">La gomme <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-french">
+                            <span class="gender-indicator feminine">F</span>La gomme <span class="speaker-icon">🔊</span>
+                        </div>
                         <div class="vocab-english">The eraser</div>
                     </div>
-                    <div class="vocab-item" onclick="playAudio('regle')">
+                    <div class="vocab-item" onclick="playAudioWithArticle('school', 'regle')">
                         <span class="vocab-icon">📏</span>
-                        <div class="vocab-french">La règle <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-french">
+                            <span class="gender-indicator feminine">F</span>La règle <span class="speaker-icon">🔊</span>
+                        </div>
                         <div class="vocab-english">The ruler</div>
                     </div>
-                    <div class="vocab-item" onclick="playAudio('cartable')">
+                    <div class="vocab-item" onclick="playAudioWithArticle('school', 'cartable')">
                         <span class="vocab-icon">🎒</span>
-                        <div class="vocab-french">Le cartable <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-french">
+                            <span class="gender-indicator masculine">M</span>Le cartable <span class="speaker-icon">🔊</span>
+                        </div>
                         <div class="vocab-english">The schoolbag</div>
                     </div>
-                    <div class="vocab-item" onclick="playAudio('tableau')">
+                    <div class="vocab-item" onclick="playAudioWithArticle('school', 'tableau')">
                         <span class="vocab-icon">⬛</span>
-                        <div class="vocab-french">Le tableau <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-french">
+                            <span class="gender-indicator masculine">M</span>Le tableau <span class="speaker-icon">🔊</span>
+                        </div>
                         <div class="vocab-english">The blackboard</div>
                     </div>
                 </div>
@@ -1150,37 +1231,43 @@
                         <span class="dialogue-speaker">Teacher:</span>
                         <span class="dialogue-text">Bonjour les élèves! Sortez vos cahiers et vos stylos.</span>
                         <div class="dialogue-translation">Good morning students! Take out your notebooks and pens.</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogue('school1')">🔊 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('school1', 'male')">👨 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('school1', 'female')">👩 Play</button>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Student:</span>
                         <span class="dialogue-text">Madame, j'ai oublié mon crayon. Puis-je emprunter un stylo?</span>
                         <div class="dialogue-translation">Madam, I forgot my pencil. Can I borrow a pen?</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogue('school2')">🔊 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('school2', 'male')">👨 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('school2', 'female')">👩 Play</button>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Teacher:</span>
                         <span class="dialogue-text">Bien sûr. Regardez le tableau, s'il vous plaît.</span>
                         <div class="dialogue-translation">Of course. Look at the board, please.</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogue('school3')">🔊 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('school3', 'male')">👨 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('school3', 'female')">👩 Play</button>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Student:</span>
                         <span class="dialogue-text">J'ai une question. Où est la bibliothèque?</span>
                         <div class="dialogue-translation">I have a question. Where is the library?</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogue('school4')">🔊 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('school4', 'male')">👨 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('school4', 'female')">👩 Play</button>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Teacher:</span>
                         <span class="dialogue-text">La bibliothèque est au premier étage, à gauche.</span>
                         <div class="dialogue-translation">The library is on the first floor, on the left.</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogue('school5')">🔊 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('school5', 'male')">👨 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('school5', 'female')">👩 Play</button>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Student:</span>
                         <span class="dialogue-text">Merci beaucoup, madame!</span>
                         <div class="dialogue-translation">Thank you very much, madam!</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogue('school6')">🔊 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('school6', 'male')">👨 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('school6', 'female')">👩 Play</button>
                     </div>
                 </div>
 
@@ -1232,34 +1319,46 @@
                 
                 <h3 style="color: #CE1126; margin: 30px 0 20px;">🥦 Les fruits et légumes:</h3>
                 <div class="vocab-grid">
-                    <div class="vocab-item" onclick="playAudio('pomme')">
+                    <div class="vocab-item" onclick="playAudioWithArticle('market', 'pomme')">
                         <span class="vocab-icon">🍎</span>
-                        <div class="vocab-french">La pomme <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-french">
+                            <span class="gender-indicator feminine">F</span>La pomme <span class="speaker-icon">🔊</span>
+                        </div>
                         <div class="vocab-english">The apple</div>
                     </div>
-                    <div class="vocab-item" onclick="playAudio('banane')">
+                    <div class="vocab-item" onclick="playAudioWithArticle('market', 'banane')">
                         <span class="vocab-icon">🍌</span>
-                        <div class="vocab-french">La banane <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-french">
+                            <span class="gender-indicator feminine">F</span>La banane <span class="speaker-icon">🔊</span>
+                        </div>
                         <div class="vocab-english">The banana</div>
                     </div>
-                    <div class="vocab-item" onclick="playAudio('tomate')">
+                    <div class="vocab-item" onclick="playAudioWithArticle('market', 'tomate')">
                         <span class="vocab-icon">🍅</span>
-                        <div class="vocab-french">La tomate <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-french">
+                            <span class="gender-indicator feminine">F</span>La tomate <span class="speaker-icon">🔊</span>
+                        </div>
                         <div class="vocab-english">The tomato</div>
                     </div>
-                    <div class="vocab-item" onclick="playAudio('carotte')">
+                    <div class="vocab-item" onclick="playAudioWithArticle('market', 'carotte')">
                         <span class="vocab-icon">🥕</span>
-                        <div class="vocab-french">La carotte <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-french">
+                            <span class="gender-indicator feminine">F</span>La carotte <span class="speaker-icon">🔊</span>
+                        </div>
                         <div class="vocab-english">The carrot</div>
                     </div>
-                    <div class="vocab-item" onclick="playAudio('oignon')">
+                    <div class="vocab-item" onclick="playAudioWithArticle('market', 'oignon')">
                         <span class="vocab-icon">🧅</span>
-                        <div class="vocab-french">L'oignon <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-french">
+                            <span class="gender-indicator masculine">M</span>L'oignon <span class="speaker-icon">🔊</span>
+                        </div>
                         <div class="vocab-english">The onion</div>
                     </div>
-                    <div class="vocab-item" onclick="playAudio('piment')">
+                    <div class="vocab-item" onclick="playAudioWithArticle('market', 'piment')">
                         <span class="vocab-icon">🌶️</span>
-                        <div class="vocab-french">Le piment <span class="speaker-icon">🔊</span></div>
+                        <div class="vocab-french">
+                            <span class="gender-indicator masculine">M</span>Le piment <span class="speaker-icon">🔊</span>
+                        </div>
                         <div class="vocab-english">The pepper</div>
                     </div>
                 </div>
@@ -1322,37 +1421,43 @@
                         <span class="dialogue-speaker">Customer:</span>
                         <span class="dialogue-text">Bonjour! Combien coûtent les bananes?</span>
                         <div class="dialogue-translation">Hello! How much do the bananas cost?</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogue('market1')">🔊 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('market1', 'male')">👨 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('market1', 'female')">👩 Play</button>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Vendor:</span>
                         <span class="dialogue-text">Bonjour! C'est 5 cedis le kilo.</span>
                         <div class="dialogue-translation">Hello! It's 5 cedis per kilo.</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogue('market2')">🔊 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('market2', 'male')">👨 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('market2', 'female')">👩 Play</button>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Customer:</span>
                         <span class="dialogue-text">D'accord, je voudrais deux kilos, s'il vous plaît.</span>
                         <div class="dialogue-translation">Okay, I would like two kilos, please.</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogue('market3')">🔊 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('market3', 'male')">👨 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('market3', 'female')">👩 Play</button>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Vendor:</span>
                         <span class="dialogue-text">Voilà! Ça fait 10 cedis. Vous voulez autre chose?</span>
                         <div class="dialogue-translation">Here you go! That makes 10 cedis. Do you want anything else?</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogue('market4')">🔊 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('market4', 'male')">👨 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('market4', 'female')">👩 Play</button>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Customer:</span>
                         <span class="dialogue-text">Oui, donnez-moi aussi un kilo de tomates et des carottes.</span>
                         <div class="dialogue-translation">Yes, also give me one kilo of tomatoes and some carrots.</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogue('market5')">🔊 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('market5', 'male')">👨 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('market5', 'female')">👩 Play</button>
                     </div>
                     <div class="dialogue-line">
                         <span class="dialogue-speaker">Vendor:</span>
                         <span class="dialogue-text">Avec plaisir! Au total, ça fait 25 cedis. Merci beaucoup!</span>
                         <div class="dialogue-translation">With pleasure! In total, that makes 25 cedis. Thank you very much!</div>
-                        <button class="dialogue-audio-btn" onclick="playDialogue('market6')">🔊 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('market6', 'male')">👨 Play</button>
+                        <button class="dialogue-audio-btn" onclick="playDialogueWithVoice('market6', 'female')">👩 Play</button>
                     </div>
                 </div>
 
@@ -1412,55 +1517,70 @@
             event.target.classList.add('active');
         }
 
-        // Audio pronunciation using Web Speech API
-        function playAudio(word) {
+        // Audio pronunciation using Web Speech API with articles
+        function playAudioWithArticle(category, word) {
             const vocab = {
                 // Greetings
-                'bonjour': 'bonjour',
-                'bonsoir': 'bonsoir',
-                'bonne_nuit': 'bonne nuit',
-                'au_revoir': 'au revoir',
-                'a_bientot': 'à bientôt',
-                'comment_ca_va': 'comment ça va',
-                
+                'greeting': {
+                    'bonjour': { text: 'Bonjour', article: '' },
+                    'bonsoir': { text: 'Bonsoir', article: '' },
+                    'bonne_nuit': { text: 'Bonne nuit', article: '' },
+                    'au_revoir': { text: 'Au revoir', article: '' },
+                    'a_bientot': { text: 'À bientôt', article: '' },
+                    'comment_ca_va': { text: 'Comment ça va', article: '' }
+                },
                 // House vocabulary
-                'lavabo': 'lavabo',
-                'baignoire': 'baignoire',
-                'glace': 'glace',
-                'serviette': 'serviette',
-                'lit': 'lit',
-                'armoire': 'armoire',
-                'oreiller': 'oreiller',
-                'lampe': 'lampe',
-                'cuisiniere': 'cuisinière',
-                'four': 'four',
-                'casserole': 'casserole',
-                'assiette': 'assiette',
-                'television': 'télévision',
-                'fauteuil': 'fauteuil',
-                'table': 'table',
-                'chaise': 'chaise',
-                
+                'house': {
+                    'lavabo': { text: 'lavabo', article: 'le', gender: 'm' },
+                    'baignoire': { text: 'baignoire', article: 'la', gender: 'f' },
+                    'glace': { text: 'glace', article: 'la', gender: 'f' },
+                    'serviette': { text: 'serviette', article: 'la', gender: 'f' },
+                    'lit': { text: 'lit', article: 'le', gender: 'm' },
+                    'armoire': { text: 'armoire', article: 'l\'', gender: 'f' },
+                    'oreiller': { text: 'oreiller', article: 'l\'', gender: 'm' },
+                    'lampe': { text: 'lampe', article: 'la', gender: 'f' },
+                    'cuisiniere': { text: 'cuisinière', article: 'la', gender: 'f' },
+                    'four': { text: 'four', article: 'le', gender: 'm' },
+                    'casserole': { text: 'casserole', article: 'la', gender: 'f' },
+                    'assiette': { text: 'assiette', article: 'l\'', gender: 'f' },
+                    'television': { text: 'télévision', article: 'la', gender: 'f' },
+                    'fauteuil': { text: 'fauteuil', article: 'le', gender: 'm' },
+                    'table': { text: 'table', article: 'la', gender: 'f' },
+                    'chaise': { text: 'chaise', article: 'la', gender: 'f' }
+                },
                 // School vocabulary
-                'livre': 'livre',
-                'cahier': 'cahier',
-                'crayon': 'crayon',
-                'stylo': 'stylo',
-                'gomme': 'gomme',
-                'regle': 'règle',
-                'cartable': 'cartable',
-                'tableau': 'tableau',
-                
+                'school': {
+                    'livre': { text: 'livre', article: 'le', gender: 'm' },
+                    'cahier': { text: 'cahier', article: 'le', gender: 'm' },
+                    'crayon': { text: 'crayon', article: 'le', gender: 'm' },
+                    'stylo': { text: 'stylo', article: 'le', gender: 'm' },
+                    'gomme': { text: 'gomme', article: 'la', gender: 'f' },
+                    'regle': { text: 'règle', article: 'la', gender: 'f' },
+                    'cartable': { text: 'cartable', article: 'le', gender: 'm' },
+                    'tableau': { text: 'tableau', article: 'le', gender: 'm' }
+                },
                 // Market vocabulary
-                'pomme': 'pomme',
-                'banane': 'banane',
-                'tomate': 'tomate',
-                'carotte': 'carotte',
-                'oignon': 'oignon',
-                'piment': 'piment'
+                'market': {
+                    'pomme': { text: 'pomme', article: 'la', gender: 'f' },
+                    'banane': { text: 'banane', article: 'la', gender: 'f' },
+                    'tomate': { text: 'tomate', article: 'la', gender: 'f' },
+                    'carotte': { text: 'carotte', article: 'la', gender: 'f' },
+                    'oignon': { text: 'oignon', article: 'l\'', gender: 'm' },
+                    'piment': { text: 'piment', article: 'le', gender: 'm' }
+                }
             };
 
-            const utterance = new SpeechSynthesisUtterance(vocab[word]);
+            const item = vocab[category][word];
+            let fullText = '';
+            
+            if (item.article) {
+                fullText = `${item.article} ${item.text}`;
+            } else {
+                fullText = item.text;
+            }
+
+            // First play the full phrase with article
+            const utterance = new SpeechSynthesisUtterance(fullText);
             utterance.lang = 'fr-FR';
             utterance.rate = 0.8;
             
@@ -1482,54 +1602,76 @@
             }
         }
 
-        // Dialogue Audio Function
-        function playDialogue(dialogueId) {
+        // Dialogue Audio Function with Male/Female Voices
+        function playDialogueWithVoice(dialogueId, gender) {
             const dialogues = {
                 // Greetings dialogues
-                'greeting1': 'Bonjour! Comment ça va?',
-                'greeting2': 'Bonjour! Ça va bien, merci. Et toi?',
-                'greeting3': 'Très bien, merci. Je m\'appelle Kofi. Comment t\'appelles-tu?',
-                'greeting4': 'Je m\'appelle Ama. Enchantée!',
-                'greeting5': 'Enchanté! Au revoir, Ama!',
-                'greeting6': 'À bientôt, Kofi!',
+                'greeting1': { text: 'Bonjour! Comment ça va?', translation: 'Hello! How are you?' },
+                'greeting2': { text: 'Bonjour! Ça va bien, merci. Et toi?', translation: 'Hello! I\'m fine, thank you. And you?' },
+                'greeting3': { text: 'Très bien, merci. Je m\'appelle Kofi. Comment t\'appelles-tu?', translation: 'Very well, thank you. My name is Kofi. What\'s your name?' },
+                'greeting4': { text: 'Je m\'appelle Ama. Enchantée!', translation: 'My name is Ama. Nice to meet you!' },
+                'greeting5': { text: 'Enchanté! Au revoir, Ama!', translation: 'Nice to meet you! Goodbye, Ama!' },
+                'greeting6': { text: 'À bientôt, Kofi!', translation: 'See you soon, Kofi!' },
                 
                 // House dialogues
-                'house1': 'Ta maison est grande?',
-                'house2': 'Oui, j\'ai un salon, une cuisine et trois chambres.',
-                'house3': 'Il y a une télévision dans le salon?',
-                'house4': 'Oui, et il y a un grand fauteuil confortable.',
-                'house5': 'Et la cuisine? Tu aimes cuisiner?',
-                'house6': 'Oui, j\'ai une nouvelle cuisinière et un grand four.',
+                'house1': { text: 'Ta maison est grande?', translation: 'Is your house big?' },
+                'house2': { text: 'Oui, j\'ai un salon, une cuisine et trois chambres.', translation: 'Yes, I have a living room, a kitchen and three bedrooms.' },
+                'house3': { text: 'Il y a une télévision dans le salon?', translation: 'Is there a television in the living room?' },
+                'house4': { text: 'Oui, et il y a un grand fauteuil confortable.', translation: 'Yes, and there is a big comfortable armchair.' },
+                'house5': { text: 'Et la cuisine? Tu aimes cuisiner?', translation: 'And the kitchen? Do you like cooking?' },
+                'house6': { text: 'Oui, j\'ai une nouvelle cuisinière et un grand four.', translation: 'Yes, I have a new stove and a big oven.' },
                 
                 // School dialogues
-                'school1': 'Bonjour les élèves! Sortez vos cahiers et vos stylos.',
-                'school2': 'Madame, j\'ai oublié mon crayon. Puis-je emprunter un stylo?',
-                'school3': 'Bien sûr. Regardez le tableau, s\'il vous plaît.',
-                'school4': 'J\'ai une question. Où est la bibliothèque?',
-                'school5': 'La bibliothèque est au premier étage, à gauche.',
-                'school6': 'Merci beaucoup, madame!',
+                'school1': { text: 'Bonjour les élèves! Sortez vos cahiers et vos stylos.', translation: 'Good morning students! Take out your notebooks and pens.' },
+                'school2': { text: 'Madame, j\'ai oublié mon crayon. Puis-je emprunter un stylo?', translation: 'Madam, I forgot my pencil. Can I borrow a pen?' },
+                'school3': { text: 'Bien sûr. Regardez le tableau, s\'il vous plaît.', translation: 'Of course. Look at the board, please.' },
+                'school4': { text: 'J\'ai une question. Où est la bibliothèque?', translation: 'I have a question. Where is the library?' },
+                'school5': { text: 'La bibliothèque est au premier étage, à gauche.', translation: 'The library is on the first floor, on the left.' },
+                'school6': { text: 'Merci beaucoup, madame!', translation: 'Thank you very much, madam!' },
                 
                 // Market dialogues (updated to use cedis)
-                'market1': 'Bonjour! Combien coûtent les bananes?',
-                'market2': 'Bonjour! C\'est 5 cedis le kilo.',
-                'market3': 'D\'accord, je voudrais deux kilos, s\'il vous plaît.',
-                'market4': 'Voilà! Ça fait 10 cedis. Vous voulez autre chose?',
-                'market5': 'Oui, donnez-moi aussi un kilo de tomates et des carottes.',
-                'market6': 'Avec plaisir! Au total, ça fait 25 cedis. Merci beaucoup!'
+                'market1': { text: 'Bonjour! Combien coûtent les bananes?', translation: 'Hello! How much do the bananas cost?' },
+                'market2': { text: 'Bonjour! C\'est 5 cedis le kilo.', translation: 'Hello! It\'s 5 cedis per kilo.' },
+                'market3': { text: 'D\'accord, je voudrais deux kilos, s\'il vous plaît.', translation: 'Okay, I would like two kilos, please.' },
+                'market4': { text: 'Voilà! Ça fait 10 cedis. Vous voulez autre chose?', translation: 'Here you go! That makes 10 cedis. Do you want anything else?' },
+                'market5': { text: 'Oui, donnez-moi aussi un kilo de tomates et des carottes.', translation: 'Yes, also give me one kilo of tomatoes and some carrots.' },
+                'market6': { text: 'Avec plaisir! Au total, ça fait 25 cedis. Merci beaucoup!', translation: 'With pleasure! In total, that makes 25 cedis. Thank you very much!' }
             };
 
-            const utterance = new SpeechSynthesisUtterance(dialogues[dialogueId]);
+            const dialogue = dialogues[dialogueId];
+            const utterance = new SpeechSynthesisUtterance(dialogue.text);
             utterance.lang = 'fr-FR';
             utterance.rate = 0.7; // Slower for dialogues
             
             // Try to use a French voice if available
             const voices = speechSynthesis.getVoices();
-            const frenchVoice = voices.find(voice => voice.lang === 'fr-FR');
+            let frenchVoice;
+            
+            if (gender === 'male') {
+                frenchVoice = voices.find(voice => voice.lang === 'fr-FR' && voice.name.toLowerCase().includes('homme') || voice.name.toLowerCase().includes('male'));
+            } else {
+                frenchVoice = voices.find(voice => voice.lang === 'fr-FR' && voice.name.toLowerCase().includes('femme') || voice.name.toLowerCase().includes('female'));
+            }
+            
+            // Fallback to any French voice
+            if (!frenchVoice) {
+                frenchVoice = voices.find(voice => voice.lang === 'fr-FR');
+            }
+            
             if (frenchVoice) {
                 utterance.voice = frenchVoice;
             }
             
+            // Play the French dialogue
             speechSynthesis.speak(utterance);
+            
+            // After a delay, play the English translation
+            setTimeout(() => {
+                const translationUtterance = new SpeechSynthesisUtterance(dialogue.translation);
+                translationUtterance.lang = 'en-US';
+                translationUtterance.rate = 0.7;
+                speechSynthesis.speak(translationUtterance);
+            }, 2000);
         }
 
         // Celebration effect
@@ -1803,7 +1945,7 @@
             flashcard.classList.toggle('flipped');
             
             if (flashcard.classList.contains('flipped')) {
-                playAudio(greetingsFlashcards[greetingsFlashcardIndex].french.toLowerCase().replace(/ /g, '_').replace(/'/g, '_'));
+                playAudioWithArticle('greeting', greetingsFlashcards[greetingsFlashcardIndex].french.toLowerCase().replace(/ /g, '_').replace(/'/g, '_'));
             }
         }
 
@@ -2344,7 +2486,7 @@
             flashcard.classList.toggle('flipped');
             
             if (flashcard.classList.contains('flipped')) {
-                playAudio(schoolFlashcards[schoolFlashcardIndex].french.toLowerCase());
+                playAudioWithArticle('school', schoolFlashcards[schoolFlashcardIndex].french.toLowerCase());
             }
         }
 

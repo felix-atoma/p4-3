@@ -17,6 +17,260 @@
             overflow-x: hidden;
         }
 
+        /* Login/Register Modal Styles */
+        .auth-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10002;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .auth-modal.show {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .auth-container {
+            background: white;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            transform: scale(0.8);
+            transition: transform 0.5s ease;
+        }
+
+        .auth-modal.show .auth-container {
+            transform: scale(1);
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .auth-title {
+            color: #006B3F;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .auth-subtitle {
+            color: #CE1126;
+            font-size: 1.1em;
+        }
+
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #FCD116;
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            background: none;
+            border: none;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .auth-tab.active {
+            background: #FCD116;
+            color: #006B3F;
+        }
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #006B3F;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus {
+            border-color: #006B3F;
+            outline: none;
+        }
+
+        .form-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .form-checkbox input {
+            width: 18px;
+            height: 18px;
+        }
+
+        .auth-btn {
+            width: 100%;
+            padding: 15px;
+            background: #006B3F;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .auth-btn:hover {
+            background: #005a33;
+            transform: translateY(-2px);
+        }
+
+        .auth-switch {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+        }
+
+        .auth-switch a {
+            color: #006B3F;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .auth-switch a:hover {
+            text-decoration: underline;
+        }
+
+        /* Admin Dashboard Styles */
+        .admin-panel {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100%;
+            background: white;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+        }
+
+        .admin-panel.open {
+            right: 0;
+        }
+
+        .admin-header {
+            background: #006B3F;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .admin-title {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .admin-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .admin-content {
+            padding: 20px;
+        }
+
+        .admin-section {
+            margin-bottom: 30px;
+        }
+
+        .admin-section-title {
+            font-size: 1.2em;
+            color: #CE1126;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #FCD116;
+        }
+
+        .user-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .user-item {
+            background: #f8f9fa;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border-left: 4px solid #006B3F;
+        }
+
+        .user-name {
+            font-weight: bold;
+            color: #006B3F;
+            margin-bottom: 5px;
+        }
+
+        .user-details {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .activity-log {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .activity-item {
+            background: #f8f9fa;
+            padding: 12px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            font-size: 0.9em;
+        }
+
+        .activity-time {
+            color: #CE1126;
+            font-weight: bold;
+        }
+
         /* Toast Notification Styles */
         .toast-container {
             position: fixed;
@@ -932,6 +1186,55 @@
             transform: translateY(-3px);
         }
 
+        /* User Profile Styles */
+        .user-profile {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 999;
+        }
+
+        .profile-btn {
+            background: #006B3F;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .profile-btn:hover {
+            background: #005a33;
+            transform: translateY(-2px);
+        }
+
+        .admin-btn {
+            background: #CE1126;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            margin-left: 10px;
+        }
+
+        .admin-btn:hover {
+            background: #a01020;
+            transform: translateY(-2px);
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -1022,6 +1325,18 @@
             .certificate-footer {
                 flex-direction: column;
             }
+            .admin-panel {
+                width: 100%;
+                right: -100%;
+            }
+            .user-profile {
+                top: 10px;
+                right: 10px;
+            }
+            .profile-btn, .admin-btn {
+                padding: 8px 15px;
+                font-size: 14px;
+            }
         }
     </style>
 </head>
@@ -1030,6 +1345,69 @@
     
     <!-- Toast Container -->
     <div class="toast-container" id="toastContainer"></div>
+    
+    <!-- Auth Modal -->
+    <div class="auth-modal" id="authModal">
+        <div class="auth-container">
+            <div class="auth-header">
+                <div class="auth-title">🇬🇭 Apprendre le Français 🇫🇷</div>
+                <div class="auth-subtitle">Learn French the Ghanaian Way!</div>
+            </div>
+            
+            <div class="auth-tabs">
+                <button class="auth-tab active" onclick="showAuthForm('login')">Login</button>
+                <button class="auth-tab" onclick="showAuthForm('register')">Register</button>
+            </div>
+            
+            <!-- Login Form -->
+            <div class="auth-form active" id="loginForm">
+                <div class="form-group">
+                    <label class="form-label">Phone Number</label>
+                    <input type="tel" class="form-input" id="loginPhone" placeholder="Enter your phone number" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-input" id="loginPassword" placeholder="Enter your password" required>
+                </div>
+                <button class="auth-btn" onclick="login()">Login</button>
+                <div class="auth-switch">
+                    Don't have an account? <a href="#" onclick="showAuthForm('register')">Register here</a>
+                </div>
+            </div>
+            
+            <!-- Register Form -->
+            <div class="auth-form" id="registerForm">
+                <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" class="form-input" id="registerName" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Class/Grade</label>
+                    <input type="text" class="form-input" id="registerClass" placeholder="Enter your class/grade" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Phone Number</label>
+                    <input type="tel" class="form-input" id="registerPhone" placeholder="Enter your phone number" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Parent/Guardian Phone</label>
+                    <input type="tel" class="form-input" id="registerParentPhone" placeholder="Enter parent/guardian phone" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Create Password</label>
+                    <input type="password" class="form-input" id="registerPassword" placeholder="Create a password" required>
+                </div>
+                <div class="form-checkbox">
+                    <input type="checkbox" id="parentConsent" required>
+                    <label for="parentConsent">I have parent/guardian consent to use this platform</label>
+                </div>
+                <button class="auth-btn" onclick="register()">Register</button>
+                <div class="auth-switch">
+                    Already have an account? <a href="#" onclick="showAuthForm('login')">Login here</a>
+                </div>
+            </div>
+        </div>
+    </div>
     
     <!-- Certificate Modal -->
     <div class="certificate-modal" id="certificateModal">
@@ -1063,6 +1441,44 @@
                 <button class="certificate-share" onclick="shareCertificate()">Partager</button>
             </div>
         </div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div class="admin-panel" id="adminPanel">
+        <div class="admin-header">
+            <div class="admin-title">Admin Dashboard</div>
+            <button class="admin-close" onclick="toggleAdminPanel()">×</button>
+        </div>
+        <div class="admin-content">
+            <div class="admin-section">
+                <div class="admin-section-title">Registered Users</div>
+                <div class="user-list" id="userList">
+                    <!-- Users will be populated here -->
+                </div>
+            </div>
+            <div class="admin-section">
+                <div class="admin-section-title">Recent Activity</div>
+                <div class="activity-log" id="activityLog">
+                    <!-- Activity will be populated here -->
+                </div>
+            </div>
+            <div class="admin-section">
+                <div class="admin-section-title">Progress Reports</div>
+                <div id="progressReports">
+                    <!-- Progress reports will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Profile -->
+    <div class="user-profile">
+        <button class="profile-btn" id="profileBtn" onclick="toggleProfile()">
+            <span id="userInitials">?</span> Profile
+        </button>
+        <button class="admin-btn" id="adminBtn" onclick="toggleAdminPanel()" style="display: none;">
+            📊 Admin
+        </button>
     </div>
     
     <header>
@@ -1910,6 +2326,286 @@
     <div class="celebration" id="celebration"></div>
 
     <script>
+        // User Authentication System
+        let currentUser = null;
+        let users = JSON.parse(localStorage.getItem('frenchAppUsers')) || [];
+        let activities = JSON.parse(localStorage.getItem('frenchAppActivities')) || [];
+        const ADMIN_PHONE = '0551234567'; // Default admin phone number
+
+        // Initialize the app
+        function initApp() {
+            // Check if user is already logged in
+            const savedUser = localStorage.getItem('frenchAppCurrentUser');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                updateUIForLoggedInUser();
+            } else {
+                showAuthModal();
+            }
+            
+            // Load admin dashboard data
+            loadAdminDashboard();
+        }
+
+        // Show authentication modal
+        function showAuthModal() {
+            document.getElementById('authModal').classList.add('show');
+        }
+
+        // Hide authentication modal
+        function hideAuthModal() {
+            document.getElementById('authModal').classList.remove('show');
+        }
+
+        // Switch between login and register forms
+        function showAuthForm(formType) {
+            document.querySelectorAll('.auth-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.auth-form').forEach(form => {
+                form.classList.remove('active');
+            });
+            
+            if (formType === 'login') {
+                document.querySelector('.auth-tab:nth-child(1)').classList.add('active');
+                document.getElementById('loginForm').classList.add('active');
+            } else {
+                document.querySelector('.auth-tab:nth-child(2)').classList.add('active');
+                document.getElementById('registerForm').classList.add('active');
+            }
+        }
+
+        // Register new user
+        function register() {
+            const name = document.getElementById('registerName').value.trim();
+            const userClass = document.getElementById('registerClass').value.trim();
+            const phone = document.getElementById('registerPhone').value.trim();
+            const parentPhone = document.getElementById('registerParentPhone').value.trim();
+            const password = document.getElementById('registerPassword').value;
+            const parentConsent = document.getElementById('parentConsent').checked;
+
+            if (!name || !userClass || !phone || !parentPhone || !password) {
+                showToast('Error', 'Please fill in all fields', 'error');
+                return;
+            }
+
+            if (!parentConsent) {
+                showToast('Error', 'Parent/Guardian consent is required', 'error');
+                return;
+            }
+
+            // Check if user already exists
+            if (users.find(user => user.phone === phone)) {
+                showToast('Error', 'User with this phone number already exists', 'error');
+                return;
+            }
+
+            // Create new user
+            const newUser = {
+                id: Date.now().toString(),
+                name,
+                class: userClass,
+                phone,
+                parentPhone,
+                password,
+                parentConsent,
+                registrationDate: new Date().toISOString(),
+                isAdmin: phone === ADMIN_PHONE
+            };
+
+            users.push(newUser);
+            localStorage.setItem('frenchAppUsers', JSON.stringify(users));
+
+            // Log activity
+            logActivity(`${name} registered for the French learning app`, 'registration');
+
+            showToast('Success', 'Registration successful! Please login', 'success');
+            showAuthForm('login');
+            clearRegisterForm();
+        }
+
+        // Login user
+        function login() {
+            const phone = document.getElementById('loginPhone').value.trim();
+            const password = document.getElementById('loginPassword').value;
+
+            const user = users.find(u => u.phone === phone && u.password === password);
+
+            if (user) {
+                currentUser = user;
+                localStorage.setItem('frenchAppCurrentUser', JSON.stringify(user));
+                
+                // Log activity
+                logActivity(`${user.name} logged in`, 'login');
+                
+                updateUIForLoggedInUser();
+                hideAuthModal();
+                showToast('Welcome!', `Bonjour ${user.name}!`, 'success');
+            } else {
+                showToast('Error', 'Invalid phone number or password', 'error');
+            }
+        }
+
+        // Logout user
+        function logout() {
+            // Log activity
+            logActivity(`${currentUser.name} logged out`, 'logout');
+            
+            currentUser = null;
+            localStorage.removeItem('frenchAppCurrentUser');
+            updateUIForLoggedInUser();
+            showAuthModal();
+            showToast('Goodbye', 'You have been logged out', 'info');
+        }
+
+        // Update UI for logged in user
+        function updateUIForLoggedInUser() {
+            const profileBtn = document.getElementById('profileBtn');
+            const adminBtn = document.getElementById('adminBtn');
+            const userInitials = document.getElementById('userInitials');
+
+            if (currentUser) {
+                // Extract initials from name
+                const initials = currentUser.name.split(' ').map(n => n[0]).join('').toUpperCase();
+                userInitials.textContent = initials;
+                profileBtn.innerHTML = `<span>${initials}</span> ${currentUser.name}`;
+                
+                // Show admin button if user is admin
+                if (currentUser.isAdmin) {
+                    adminBtn.style.display = 'flex';
+                } else {
+                    adminBtn.style.display = 'none';
+                }
+            } else {
+                userInitials.textContent = '?';
+                profileBtn.innerHTML = '<span>?</span> Profile';
+                adminBtn.style.display = 'none';
+            }
+        }
+
+        // Toggle profile menu (for future expansion)
+        function toggleProfile() {
+            if (currentUser) {
+                // For now, just show logout option
+                if (confirm('Do you want to logout?')) {
+                    logout();
+                }
+            } else {
+                showAuthModal();
+            }
+        }
+
+        // Toggle admin panel
+        function toggleAdminPanel() {
+            const adminPanel = document.getElementById('adminPanel');
+            if (currentUser && currentUser.isAdmin) {
+                adminPanel.classList.toggle('open');
+                if (adminPanel.classList.contains('open')) {
+                    loadAdminDashboard();
+                }
+            } else {
+                showToast('Access Denied', 'Admin access required', 'error');
+            }
+        }
+
+        // Load admin dashboard data
+        function loadAdminDashboard() {
+            if (!currentUser || !currentUser.isAdmin) return;
+
+            // Load users
+            const userList = document.getElementById('userList');
+            userList.innerHTML = '';
+
+            users.forEach(user => {
+                const userItem = document.createElement('div');
+                userItem.className = 'user-item';
+                userItem.innerHTML = `
+                    <div class="user-name">${user.name}</div>
+                    <div class="user-details">
+                        Class: ${user.class} | Phone: ${user.phone}<br>
+                        Registered: ${new Date(user.registrationDate).toLocaleDateString()}
+                    </div>
+                `;
+                userList.appendChild(userItem);
+            });
+
+            // Load activities
+            const activityLog = document.getElementById('activityLog');
+            activityLog.innerHTML = '';
+
+            // Show latest 20 activities
+            const recentActivities = activities.slice(-20).reverse();
+            
+            recentActivities.forEach(activity => {
+                const activityItem = document.createElement('div');
+                activityItem.className = 'activity-item';
+                activityItem.innerHTML = `
+                    <div class="activity-time">${new Date(activity.timestamp).toLocaleString()}</div>
+                    <div>${activity.description}</div>
+                `;
+                activityLog.appendChild(activityItem);
+            });
+
+            // Load progress reports (simplified for demo)
+            const progressReports = document.getElementById('progressReports');
+            progressReports.innerHTML = `
+                <div class="activity-item">
+                    <strong>Progress Summary</strong><br>
+                    Total Users: ${users.length}<br>
+                    Active Today: ${getActiveUsersToday()}<br>
+                    Quizzes Completed: ${getTotalQuizzesCompleted()}
+                </div>
+            `;
+        }
+
+        // Log activity for tracking
+        function logActivity(description, type) {
+            const activity = {
+                id: Date.now().toString(),
+                userId: currentUser ? currentUser.id : 'anonymous',
+                userName: currentUser ? currentUser.name : 'Anonymous',
+                description,
+                type,
+                timestamp: new Date().toISOString()
+            };
+
+            activities.push(activity);
+            localStorage.setItem('frenchAppActivities', JSON.stringify(activities));
+
+            // Update admin dashboard if open
+            if (document.getElementById('adminPanel').classList.contains('open')) {
+                loadAdminDashboard();
+            }
+        }
+
+        // Helper functions for admin dashboard
+        function getActiveUsersToday() {
+            const today = new Date().toDateString();
+            const todayActivities = activities.filter(activity => 
+                new Date(activity.timestamp).toDateString() === today && 
+                activity.type === 'login'
+            );
+            
+            const uniqueUsers = [...new Set(todayActivities.map(activity => activity.userId))];
+            return uniqueUsers.length;
+        }
+
+        function getTotalQuizzesCompleted() {
+            return activities.filter(activity => 
+                activity.description.includes('completed') && activity.description.includes('quiz')
+            ).length;
+        }
+
+        // Clear register form
+        function clearRegisterForm() {
+            document.getElementById('registerName').value = '';
+            document.getElementById('registerClass').value = '';
+            document.getElementById('registerPhone').value = '';
+            document.getElementById('registerParentPhone').value = '';
+            document.getElementById('registerPassword').value = '';
+            document.getElementById('parentConsent').checked = false;
+        }
+
         // Toast Notification System
         function showToast(title, message, type = 'info', duration = 5000) {
             const toastContainer = document.getElementById('toastContainer');
@@ -1961,6 +2657,19 @@
             document.getElementById(sectionId).classList.add('active');
             event.target.classList.add('active');
             
+            // Log activity
+            if (currentUser) {
+                const sectionNames = {
+                    'home': 'Home',
+                    'greetings': 'Greetings',
+                    'house': 'My House',
+                    'school': 'At School',
+                    'market': 'At the Market'
+                };
+                
+                logActivity(`${currentUser.name} viewed ${sectionNames[sectionId]} section`, 'navigation');
+            }
+            
             // Show toast when navigating to new section
             const sectionNames = {
                 'home': 'Home',
@@ -1980,6 +2689,11 @@
 
         // COMPLETELY FIXED: Audio pronunciation using Web Speech API with proper French liaison
         function playAudioWithArticle(category, word) {
+            // Log activity
+            if (currentUser) {
+                logActivity(`${currentUser.name} listened to pronunciation of ${word}`, 'learning');
+            }
+
             const vocab = {
                 // Greetings
                 'greeting': {
@@ -2094,6 +2808,11 @@
 
         // COMPLETELY FIXED: Dialogue Audio Function with improved pronunciation
         function playDialogueSentence(dialogueId) {
+            // Log activity
+            if (currentUser) {
+                logActivity(`${currentUser.name} listened to dialogue sentence`, 'learning');
+            }
+
             const dialogues = {
                 // Greetings dialogues
                 'greeting1': { text: 'Bonjour! Comment ça va?', translation: 'Hello! How are you?', speaker: 'male' },
@@ -2179,6 +2898,11 @@
 
         // COMPLETELY FIXED: Full Conversation Function with improved pronunciation
         function playFullConversation(topic) {
+            // Log activity
+            if (currentUser) {
+                logActivity(`${currentUser.name} listened to full ${topic} conversation`, 'learning');
+            }
+
             const conversations = {
                 'greetings': [
                     { text: 'Bonjour! Comment ça va?', speaker: 'male', name: 'Kofi' },
@@ -2403,6 +3127,11 @@
         ];
 
         function startGreetingsQuiz() {
+            // Log activity
+            if (currentUser) {
+                logActivity(`${currentUser.name} started Greetings quiz`, 'quiz');
+            }
+
             greetingsCurrentQuestion = 0;
             greetingsScore = 0;
             document.getElementById('greetingsScore').textContent = greetingsScore;
@@ -2471,6 +3200,11 @@
         }
 
         function showGreetingsQuizResults() {
+            // Log activity
+            if (currentUser) {
+                logActivity(`${currentUser.name} completed Greetings quiz with score ${greetingsScore}/${greetingsQuestions.length}`, 'quiz');
+            }
+
             const container = document.getElementById('greetingsQuizContainer');
             const percentage = (greetingsScore / greetingsQuestions.length * 100).toFixed(0);
             
@@ -2546,6 +3280,11 @@
         ];
 
         function startGreetingsMemory() {
+            // Log activity
+            if (currentUser) {
+                logActivity(`${currentUser.name} started Greetings memory game`, 'game');
+            }
+
             // Hide flashcards and show memory game
             document.getElementById('greetingsFlashcards').style.display = 'none';
             document.getElementById('greetingsMemoryGame').style.display = 'block';
@@ -2619,6 +3358,10 @@
                     
                     if (greetingsMatchedPairs === greetingsMemoryPairs.length) {
                         setTimeout(() => {
+                            // Log activity
+                            if (currentUser) {
+                                logActivity(`${currentUser.name} completed Greetings memory game in ${greetingsMoves} moves`, 'game');
+                            }
                             celebrate(true);
                             showToast('Congratulations! 🎉', `You won in ${greetingsMoves} moves!`, 'success', 5000);
                         }, 500);
@@ -2645,6 +3388,11 @@
         ];
 
         function startGreetingsFlashcards() {
+            // Log activity
+            if (currentUser) {
+                logActivity(`${currentUser.name} started Greetings flashcards`, 'learning');
+            }
+
             // Hide memory game and show flashcards
             document.getElementById('greetingsMemoryGame').style.display = 'none';
             document.getElementById('greetingsFlashcards').style.display = 'block';
@@ -2734,6 +3482,11 @@
         ];
 
         function startHouseQuiz() {
+            // Log activity
+            if (currentUser) {
+                logActivity(`${currentUser.name} started House vocabulary quiz`, 'quiz');
+            }
+
             houseCurrentQuestion = 0;
             houseScore = 0;
             document.getElementById('houseScore').textContent = houseScore;
@@ -2802,6 +3555,11 @@
         }
 
         function showHouseQuizResults() {
+            // Log activity
+            if (currentUser) {
+                logActivity(`${currentUser.name} completed House vocabulary quiz with score ${houseScore}/${houseQuestions.length}`, 'quiz');
+            }
+
             const container = document.getElementById('houseQuizContainer');
             const percentage = (houseScore / houseQuestions.length * 100).toFixed(0);
             
@@ -2870,6 +3628,11 @@
         const houseHangmanWords = ['LIT', 'TABLE', 'CHAISE', 'LAMPE', 'CUISINE', 'SALON'];
 
         function startHouseHangman() {
+            // Log activity
+            if (currentUser) {
+                logActivity(`${currentUser.name} started House vocabulary hangman`, 'game');
+            }
+
             // Hide memory game and show hangman
             document.getElementById('houseMemoryGame').style.display = 'none';
             document.getElementById('houseHangman').style.display = 'block';
@@ -2974,11 +3737,19 @@
             // Check if game is over
             if (houseHangmanLives <= 0) {
                 setTimeout(() => {
+                    // Log activity
+                    if (currentUser) {
+                        logActivity(`${currentUser.name} lost House vocabulary hangman (word: ${houseHangmanWord})`, 'game');
+                    }
                     showToast('Game Over!', `The word was: ${houseHangmanWord}`, 'error', 4000);
                     startHouseHangman(); // Restart game
                 }, 500);
             } else if (!displayWord.includes('_')) {
                 setTimeout(() => {
+                    // Log activity
+                    if (currentUser) {
+                        logActivity(`${currentUser.name} won House vocabulary hangman (word: ${houseHangmanWord})`, 'game');
+                    }
                     celebrate(true);
                     showToast('Congratulations! 🎉', `You guessed: ${houseHangmanWord}`, 'success', 5000);
                     startHouseHangman(); // Restart game
@@ -3038,6 +3809,11 @@
         ];
 
         function startHouseMemory() {
+            // Log activity
+            if (currentUser) {
+                logActivity(`${currentUser.name} started House vocabulary memory game`, 'game');
+            }
+
             // Hide hangman and show memory game
             document.getElementById('houseHangman').style.display = 'none';
             document.getElementById('houseMemoryGame').style.display = 'block';
@@ -3111,6 +3887,10 @@
                     
                     if (houseMatchedPairs === houseMemoryPairs.length) {
                         setTimeout(() => {
+                            // Log activity
+                            if (currentUser) {
+                                logActivity(`${currentUser.name} completed House vocabulary memory game in ${houseMoves} moves`, 'game');
+                            }
                             celebrate(true);
                             showToast('Congratulations! 🎉', `You won in ${houseMoves} moves!`, 'success', 5000);
                         }, 500);
@@ -3184,6 +3964,11 @@
         ];
 
         function startSchoolQuiz() {
+            // Log activity
+            if (currentUser) {
+                logActivity(`${currentUser.name} started School vocabulary quiz`, 'quiz');
+            }
+
             schoolCurrentQuestion = 0;
             schoolScore = 0;
             document.getElementById('schoolScore').textContent = schoolScore;
@@ -3252,6 +4037,11 @@
         }
 
         function showSchoolQuizResults() {
+            // Log activity
+            if (currentUser) {
+                logActivity(`${currentUser.name} completed School vocabulary quiz with score ${schoolScore}/${schoolQuestions.length}`, 'quiz');
+            }
+
             const container = document.getElementById('schoolQuizContainer');
             const percentage = (schoolScore / schoolQuestions.length * 100).toFixed(0);
             
@@ -3327,6 +4117,11 @@
         ];
 
         function startSchoolFlashcards() {
+            // Log activity
+            if (currentUser) {
+                logActivity(`${currentUser.name} started School vocabulary flashcards`, 'learning');
+            }
+
             // Hide memory game and show flashcards
             document.getElementById('schoolMemoryGame').style.display = 'none';
             document.getElementById('schoolFlashcards').style.display = 'block';
@@ -3372,6 +4167,11 @@
         ];
 
         function startSchoolMemory() {
+            // Log activity
+            if (currentUser) {
+                logActivity(`${currentUser.name} started School vocabulary memory game`, 'game');
+            }
+
             // Hide flashcards and show memory game
             document.getElementById('schoolFlashcards').style.display = 'none';
             document.getElementById('schoolMemoryGame').style.display = 'block';
@@ -3445,6 +4245,10 @@
                     
                     if (schoolMatchedPairs === schoolMemoryPairs.length) {
                         setTimeout(() => {
+                            // Log activity
+                            if (currentUser) {
+                                logActivity(`${currentUser.name} completed School vocabulary memory game in ${schoolMoves} moves`, 'game');
+                            }
                             celebrate(true);
                             showToast('Congratulations! 🎉', `You won in ${schoolMoves} moves!`, 'success', 5000);
                         }, 500);
@@ -3518,6 +4322,11 @@
         ];
 
         function startMarketQuiz() {
+            // Log activity
+            if (currentUser) {
+                logActivity(`${currentUser.name} started Market vocabulary quiz`, 'quiz');
+            }
+
             marketCurrentQuestion = 0;
             marketScore = 0;
             document.getElementById('marketScore').textContent = marketScore;
@@ -3586,6 +4395,11 @@
         }
 
         function showMarketQuizResults() {
+            // Log activity
+            if (currentUser) {
+                logActivity(`${currentUser.name} completed Market vocabulary quiz with score ${marketScore}/${marketQuestions.length}`, 'quiz');
+            }
+
             const container = document.getElementById('marketQuizContainer');
             const percentage = (marketScore / marketQuestions.length * 100).toFixed(0);
             
@@ -3654,6 +4468,11 @@
         const marketHangmanWords = ['POMME', 'BANANE', 'TOMATE', 'CAROTTE', 'OIGNON', 'PIMENT'];
 
         function startMarketHangman() {
+            // Log activity
+            if (currentUser) {
+                logActivity(`${currentUser.name} started Market vocabulary hangman`, 'game');
+            }
+
             // Hide memory game and show hangman
             document.getElementById('marketMemoryGame').style.display = 'none';
             document.getElementById('marketHangman').style.display = 'block';
@@ -3758,11 +4577,19 @@
             // Check if game is over
             if (marketHangmanLives <= 0) {
                 setTimeout(() => {
+                    // Log activity
+                    if (currentUser) {
+                        logActivity(`${currentUser.name} lost Market vocabulary hangman (word: ${marketHangmanWord})`, 'game');
+                    }
                     showToast('Game Over!', `The word was: ${marketHangmanWord}`, 'error', 4000);
                     startMarketHangman(); // Restart game
                 }, 500);
             } else if (!displayWord.includes('_')) {
                 setTimeout(() => {
+                    // Log activity
+                    if (currentUser) {
+                        logActivity(`${currentUser.name} won Market vocabulary hangman (word: ${marketHangmanWord})`, 'game');
+                    }
                     celebrate(true);
                     showToast('Congratulations! 🎉', `You guessed: ${marketHangmanWord}`, 'success', 5000);
                     startMarketHangman(); // Restart game
@@ -3822,6 +4649,11 @@
         ];
 
         function startMarketMemory() {
+            // Log activity
+            if (currentUser) {
+                logActivity(`${currentUser.name} started Market vocabulary memory game`, 'game');
+            }
+
             // Hide hangman and show memory game
             document.getElementById('marketHangman').style.display = 'none';
             document.getElementById('marketMemoryGame').style.display = 'block';
@@ -3895,6 +4727,10 @@
                     
                     if (marketMatchedPairs === marketMemoryPairs.length) {
                         setTimeout(() => {
+                            // Log activity
+                            if (currentUser) {
+                                logActivity(`${currentUser.name} completed Market vocabulary memory game in ${marketMoves} moves`, 'game');
+                            }
                             celebrate(true);
                             showToast('Congratulations! 🎉', `You won in ${marketMoves} moves!`, 'success', 5000);
                         }, 500);
@@ -3912,38 +4748,41 @@
 
         // Certificate System
         function showCertificate(topic) {
-            const modal = document.getElementById('certificateModal');
-            const studentName = prompt("Enter your name for the certificate:", "Excellent Student");
-            
-            if (studentName) {
-                document.getElementById('certificateStudent').textContent = studentName;
-                document.getElementById('certificateAchievement').textContent = `A réussi avec succès le quiz de ${topic}`;
-                document.getElementById('certificateScore').textContent = "10/10";
-                
-                // Set current date
-                const today = new Date();
-                const dateString = today.toLocaleDateString('fr-FR', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                });
-                document.getElementById('certificateDate').textContent = dateString;
-                
-                // Show modal with animation
-                modal.classList.add('show');
-                
-                // Big celebration for certificate
-                celebrate(true);
-                setTimeout(() => celebrate(true), 500);
-                setTimeout(() => celebrate(true), 1000);
-                
-                showToast(
-                    'Congratulations! 🎓', 
-                    `You earned a certificate for ${topic}!`, 
-                    'success', 
-                    6000
-                );
+            // Log activity
+            if (currentUser) {
+                logActivity(`${currentUser.name} earned a certificate for ${topic}`, 'achievement');
             }
+
+            const modal = document.getElementById('certificateModal');
+            const studentName = currentUser ? currentUser.name : "Excellent Student";
+            
+            document.getElementById('certificateStudent').textContent = studentName;
+            document.getElementById('certificateAchievement').textContent = `A réussi avec succès le quiz de ${topic}`;
+            document.getElementById('certificateScore').textContent = "10/10";
+            
+            // Set current date
+            const today = new Date();
+            const dateString = today.toLocaleDateString('fr-FR', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            document.getElementById('certificateDate').textContent = dateString;
+            
+            // Show modal with animation
+            modal.classList.add('show');
+            
+            // Big celebration for certificate
+            celebrate(true);
+            setTimeout(() => celebrate(true), 500);
+            setTimeout(() => celebrate(true), 1000);
+            
+            showToast(
+                'Congratulations! 🎓', 
+                `You earned a certificate for ${topic}!`, 
+                'success', 
+                6000
+            );
         }
 
         function closeCertificate() {
@@ -3974,6 +4813,9 @@
 
         // COMPLETELY FIXED: Initialize on page load with improved voice handling
         window.onload = function() {
+            // Initialize the app
+            initApp();
+            
             // COMPLETELY FIXED: Improved voice loading for French pronunciation
             let voicesLoaded = false;
             
@@ -3998,12 +4840,14 @@
             
             // Show welcome toast
             setTimeout(() => {
-                showToast(
-                    'Welcome! 🇬🇭🇫🇷', 
-                    'Click on any word to hear French pronunciation!', 
-                    'info', 
-                    5000
-                );
+                if (!currentUser) {
+                    showToast(
+                        'Welcome! 🇬🇭🇫🇷', 
+                        'Please register or login to start learning French!', 
+                        'info', 
+                        5000
+                    );
+                }
             }, 1000);
         };
     </script>

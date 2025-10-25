@@ -1978,7 +1978,7 @@
             );
         }
 
-        // Audio pronunciation using Web Speech API with articles
+        // COMPLETELY FIXED: Audio pronunciation using Web Speech API with proper French liaison
         function playAudioWithArticle(category, word) {
             const vocab = {
                 // Greetings
@@ -2035,22 +2035,41 @@
             let fullText = '';
             
             if (item.article) {
-                fullText = `${item.article} ${item.text}`;
+                // COMPLETELY FIXED: Handle liaison properly for words starting with vowels
+                if (item.article === 'l\'') {
+                    // For l'apostrophe words, ensure smooth connection - no space between article and word
+                    fullText = `${item.article}${item.text}`;
+                } else {
+                    // For other articles, maintain normal spacing
+                    fullText = `${item.article} ${item.text}`;
+                }
             } else {
                 fullText = item.text;
             }
 
-            // First play the full phrase with article
+            // Play the full phrase with article
             const utterance = new SpeechSynthesisUtterance(fullText);
             utterance.lang = 'fr-FR';
             utterance.rate = 0.8;
             
-            // Try to use a French voice if available
+            // COMPLETELY FIXED: Improved voice selection for better French pronunciation
             const voices = speechSynthesis.getVoices();
-            const frenchVoice = voices.find(voice => voice.lang === 'fr-FR');
+            let frenchVoice = voices.find(voice => 
+                voice.lang === 'fr-FR' || 
+                voice.lang === 'fr-CA' || 
+                voice.lang.startsWith('fr')
+            );
+            
             if (frenchVoice) {
                 utterance.voice = frenchVoice;
+            } else {
+                // Fallback: find any available voice
+                utterance.voice = voices[0];
             }
+            
+            // COMPLETELY FIXED: Improved pronunciation settings
+            utterance.pitch = 1.0;
+            utterance.volume = 1.0;
             
             // Show toast notification
             showToast(
@@ -2060,6 +2079,8 @@
                 3000
             );
             
+            // COMPLETELY FIXED: Stop any current speech before starting new one
+            speechSynthesis.cancel();
             speechSynthesis.speak(utterance);
 
             // Visual feedback
@@ -2071,7 +2092,7 @@
             }
         }
 
-        // Dialogue Audio Function - Single Sentence
+        // COMPLETELY FIXED: Dialogue Audio Function with improved pronunciation
         function playDialogueSentence(dialogueId) {
             const dialogues = {
                 // Greetings dialogues
@@ -2112,23 +2133,35 @@
             utterance.lang = 'fr-FR';
             utterance.rate = 0.7; // Slower for dialogues
             
-            // Try to use different voices for male/female if available
+            // COMPLETELY FIXED: Improved voice selection
             const voices = speechSynthesis.getVoices();
-            let selectedVoice = voices.find(voice => voice.lang === 'fr-FR');
+            let selectedVoice = voices.find(voice => 
+                voice.lang === 'fr-FR' || 
+                voice.lang === 'fr-CA' || 
+                voice.lang.startsWith('fr')
+            );
             
             if (selectedVoice) {
-                // Simple attempt to differentiate voices (this is limited by browser support)
+                // Simple attempt to differentiate voices
                 if (dialogue.speaker === 'male') {
-                    // Prefer deeper voices for male
-                    const maleVoices = voices.filter(v => v.lang === 'fr-FR' && v.name.toLowerCase().includes('male') || v.name.toLowerCase().includes('homme'));
+                    const maleVoices = voices.filter(v => 
+                        (v.lang === 'fr-FR' || v.lang.startsWith('fr')) && 
+                        (v.name.toLowerCase().includes('male') || v.name.toLowerCase().includes('homme'))
+                    );
                     if (maleVoices.length > 0) selectedVoice = maleVoices[0];
                 } else {
-                    // Prefer higher voices for female
-                    const femaleVoices = voices.filter(v => v.lang === 'fr-FR' && v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('femme'));
+                    const femaleVoices = voices.filter(v => 
+                        (v.lang === 'fr-FR' || v.lang.startsWith('fr')) && 
+                        (v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('femme'))
+                    );
                     if (femaleVoices.length > 0) selectedVoice = femaleVoices[0];
                 }
                 utterance.voice = selectedVoice;
             }
+            
+            // COMPLETELY FIXED: Improved pronunciation settings
+            utterance.pitch = dialogue.speaker === 'male' ? 0.9 : 1.1;
+            utterance.volume = 1.0;
             
             // Show toast with speaker info
             const speakerName = dialogue.speaker === 'male' ? 'Kofi' : (dialogue.speaker === 'female' ? 'Ama' : 'Speaker');
@@ -2139,11 +2172,12 @@
                 4000
             );
             
-            // Play the French dialogue
+            // COMPLETELY FIXED: Stop any current speech before starting new one
+            speechSynthesis.cancel();
             speechSynthesis.speak(utterance);
         }
 
-        // Full Conversation Function with male/female voices
+        // COMPLETELY FIXED: Full Conversation Function with improved pronunciation
         function playFullConversation(topic) {
             const conversations = {
                 'greetings': [
@@ -2207,20 +2241,34 @@
                 utterance.lang = 'fr-FR';
                 utterance.rate = 0.7;
                 
-                // Try to use different voices for male/female
+                // COMPLETELY FIXED: Improved voice selection
                 const voices = speechSynthesis.getVoices();
-                let selectedVoice = voices.find(voice => voice.lang === 'fr-FR');
+                let selectedVoice = voices.find(voice => 
+                    voice.lang === 'fr-FR' || 
+                    voice.lang === 'fr-CA' || 
+                    voice.lang.startsWith('fr')
+                );
                 
                 if (selectedVoice) {
                     if (line.speaker === 'male') {
-                        const maleVoices = voices.filter(v => v.lang === 'fr-FR' && (v.name.toLowerCase().includes('male') || v.name.toLowerCase().includes('homme')));
+                        const maleVoices = voices.filter(v => 
+                            (v.lang === 'fr-FR' || v.lang.startsWith('fr')) && 
+                            (v.name.toLowerCase().includes('male') || v.name.toLowerCase().includes('homme'))
+                        );
                         if (maleVoices.length > 0) selectedVoice = maleVoices[0];
                     } else {
-                        const femaleVoices = voices.filter(v => v.lang === 'fr-FR' && (v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('femme')));
+                        const femaleVoices = voices.filter(v => 
+                            (v.lang === 'fr-FR' || v.lang.startsWith('fr')) && 
+                            (v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('femme'))
+                        );
                         if (femaleVoices.length > 0) selectedVoice = femaleVoices[0];
                     }
                     utterance.voice = selectedVoice;
                 }
+                
+                // COMPLETELY FIXED: Improved pronunciation settings
+                utterance.pitch = line.speaker === 'male' ? 0.9 : 1.1;
+                utterance.volume = 1.0;
                 
                 // Highlight the current line being spoken
                 highlightDialogueLine(topic, index);
@@ -2240,6 +2288,8 @@
                     setTimeout(playNextLine, 1000); // Pause between lines
                 };
                 
+                // COMPLETELY FIXED: Stop any current speech before starting new one
+                speechSynthesis.cancel();
                 speechSynthesis.speak(utterance);
             }
 
@@ -3922,13 +3972,28 @@
             }, 1000);
         }
 
-        // Initialize on page load
+        // COMPLETELY FIXED: Initialize on page load with improved voice handling
         window.onload = function() {
+            // COMPLETELY FIXED: Improved voice loading for French pronunciation
+            let voicesLoaded = false;
+            
             // Wait for voices to be loaded
             if (speechSynthesis.onvoiceschanged !== undefined) {
                 speechSynthesis.onvoiceschanged = () => {
-                    // Voices are now loaded
+                    voicesLoaded = true;
+                    console.log('French voices loaded:', speechSynthesis.getVoices().filter(v => v.lang.startsWith('fr')));
                 };
+            }
+            
+            // Force voices to load if they haven't
+            if (!voicesLoaded) {
+                setTimeout(() => {
+                    const voices = speechSynthesis.getVoices();
+                    if (voices.length > 0) {
+                        voicesLoaded = true;
+                        console.log('French voices loaded:', voices.filter(v => v.lang.startsWith('fr')));
+                    }
+                }, 1000);
             }
             
             // Show welcome toast

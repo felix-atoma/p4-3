@@ -761,6 +761,177 @@
             background-color: #CE1126;
         }
 
+        /* Certificate Styles */
+        .certificate-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10001;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .certificate-modal.show {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .certificate {
+            background: linear-gradient(135deg, #f9f3e9 0%, #f5e8d5 100%);
+            width: 90%;
+            max-width: 800px;
+            border: 20px solid #CE1126;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            transform: scale(0.8);
+            transition: transform 0.5s ease;
+        }
+
+        .certificate-modal.show .certificate {
+            transform: scale(1);
+        }
+
+        .certificate::before, .certificate::after {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23FCD116" d="M50,5 L60,40 L95,40 L65,60 L75,95 L50,75 L25,95 L35,60 L5,40 L40,40 Z"/></svg>');
+            background-size: contain;
+            opacity: 0.2;
+        }
+
+        .certificate::before {
+            top: 20px;
+            left: 20px;
+        }
+
+        .certificate::after {
+            bottom: 20px;
+            right: 20px;
+        }
+
+        .certificate-header {
+            color: #CE1126;
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: bold;
+        }
+
+        .certificate-subtitle {
+            color: #006B3F;
+            font-size: 1.5em;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .certificate-body {
+            margin: 30px 0;
+            padding: 20px;
+            border-top: 3px solid #FCD116;
+            border-bottom: 3px solid #FCD116;
+        }
+
+        .certificate-student {
+            font-size: 2.5em;
+            color: #006B3F;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+
+        .certificate-achievement {
+            font-size: 1.8em;
+            color: #CE1126;
+            margin: 20px 0;
+        }
+
+        .certificate-score {
+            font-size: 2em;
+            color: #FCD116;
+            background: #006B3F;
+            display: inline-block;
+            padding: 10px 30px;
+            border-radius: 50px;
+            margin: 20px 0;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .certificate-message {
+            font-size: 1.2em;
+            color: #555;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+
+        .certificate-footer {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .certificate-signature {
+            text-align: center;
+            flex: 1;
+        }
+
+        .signature-line {
+            width: 200px;
+            height: 2px;
+            background: #CE1126;
+            margin: 10px auto;
+        }
+
+        .certificate-close {
+            background: #CE1126;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .certificate-close:hover {
+            background: #a01020;
+            transform: translateY(-3px);
+        }
+
+        .certificate-share {
+            background: #FCD116;
+            color: #006B3F;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-left: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .certificate-share:hover {
+            background: #e6b800;
+            transform: translateY(-3px);
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -835,6 +1006,22 @@
                 left: 10px;
                 max-width: none;
             }
+            .certificate {
+                padding: 20px;
+                border-width: 10px;
+            }
+            .certificate-header {
+                font-size: 2em;
+            }
+            .certificate-student {
+                font-size: 1.8em;
+            }
+            .certificate-achievement {
+                font-size: 1.4em;
+            }
+            .certificate-footer {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -843,6 +1030,40 @@
     
     <!-- Toast Container -->
     <div class="toast-container" id="toastContainer"></div>
+    
+    <!-- Certificate Modal -->
+    <div class="certificate-modal" id="certificateModal">
+        <div class="certificate">
+            <div class="certificate-header">Certificat d'Excellence</div>
+            <div class="certificate-subtitle">Apprendre le Français - Ghana</div>
+            
+            <div class="certificate-body">
+                <div class="certificate-student" id="certificateStudent">Étudiant Exceptionnel</div>
+                <div class="certificate-achievement" id="certificateAchievement">A réussi avec succès le quiz</div>
+                <div class="certificate-score" id="certificateScore">10/10</div>
+                <div class="certificate-message" id="certificateMessage">
+                    Félicitations! Vous avez démontré une maîtrise exceptionnelle du vocabulaire français. 
+                    Votre dévouement et vos efforts sont remarquables. Continuez à exceller dans votre apprentissage!
+                </div>
+            </div>
+            
+            <div class="certificate-footer">
+                <div class="certificate-signature">
+                    <div class="signature-line"></div>
+                    <div>Directeur des Études Françaises</div>
+                </div>
+                <div class="certificate-signature">
+                    <div class="signature-line"></div>
+                    <div>Date: <span id="certificateDate"></span></div>
+                </div>
+            </div>
+            
+            <div>
+                <button class="certificate-close" onclick="closeCertificate()">Fermer</button>
+                <button class="certificate-share" onclick="shareCertificate()">Partager</button>
+            </div>
+        </div>
+    </div>
     
     <header>
         <h1>🇬🇭 Apprendre le Français 🇫🇷</h1>
@@ -1005,7 +1226,7 @@
                 <!-- Greetings Quiz -->
                 <div class="topic-quiz-container">
                     <h3 style="color: #006B3F; text-align: center; margin-bottom: 20px;">🎯 Greetings Quiz</h3>
-                    <div class="score-board">Score: <span id="greetingsScore">0</span> / <span id="greetingsTotal">0</span></div>
+                    <div class="score-board">Score: <span id="greetingsScore">0</span> / <span id="greetingsTotal">10</span></div>
                     <div id="greetingsQuizContainer"></div>
                     <div style="text-align: center; margin-top: 20px;">
                         <button class="btn-primary" onclick="startGreetingsQuiz()">Start Quiz 🎮</button>
@@ -1267,7 +1488,7 @@
                 <!-- House Quiz -->
                 <div class="topic-quiz-container">
                     <h3 style="color: #006B3F; text-align: center; margin-bottom: 20px;">🎯 House Vocabulary Quiz</h3>
-                    <div class="score-board">Score: <span id="houseScore">0</span> / <span id="houseTotal">0</span></div>
+                    <div class="score-board">Score: <span id="houseScore">0</span> / <span id="houseTotal">10</span></div>
                     <div id="houseQuizContainer"></div>
                     <div style="text-align: center; margin-top: 20px;">
                         <button class="btn-primary" onclick="startHouseQuiz()">Start Quiz 🎮</button>
@@ -1449,7 +1670,7 @@
                 <!-- School Quiz -->
                 <div class="topic-quiz-container">
                     <h3 style="color: #006B3F; text-align: center; margin-bottom: 20px;">🎯 School Vocabulary Quiz</h3>
-                    <div class="score-board">Score: <span id="schoolScore">0</span> / <span id="schoolTotal">0</span></div>
+                    <div class="score-board">Score: <span id="schoolScore">0</span> / <span id="schoolTotal">10</span></div>
                     <div id="schoolQuizContainer"></div>
                     <div style="text-align: center; margin-top: 20px;">
                         <button class="btn-primary" onclick="startSchoolQuiz()">Start Quiz 🎮</button>
@@ -1648,7 +1869,7 @@
                 <!-- Market Quiz -->
                 <div class="topic-quiz-container">
                     <h3 style="color: #006B3F; text-align: center; margin-bottom: 20px;">🎯 Market Vocabulary Quiz</h3>
-                    <div class="score-board">Score: <span id="marketScore">0</span> / <span id="marketTotal">0</span></div>
+                    <div class="score-board">Score: <span id="marketScore">0</span> / <span id="marketTotal">10</span></div>
                     <div id="marketQuizContainer"></div>
                     <div style="text-align: center; margin-top: 20px;">
                         <button class="btn-primary" onclick="startMarketQuiz()">Start Quiz 🎮</button>
@@ -2075,7 +2296,7 @@
         }
 
         // ========== GREETINGS SECTION ==========
-        // Greetings Quiz
+        // Greetings Quiz - Now with 10 questions
         let greetingsCurrentQuestion = 0;
         let greetingsScore = 0;
         const greetingsQuestions = [
@@ -2098,6 +2319,36 @@
                 question: "What is 'Bonsoir' in English?",
                 options: ["Good morning", "Good night", "Good evening", "Goodbye"],
                 correct: 2
+            },
+            {
+                question: "How would you respond to 'Comment ça va?' if you're doing well?",
+                options: ["Ça va mal", "Ça va bien", "Au revoir", "Bonne nuit"],
+                correct: 1
+            },
+            {
+                question: "What does 'Enchanté(e)' mean?",
+                options: ["Goodbye", "Thank you", "Nice to meet you", "How are you?"],
+                correct: 2
+            },
+            {
+                question: "Which phrase would you use when leaving someone?",
+                options: ["Bonjour", "Bonsoir", "Au revoir", "Comment ça va?"],
+                correct: 2
+            },
+            {
+                question: "What is 'Je m'appelle' in English?",
+                options: ["How are you?", "My name is", "Good evening", "See you soon"],
+                correct: 1
+            },
+            {
+                question: "Which phrase is used for 'Good night'?",
+                options: ["Bonjour", "Bonsoir", "Bonne nuit", "Au revoir"],
+                correct: 2
+            },
+            {
+                question: "How do you say 'Thank you' in French?",
+                options: ["Au revoir", "Merci", "S'il vous plaît", "De rien"],
+                correct: 1
             }
         ];
 
@@ -2175,17 +2426,29 @@
             
             let message = '';
             let emoji = '';
+            let encouragement = '';
             
-            if (percentage >= 80) {
+            if (percentage >= 90) {
                 message = 'Excellent! Très bien! 🌟';
                 emoji = '🎉';
+                encouragement = 'You have mastered greetings vocabulary!';
                 celebrate(true);
-            } else if (percentage >= 60) {
+                // Show certificate for perfect score
+                if (greetingsScore === greetingsQuestions.length) {
+                    setTimeout(() => showCertificate("Greetings"), 1000);
+                }
+            } else if (percentage >= 70) {
                 message = 'Good job! Bon travail! 👍';
                 emoji = '😊';
+                encouragement = 'You\'re doing well! Keep practicing to reach perfection.';
+            } else if (percentage >= 50) {
+                message = 'Not bad! Pas mal! 💪';
+                emoji = '🙂';
+                encouragement = 'You have a good foundation. Try again to improve your score!';
             } else {
-                message = 'Keep practicing! Continue à pratiquer! 💪';
-                emoji = '📚';
+                message = 'Keep practicing! Continue à pratiquer! 📚';
+                emoji = '🤔';
+                encouragement = 'Review the vocabulary and try again. You can do it!';
             }
 
             container.innerHTML = `
@@ -2198,8 +2461,14 @@
                     <div style="font-size: 24px; color: #CE1126; margin: 20px 0;">
                         ${percentage}%
                     </div>
-                    <div style="font-size: 28px; font-weight: bold; color: #FCD116; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+                    <div style="font-size: 28px; font-weight: bold; color: #FCD116; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); margin: 20px 0;">
                         ${message}
+                    </div>
+                    <div style="font-size: 18px; color: #555; margin: 20px 0; line-height: 1.5;">
+                        ${encouragement}
+                    </div>
+                    <div style="margin-top: 30px;">
+                        <button class="btn-primary" onclick="startGreetingsQuiz()">Try Again 🔄</button>
                     </div>
                 </div>
             `;
@@ -2208,7 +2477,7 @@
             showToast(
                 'Quiz Complete!', 
                 `Your score: ${greetingsScore}/${greetingsQuestions.length} (${percentage}%)`, 
-                percentage >= 60 ? 'success' : 'warning', 
+                percentage >= 70 ? 'success' : (percentage >= 50 ? 'warning' : 'error'), 
                 5000
             );
         }
@@ -2358,7 +2627,7 @@
         }
 
         // ========== HOUSE SECTION ==========
-        // House Quiz
+        // House Quiz - Now with 10 questions
         let houseCurrentQuestion = 0;
         let houseScore = 0;
         const houseQuestions = [
@@ -2381,6 +2650,36 @@
                 question: "Choose the correct French word for 'the mirror':",
                 options: ["La serviette", "La glace", "La lampe", "La table"],
                 correct: 1
+            },
+            {
+                question: "What is 'la salle de bain'?",
+                options: ["The kitchen", "The bedroom", "The bathroom", "The living room"],
+                correct: 2
+            },
+            {
+                question: "How do you say 'the chair' in French?",
+                options: ["La table", "Le fauteuil", "La chaise", "Le lit"],
+                correct: 2
+            },
+            {
+                question: "What is 'le salon' in English?",
+                options: ["The kitchen", "The bedroom", "The bathroom", "The living room"],
+                correct: 3
+            },
+            {
+                question: "Which item would you find in 'la chambre'?",
+                options: ["La cuisinière", "Le lavabo", "Le lit", "La télévision"],
+                correct: 2
+            },
+            {
+                question: "What is 'la lampe'?",
+                options: ["The lamp", "The table", "The bed", "The chair"],
+                correct: 0
+            },
+            {
+                question: "How do you say 'the wardrobe' in French?",
+                options: ["Le lit", "La table", "L'armoire", "La chaise"],
+                correct: 2
             }
         ];
 
@@ -2458,17 +2757,29 @@
             
             let message = '';
             let emoji = '';
+            let encouragement = '';
             
-            if (percentage >= 80) {
+            if (percentage >= 90) {
                 message = 'Excellent! Très bien! 🌟';
                 emoji = '🎉';
+                encouragement = 'You have mastered house vocabulary!';
                 celebrate(true);
-            } else if (percentage >= 60) {
+                // Show certificate for perfect score
+                if (houseScore === houseQuestions.length) {
+                    setTimeout(() => showCertificate("House Vocabulary"), 1000);
+                }
+            } else if (percentage >= 70) {
                 message = 'Good job! Bon travail! 👍';
                 emoji = '😊';
+                encouragement = 'You\'re doing well! Keep practicing to reach perfection.';
+            } else if (percentage >= 50) {
+                message = 'Not bad! Pas mal! 💪';
+                emoji = '🙂';
+                encouragement = 'You have a good foundation. Try again to improve your score!';
             } else {
-                message = 'Keep practicing! Continue à pratiquer! 💪';
-                emoji = '📚';
+                message = 'Keep practicing! Continue à pratiquer! 📚';
+                emoji = '🤔';
+                encouragement = 'Review the vocabulary and try again. You can do it!';
             }
 
             container.innerHTML = `
@@ -2481,8 +2792,14 @@
                     <div style="font-size: 24px; color: #CE1126; margin: 20px 0;">
                         ${percentage}%
                     </div>
-                    <div style="font-size: 28px; font-weight: bold; color: #FCD116; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+                    <div style="font-size: 28px; font-weight: bold; color: #FCD116; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); margin: 20px 0;">
                         ${message}
+                    </div>
+                    <div style="font-size: 18px; color: #555; margin: 20px 0; line-height: 1.5;">
+                        ${encouragement}
+                    </div>
+                    <div style="margin-top: 30px;">
+                        <button class="btn-primary" onclick="startHouseQuiz()">Try Again 🔄</button>
                     </div>
                 </div>
             `;
@@ -2491,7 +2808,7 @@
             showToast(
                 'Quiz Complete!', 
                 `Your score: ${houseScore}/${houseQuestions.length} (${percentage}%)`, 
-                percentage >= 60 ? 'success' : 'warning', 
+                percentage >= 70 ? 'success' : (percentage >= 50 ? 'warning' : 'error'), 
                 5000
             );
         }
@@ -2760,7 +3077,7 @@
         }
 
         // ========== SCHOOL SECTION ==========
-        // School Quiz
+        // School Quiz - Now with 10 questions
         let schoolCurrentQuestion = 0;
         let schoolScore = 0;
         const schoolQuestions = [
@@ -2782,6 +3099,36 @@
             {
                 question: "Choose the correct French word for 'the notebook':",
                 options: ["Le livre", "Le cahier", "Le stylo", "Le cartable"],
+                correct: 1
+            },
+            {
+                question: "What is 'le cartable'?",
+                options: ["The pencil case", "The schoolbag", "The blackboard", "The classroom"],
+                correct: 1
+            },
+            {
+                question: "How do you say 'the eraser' in French?",
+                options: ["La règle", "Le crayon", "La gomme", "Le stylo"],
+                correct: 2
+            },
+            {
+                question: "What is 'le tableau' in English?",
+                options: ["The table", "The blackboard", "The notebook", "The pencil"],
+                correct: 1
+            },
+            {
+                question: "Which item would you use to write with ink?",
+                options: ["Le crayon", "Le stylo", "La gomme", "Le cahier"],
+                correct: 1
+            },
+            {
+                question: "What is 'la salle de classe'?",
+                options: ["The schoolbag", "The classroom", "The blackboard", "The notebook"],
+                correct: 1
+            },
+            {
+                question: "How do you say 'the pen' in French?",
+                options: ["Le crayon", "Le stylo", "Le livre", "Le cahier"],
                 correct: 1
             }
         ];
@@ -2860,17 +3207,29 @@
             
             let message = '';
             let emoji = '';
+            let encouragement = '';
             
-            if (percentage >= 80) {
+            if (percentage >= 90) {
                 message = 'Excellent! Très bien! 🌟';
                 emoji = '🎉';
+                encouragement = 'You have mastered school vocabulary!';
                 celebrate(true);
-            } else if (percentage >= 60) {
+                // Show certificate for perfect score
+                if (schoolScore === schoolQuestions.length) {
+                    setTimeout(() => showCertificate("School Vocabulary"), 1000);
+                }
+            } else if (percentage >= 70) {
                 message = 'Good job! Bon travail! 👍';
                 emoji = '😊';
+                encouragement = 'You\'re doing well! Keep practicing to reach perfection.';
+            } else if (percentage >= 50) {
+                message = 'Not bad! Pas mal! 💪';
+                emoji = '🙂';
+                encouragement = 'You have a good foundation. Try again to improve your score!';
             } else {
-                message = 'Keep practicing! Continue à pratiquer! 💪';
-                emoji = '📚';
+                message = 'Keep practicing! Continue à pratiquer! 📚';
+                emoji = '🤔';
+                encouragement = 'Review the vocabulary and try again. You can do it!';
             }
 
             container.innerHTML = `
@@ -2883,8 +3242,14 @@
                     <div style="font-size: 24px; color: #CE1126; margin: 20px 0;">
                         ${percentage}%
                     </div>
-                    <div style="font-size: 28px; font-weight: bold; color: #FCD116; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+                    <div style="font-size: 28px; font-weight: bold; color: #FCD116; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); margin: 20px 0;">
                         ${message}
+                    </div>
+                    <div style="font-size: 18px; color: #555; margin: 20px 0; line-height: 1.5;">
+                        ${encouragement}
+                    </div>
+                    <div style="margin-top: 30px;">
+                        <button class="btn-primary" onclick="startSchoolQuiz()">Try Again 🔄</button>
                     </div>
                 </div>
             `;
@@ -2893,7 +3258,7 @@
             showToast(
                 'Quiz Complete!', 
                 `Your score: ${schoolScore}/${schoolQuestions.length} (${percentage}%)`, 
-                percentage >= 60 ? 'success' : 'warning', 
+                percentage >= 70 ? 'success' : (percentage >= 50 ? 'warning' : 'error'), 
                 5000
             );
         }
@@ -3046,7 +3411,7 @@
         }
 
         // ========== MARKET SECTION ==========
-        // Market Quiz
+        // Market Quiz - Now with 10 questions
         let marketCurrentQuestion = 0;
         let marketScore = 0;
         const marketQuestions = [
@@ -3069,6 +3434,36 @@
                 question: "Choose the correct French word for 'the onion':",
                 options: ["Le piment", "La tomate", "L'oignon", "La pomme"],
                 correct: 2
+            },
+            {
+                question: "What is 'le piment'?",
+                options: ["The pepper", "The onion", "The tomato", "The carrot"],
+                correct: 0
+            },
+            {
+                question: "How do you say 'the tomato' in French?",
+                options: ["La pomme", "La banane", "La tomate", "La carotte"],
+                correct: 2
+            },
+            {
+                question: "Which of these is a fruit?",
+                options: ["La carotte", "La tomate", "La pomme", "L'oignon"],
+                correct: 2
+            },
+            {
+                question: "What is 'la banane' in English?",
+                options: ["The apple", "The banana", "The tomato", "The carrot"],
+                correct: 1
+            },
+            {
+                question: "How do you say 'How much does it cost?' in French?",
+                options: ["C'est combien?", "Je voudrais", "Au revoir", "Merci beaucoup"],
+                correct: 0
+            },
+            {
+                question: "Which phrase would you use to say 'I would like...'?",
+                options: ["Combien ça coûte?", "Je voudrais", "C'est trop cher", "Au revoir"],
+                correct: 1
             }
         ];
 
@@ -3146,17 +3541,29 @@
             
             let message = '';
             let emoji = '';
+            let encouragement = '';
             
-            if (percentage >= 80) {
+            if (percentage >= 90) {
                 message = 'Excellent! Très bien! 🌟';
                 emoji = '🎉';
+                encouragement = 'You have mastered market vocabulary!';
                 celebrate(true);
-            } else if (percentage >= 60) {
+                // Show certificate for perfect score
+                if (marketScore === marketQuestions.length) {
+                    setTimeout(() => showCertificate("Market Vocabulary"), 1000);
+                }
+            } else if (percentage >= 70) {
                 message = 'Good job! Bon travail! 👍';
                 emoji = '😊';
+                encouragement = 'You\'re doing well! Keep practicing to reach perfection.';
+            } else if (percentage >= 50) {
+                message = 'Not bad! Pas mal! 💪';
+                emoji = '🙂';
+                encouragement = 'You have a good foundation. Try again to improve your score!';
             } else {
-                message = 'Keep practicing! Continue à pratiquer! 💪';
-                emoji = '📚';
+                message = 'Keep practicing! Continue à pratiquer! 📚';
+                emoji = '🤔';
+                encouragement = 'Review the vocabulary and try again. You can do it!';
             }
 
             container.innerHTML = `
@@ -3169,8 +3576,14 @@
                     <div style="font-size: 24px; color: #CE1126; margin: 20px 0;">
                         ${percentage}%
                     </div>
-                    <div style="font-size: 28px; font-weight: bold; color: #FCD116; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+                    <div style="font-size: 28px; font-weight: bold; color: #FCD116; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); margin: 20px 0;">
                         ${message}
+                    </div>
+                    <div style="font-size: 18px; color: #555; margin: 20px 0; line-height: 1.5;">
+                        ${encouragement}
+                    </div>
+                    <div style="margin-top: 30px;">
+                        <button class="btn-primary" onclick="startMarketQuiz()">Try Again 🔄</button>
                     </div>
                 </div>
             `;
@@ -3179,7 +3592,7 @@
             showToast(
                 'Quiz Complete!', 
                 `Your score: ${marketScore}/${marketQuestions.length} (${percentage}%)`, 
-                percentage >= 60 ? 'success' : 'warning', 
+                percentage >= 70 ? 'success' : (percentage >= 50 ? 'warning' : 'error'), 
                 5000
             );
         }
@@ -3444,6 +3857,68 @@
                     cardElements[index2].innerHTML = '❓';
                 }
                 marketFlippedCards = [];
+            }, 1000);
+        }
+
+        // Certificate System
+        function showCertificate(topic) {
+            const modal = document.getElementById('certificateModal');
+            const studentName = prompt("Enter your name for the certificate:", "Excellent Student");
+            
+            if (studentName) {
+                document.getElementById('certificateStudent').textContent = studentName;
+                document.getElementById('certificateAchievement').textContent = `A réussi avec succès le quiz de ${topic}`;
+                document.getElementById('certificateScore').textContent = "10/10";
+                
+                // Set current date
+                const today = new Date();
+                const dateString = today.toLocaleDateString('fr-FR', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                document.getElementById('certificateDate').textContent = dateString;
+                
+                // Show modal with animation
+                modal.classList.add('show');
+                
+                // Big celebration for certificate
+                celebrate(true);
+                setTimeout(() => celebrate(true), 500);
+                setTimeout(() => celebrate(true), 1000);
+                
+                showToast(
+                    'Congratulations! 🎓', 
+                    `You earned a certificate for ${topic}!`, 
+                    'success', 
+                    6000
+                );
+            }
+        }
+
+        function closeCertificate() {
+            const modal = document.getElementById('certificateModal');
+            modal.classList.remove('show');
+        }
+
+        function shareCertificate() {
+            // In a real implementation, this would share the certificate
+            // For now, we'll just show a message
+            showToast(
+                'Share Feature', 
+                'In a real app, this would let you share your certificate!', 
+                'info', 
+                4000
+            );
+            
+            // Simulate sharing
+            setTimeout(() => {
+                showToast(
+                    'Shared!', 
+                    'Your certificate has been shared successfully!', 
+                    'success', 
+                    3000
+                );
             }, 1000);
         }
 

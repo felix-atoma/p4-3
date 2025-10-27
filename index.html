@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apprendre le Français - Ghana</title>
+    <title>Apprendre le Français - GES</title>
     <style>
         * {
             margin: 0;
@@ -15,300 +15,6 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #f4f4f4 0%, #e8e8e8 100%);
             overflow-x: hidden;
-        }
-
-        /* Authentication Modal Styles */
-        .auth-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10002;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .auth-modal.show {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .auth-container {
-            background: white;
-            border-radius: 15px;
-            padding: 40px;
-            width: 90%;
-            max-width: 500px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            transform: scale(0.8);
-            transition: transform 0.5s ease;
-            position: relative;
-        }
-
-        .auth-modal.show .auth-container {
-            transform: scale(1);
-        }
-
-        .auth-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .auth-title {
-            color: #006B3F;
-            font-size: 2em;
-            margin-bottom: 10px;
-        }
-
-        .auth-subtitle {
-            color: #666;
-            font-size: 1.1em;
-        }
-
-        .auth-tabs {
-            display: flex;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #e0e0e0;
-        }
-
-        .auth-tab {
-            flex: 1;
-            padding: 15px;
-            text-align: center;
-            background: none;
-            border: none;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: #666;
-        }
-
-        .auth-tab.active {
-            color: #006B3F;
-            border-bottom: 3px solid #006B3F;
-        }
-
-        .auth-form {
-            display: none;
-        }
-
-        .auth-form.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-        }
-
-        .form-input:focus {
-            border-color: #006B3F;
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(0, 107, 63, 0.1);
-        }
-
-        .auth-btn {
-            width: 100%;
-            padding: 15px;
-            background: #006B3F;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 10px;
-        }
-
-        .auth-btn:hover {
-            background: #005a33;
-            transform: translateY(-2px);
-        }
-
-        .auth-btn:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .auth-link {
-            text-align: center;
-            margin-top: 20px;
-            color: #666;
-        }
-
-        .auth-link a {
-            color: #006B3F;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .auth-link a:hover {
-            text-decoration: underline;
-        }
-
-        .auth-message {
-            padding: 10px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            text-align: center;
-            font-weight: bold;
-        }
-
-        .auth-message.success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-
-        .auth-message.error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-
-        .auth-message.info {
-            background: #d1ecf1;
-            color: #0c5460;
-            border: 1px solid #bee5eb;
-        }
-
-        .admin-panel {
-            background: #f8f9fa;
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 20px;
-            border: 2px solid #006B3F;
-        }
-
-        .admin-title {
-            color: #006B3F;
-            font-size: 1.5em;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-
-        .user-list {
-            max-height: 200px;
-            overflow-y: auto;
-            margin-bottom: 15px;
-        }
-
-        .user-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        .user-info {
-            flex: 1;
-        }
-
-        .user-name {
-            font-weight: bold;
-            color: #333;
-        }
-
-        .user-email {
-            color: #666;
-            font-size: 0.9em;
-        }
-
-        .user-status {
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.8em;
-            font-weight: bold;
-        }
-
-        .user-status.pending {
-            background: #fff3cd;
-            color: #856404;
-        }
-
-        .user-status.approved {
-            background: #d4edda;
-            color: #155724;
-        }
-
-        .user-actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .user-action-btn {
-            padding: 5px 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.8em;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-
-        .user-action-btn.approve {
-            background: #28a745;
-            color: white;
-        }
-
-        .user-action-btn.approve:hover {
-            background: #218838;
-        }
-
-        .user-action-btn.reject {
-            background: #dc3545;
-            color: white;
-        }
-
-        .user-action-btn.reject:hover {
-            background: #c82333;
-        }
-
-        .user-action-btn:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-        }
-
-        .auth-close {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: none;
-            border: none;
-            font-size: 24px;
-            color: #666;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .auth-close:hover {
-            color: #333;
         }
 
         /* Toast Notification Styles */
@@ -725,7 +431,7 @@
             border: none;
             padding: 15px 30px;
             border-radius: 25px;
-            cursor: button;
+            cursor: pointer;
             font-size: 18px;
             font-weight: bold;
             transition: all 0.3s ease;
@@ -1316,117 +1022,11 @@
             .certificate-footer {
                 flex-direction: column;
             }
-            .auth-container {
-                padding: 20px;
-            }
-            .auth-tab {
-                padding: 10px;
-                font-size: 14px;
-            }
-            .user-item {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .user-actions {
-                margin-top: 10px;
-                width: 100%;
-                justify-content: space-between;
-            }
         }
     </style>
 </head>
 <body>
     <div class="ghana-stripe"></div>
-    
-    <!-- Authentication Modal -->
-    <div class="auth-modal" id="authModal">
-        <div class="auth-container">
-            <button class="auth-close" onclick="closeAuthModal()">×</button>
-            
-            <div class="auth-header">
-                <h2 class="auth-title">🇬🇭 Apprendre le Français 🇫🇷</h2>
-                <p class="auth-subtitle">Access the French Learning Platform</p>
-            </div>
-            
-            <div class="auth-tabs">
-                <button class="auth-tab active" onclick="switchAuthTab('login')">Student Login</button>
-                <button class="auth-tab" onclick="switchAuthTab('register')">Student Register</button>
-                <button class="auth-tab" onclick="switchAuthTab('admin')">Admin Panel</button>
-            </div>
-            
-            <!-- Login Form -->
-            <div id="loginForm" class="auth-form active">
-                <div class="form-group">
-                    <label class="form-label" for="loginEmail">Email</label>
-                    <input type="email" id="loginEmail" class="form-input" placeholder="Enter your email">
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label" for="loginPassword">Password</label>
-                    <input type="password" id="loginPassword" class="form-input" placeholder="Enter your password">
-                </div>
-                
-                <button class="auth-btn" onclick="login()">Login</button>
-                
-                <div class="auth-link">
-                    Don't have an account? <a href="#" onclick="switchAuthTab('register')">Register here</a>
-                </div>
-            </div>
-            
-            <!-- Register Form -->
-            <div id="registerForm" class="auth-form">
-                <div class="form-group">
-                    <label class="form-label" for="registerName">Full Name</label>
-                    <input type="text" id="registerName" class="form-input" placeholder="Enter your full name">
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label" for="registerEmail">Email</label>
-                    <input type="email" id="registerEmail" class="form-input" placeholder="Enter your email">
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label" for="registerPassword">Password</label>
-                    <input type="password" id="registerPassword" class="form-input" placeholder="Create a password">
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label" for="registerConfirmPassword">Confirm Password</label>
-                    <input type="password" id="registerConfirmPassword" class="form-input" placeholder="Confirm your password">
-                </div>
-                
-                <button class="auth-btn" onclick="register()">Register</button>
-                
-                <div class="auth-link">
-                    Already have an account? <a href="#" onclick="switchAuthTab('login')">Login here</a>
-                </div>
-            </div>
-            
-            <!-- Admin Panel -->
-            <div id="adminPanel" class="auth-form">
-                <div class="form-group">
-                    <label class="form-label" for="adminPassword">Admin Password</label>
-                    <input type="password" id="adminPassword" class="form-input" placeholder="Enter admin password">
-                </div>
-                
-                <button class="auth-btn" onclick="adminLogin()">Access Admin Panel</button>
-                
-                <div id="adminContent" style="display: none;">
-                    <div class="admin-panel">
-                        <h3 class="admin-title">Pending Student Approvals</h3>
-                        <div class="user-list" id="pendingUsersList">
-                            <!-- Pending users will be listed here -->
-                        </div>
-                        <div class="auth-message info" id="adminMessage">
-                            Enter admin password to view pending approvals
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div id="authMessage" class="auth-message"></div>
-        </div>
-    </div>
     
     <!-- Toast Container -->
     <div class="toast-container" id="toastContainer"></div>
@@ -1476,7 +1076,6 @@
         <button class="nav-btn" onclick="showSection('house')">🏡 Chez Moi</button>
         <button class="nav-btn" onclick="showSection('school')">🎒 À l'École</button>
         <button class="nav-btn" onclick="showSection('market')">🛒 Au Marché</button>
-        <button class="nav-btn" style="background: #FCD116; color: #006B3F;" onclick="showAuthModal()">🔐 Account</button>
     </nav>
 
     <div class="container">
@@ -2311,348 +1910,6 @@
     <div class="celebration" id="celebration"></div>
 
     <script>
-        // Authentication System
-        let users = JSON.parse(localStorage.getItem('frenchAppUsers')) || [];
-        let currentUser = JSON.parse(localStorage.getItem('frenchAppCurrentUser')) || null;
-        const ADMIN_PASSWORD = "admin123"; // Default admin password
-
-        // Show authentication modal
-        function showAuthModal() {
-            document.getElementById('authModal').classList.add('show');
-            // Reset forms
-            document.getElementById('loginForm').reset();
-            document.getElementById('registerForm').reset();
-            document.getElementById('adminPanel').reset();
-            document.getElementById('authMessage').textContent = '';
-            document.getElementById('authMessage').className = 'auth-message';
-            
-            // Show appropriate tab based on current user
-            if (currentUser && currentUser.isAdmin) {
-                switchAuthTab('admin');
-                loadPendingUsers();
-            } else if (currentUser) {
-                switchAuthTab('login');
-                document.getElementById('authMessage').textContent = `Welcome back, ${currentUser.name}!`;
-                document.getElementById('authMessage').className = 'auth-message success';
-            } else {
-                switchAuthTab('login');
-            }
-        }
-
-        // Close authentication modal
-        function closeAuthModal() {
-            document.getElementById('authModal').classList.remove('show');
-        }
-
-        // Switch between authentication tabs
-        function switchAuthTab(tab) {
-            // Update active tab
-            document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
-            
-            document.querySelector(`.auth-tab:nth-child(${tab === 'login' ? 1 : tab === 'register' ? 2 : 3})`).classList.add('active');
-            document.getElementById(tab === 'login' ? 'loginForm' : tab === 'register' ? 'registerForm' : 'adminPanel').classList.add('active');
-            
-            // Clear messages
-            document.getElementById('authMessage').textContent = '';
-            document.getElementById('authMessage').className = 'auth-message';
-            
-            // Load admin content if needed
-            if (tab === 'admin' && currentUser && currentUser.isAdmin) {
-                loadPendingUsers();
-            }
-        }
-
-        // Register new user
-        function register() {
-            const name = document.getElementById('registerName').value.trim();
-            const email = document.getElementById('registerEmail').value.trim();
-            const password = document.getElementById('registerPassword').value;
-            const confirmPassword = document.getElementById('registerConfirmPassword').value;
-            
-            // Validation
-            if (!name || !email || !password || !confirmPassword) {
-                showAuthMessage('Please fill in all fields', 'error');
-                return;
-            }
-            
-            if (password !== confirmPassword) {
-                showAuthMessage('Passwords do not match', 'error');
-                return;
-            }
-            
-            if (password.length < 6) {
-                showAuthMessage('Password must be at least 6 characters', 'error');
-                return;
-            }
-            
-            // Check if user already exists
-            if (users.find(user => user.email === email)) {
-                showAuthMessage('User with this email already exists', 'error');
-                return;
-            }
-            
-            // Create new user (pending approval)
-            const newUser = {
-                id: Date.now().toString(),
-                name,
-                email,
-                password, // In a real app, this should be hashed
-                status: 'pending',
-                isAdmin: false,
-                createdAt: new Date().toISOString()
-            };
-            
-            users.push(newUser);
-            localStorage.setItem('frenchAppUsers', JSON.stringify(users));
-            
-            showAuthMessage('Registration successful! Waiting for admin approval.', 'success');
-            
-            // Clear form
-            document.getElementById('registerForm').reset();
-            
-            // Show toast
-            showToast(
-                'Registration Submitted', 
-                'Your account is pending admin approval', 
-                'info', 
-                5000
-            );
-        }
-
-        // Login user
-        function login() {
-            const email = document.getElementById('loginEmail').value.trim();
-            const password = document.getElementById('loginPassword').value;
-            
-            // Validation
-            if (!email || !password) {
-                showAuthMessage('Please fill in all fields', 'error');
-                return;
-            }
-            
-            // Find user
-            const user = users.find(u => u.email === email && u.password === password);
-            
-            if (!user) {
-                showAuthMessage('Invalid email or password', 'error');
-                return;
-            }
-            
-            if (user.status !== 'approved') {
-                showAuthMessage('Your account is pending admin approval', 'error');
-                return;
-            }
-            
-            // Login successful
-            currentUser = user;
-            localStorage.setItem('frenchAppCurrentUser', JSON.stringify(currentUser));
-            
-            showAuthMessage(`Welcome back, ${user.name}!`, 'success');
-            
-            // Close modal after delay
-            setTimeout(() => {
-                closeAuthModal();
-                showToast(
-                    'Login Successful', 
-                    `Welcome to French Learning, ${user.name}!`, 
-                    'success', 
-                    4000
-                );
-                
-                // Update UI based on login status
-                updateUIForAuth();
-            }, 1500);
-        }
-
-        // Admin login
-        function adminLogin() {
-            const password = document.getElementById('adminPassword').value;
-            
-            if (password !== ADMIN_PASSWORD) {
-                showAuthMessage('Invalid admin password', 'error');
-                return;
-            }
-            
-            // Check if admin user exists, if not create one
-            let adminUser = users.find(u => u.isAdmin);
-            if (!adminUser) {
-                adminUser = {
-                    id: 'admin',
-                    name: 'Administrator',
-                    email: 'admin@frenchlearning.com',
-                    password: ADMIN_PASSWORD,
-                    status: 'approved',
-                    isAdmin: true,
-                    createdAt: new Date().toISOString()
-                };
-                users.push(adminUser);
-                localStorage.setItem('frenchAppUsers', JSON.stringify(users));
-            }
-            
-            // Login as admin
-            currentUser = adminUser;
-            localStorage.setItem('frenchAppCurrentUser', JSON.stringify(currentUser));
-            
-            showAuthMessage('Admin access granted', 'success');
-            document.getElementById('adminContent').style.display = 'block';
-            loadPendingUsers();
-            
-            // Update UI
-            updateUIForAuth();
-        }
-
-        // Load pending users for admin approval
-        function loadPendingUsers() {
-            const pendingUsers = users.filter(user => user.status === 'pending' && !user.isAdmin);
-            const pendingList = document.getElementById('pendingUsersList');
-            
-            if (pendingUsers.length === 0) {
-                pendingList.innerHTML = '<div class="user-item">No pending approvals</div>';
-                return;
-            }
-            
-            pendingList.innerHTML = '';
-            pendingUsers.forEach(user => {
-                const userElement = document.createElement('div');
-                userElement.className = 'user-item';
-                userElement.innerHTML = `
-                    <div class="user-info">
-                        <div class="user-name">${user.name}</div>
-                        <div class="user-email">${user.email}</div>
-                    </div>
-                    <div class="user-status pending">Pending</div>
-                    <div class="user-actions">
-                        <button class="user-action-btn approve" onclick="approveUser('${user.id}')">Approve</button>
-                        <button class="user-action-btn reject" onclick="rejectUser('${user.id}')">Reject</button>
-                    </div>
-                `;
-                pendingList.appendChild(userElement);
-            });
-        }
-
-        // Approve user
-        function approveUser(userId) {
-            const userIndex = users.findIndex(u => u.id === userId);
-            if (userIndex !== -1) {
-                users[userIndex].status = 'approved';
-                localStorage.setItem('frenchAppUsers', JSON.stringify(users));
-                
-                showAuthMessage('User approved successfully', 'success');
-                loadPendingUsers();
-                
-                showToast(
-                    'User Approved', 
-                    `${users[userIndex].name} can now access the app`, 
-                    'success', 
-                    4000
-                );
-            }
-        }
-
-        // Reject user
-        function rejectUser(userId) {
-            const userIndex = users.findIndex(u => u.id === userId);
-            if (userIndex !== -1) {
-                users.splice(userIndex, 1);
-                localStorage.setItem('frenchAppUsers', JSON.stringify(users));
-                
-                showAuthMessage('User rejected successfully', 'success');
-                loadPendingUsers();
-                
-                showToast(
-                    'User Rejected', 
-                    'User registration has been removed', 
-                    'info', 
-                    4000
-                );
-            }
-        }
-
-        // Logout user
-        function logout() {
-            currentUser = null;
-            localStorage.removeItem('frenchAppCurrentUser');
-            
-            showToast(
-                'Logged Out', 
-                'You have been successfully logged out', 
-                'info', 
-                4000
-            );
-            
-            // Update UI
-            updateUIForAuth();
-            
-            // Close auth modal if open
-            closeAuthModal();
-        }
-
-        // Show authentication message
-        function showAuthMessage(message, type) {
-            const messageElement = document.getElementById('authMessage');
-            messageElement.textContent = message;
-            messageElement.className = `auth-message ${type}`;
-        }
-
-        // Update UI based on authentication status
-        function updateUIForAuth() {
-            const accountBtn = document.querySelector('.nav-btn:last-child');
-            
-            if (currentUser) {
-                if (currentUser.isAdmin) {
-                    accountBtn.innerHTML = '👑 Admin';
-                    accountBtn.style.background = '#FCD116';
-                    accountBtn.style.color = '#006B3F';
-                } else {
-                    accountBtn.innerHTML = '👤 Account';
-                    accountBtn.style.background = '#006B3F';
-                    accountBtn.style.color = 'white';
-                }
-                
-                // Add logout option to auth modal
-                const authHeader = document.querySelector('.auth-header');
-                if (!document.getElementById('logoutBtn')) {
-                    const logoutBtn = document.createElement('button');
-                    logoutBtn.id = 'logoutBtn';
-                    logoutBtn.className = 'auth-btn';
-                    logoutBtn.style.background = '#CE1126';
-                    logoutBtn.style.marginTop = '10px';
-                    logoutBtn.textContent = 'Logout';
-                    logoutBtn.onclick = logout;
-                    authHeader.appendChild(logoutBtn);
-                }
-            } else {
-                accountBtn.innerHTML = '🔐 Account';
-                accountBtn.style.background = '#FCD116';
-                accountBtn.style.color = '#006B3F';
-                
-                // Remove logout button if exists
-                const logoutBtn = document.getElementById('logoutBtn');
-                if (logoutBtn) {
-                    logoutBtn.remove();
-                }
-            }
-        }
-
-        // Check authentication on page load
-        function checkAuthOnLoad() {
-            if (currentUser) {
-                updateUIForAuth();
-                
-                // If user is not approved, log them out
-                if (currentUser.status !== 'approved' && !currentUser.isAdmin) {
-                    showToast(
-                        'Account Pending', 
-                        'Your account is still pending admin approval', 
-                        'warning', 
-                        5000
-                    );
-                    logout();
-                }
-            }
-        }
-
         // Toast Notification System
         function showToast(title, message, type = 'info', duration = 5000) {
             const toastContainer = document.getElementById('toastContainer');
@@ -2695,30 +1952,6 @@
 
         // Navigation
         function showSection(sectionId) {
-            // Check if user is authenticated for non-home sections
-            if (sectionId !== 'home' && !currentUser) {
-                showToast(
-                    'Authentication Required', 
-                    'Please login to access learning content', 
-                    'warning', 
-                    5000
-                );
-                showAuthModal();
-                return;
-            }
-            
-            // Check if user is approved
-            if (sectionId !== 'home' && currentUser && currentUser.status !== 'approved' && !currentUser.isAdmin) {
-                showToast(
-                    'Account Pending', 
-                    'Your account is pending admin approval', 
-                    'warning', 
-                    5000
-                );
-                showAuthModal();
-                return;
-            }
-            
             document.querySelectorAll('.section').forEach(section => {
                 section.classList.remove('active');
             });
@@ -2747,30 +1980,6 @@
 
         // COMPLETELY FIXED: Audio pronunciation using Web Speech API with proper French liaison
         function playAudioWithArticle(category, word) {
-            // Check authentication
-            if (!currentUser) {
-                showToast(
-                    'Authentication Required', 
-                    'Please login to use audio features', 
-                    'warning', 
-                    4000
-                );
-                showAuthModal();
-                return;
-            }
-            
-            // Check if user is approved
-            if (currentUser.status !== 'approved' && !currentUser.isAdmin) {
-                showToast(
-                    'Account Pending', 
-                    'Your account is pending admin approval', 
-                    'warning', 
-                    4000
-                );
-                showAuthModal();
-                return;
-            }
-            
             const vocab = {
                 // Greetings
                 'greeting': {
@@ -2885,30 +2094,6 @@
 
         // COMPLETELY FIXED: Dialogue Audio Function with improved pronunciation
         function playDialogueSentence(dialogueId) {
-            // Check authentication
-            if (!currentUser) {
-                showToast(
-                    'Authentication Required', 
-                    'Please login to use audio features', 
-                    'warning', 
-                    4000
-                );
-                showAuthModal();
-                return;
-            }
-            
-            // Check if user is approved
-            if (currentUser.status !== 'approved' && !currentUser.isAdmin) {
-                showToast(
-                    'Account Pending', 
-                    'Your account is pending admin approval', 
-                    'warning', 
-                    4000
-                );
-                showAuthModal();
-                return;
-            }
-            
             const dialogues = {
                 // Greetings dialogues
                 'greeting1': { text: 'Bonjour! Comment ça va?', translation: 'Hello! How are you?', speaker: 'male' },
@@ -2994,30 +2179,6 @@
 
         // COMPLETELY FIXED: Full Conversation Function with improved pronunciation
         function playFullConversation(topic) {
-            // Check authentication
-            if (!currentUser) {
-                showToast(
-                    'Authentication Required', 
-                    'Please login to use audio features', 
-                    'warning', 
-                    4000
-                );
-                showAuthModal();
-                return;
-            }
-            
-            // Check if user is approved
-            if (currentUser.status !== 'approved' && !currentUser.isAdmin) {
-                showToast(
-                    'Account Pending', 
-                    'Your account is pending admin approval', 
-                    'warning', 
-                    4000
-                );
-                showAuthModal();
-                return;
-            }
-            
             const conversations = {
                 'greetings': [
                     { text: 'Bonjour! Comment ça va?', speaker: 'male', name: 'Kofi' },
@@ -3242,30 +2403,6 @@
         ];
 
         function startGreetingsQuiz() {
-            // Check authentication
-            if (!currentUser) {
-                showToast(
-                    'Authentication Required', 
-                    'Please login to take quizzes', 
-                    'warning', 
-                    4000
-                );
-                showAuthModal();
-                return;
-            }
-            
-            // Check if user is approved
-            if (currentUser.status !== 'approved' && !currentUser.isAdmin) {
-                showToast(
-                    'Account Pending', 
-                    'Your account is pending admin approval', 
-                    'warning', 
-                    4000
-                );
-                showAuthModal();
-                return;
-            }
-            
             greetingsCurrentQuestion = 0;
             greetingsScore = 0;
             document.getElementById('greetingsScore').textContent = greetingsScore;
@@ -3409,30 +2546,6 @@
         ];
 
         function startGreetingsMemory() {
-            // Check authentication
-            if (!currentUser) {
-                showToast(
-                    'Authentication Required', 
-                    'Please login to play games', 
-                    'warning', 
-                    4000
-                );
-                showAuthModal();
-                return;
-            }
-            
-            // Check if user is approved
-            if (currentUser.status !== 'approved' && !currentUser.isAdmin) {
-                showToast(
-                    'Account Pending', 
-                    'Your account is pending admin approval', 
-                    'warning', 
-                    4000
-                );
-                showAuthModal();
-                return;
-            }
-            
             // Hide flashcards and show memory game
             document.getElementById('greetingsFlashcards').style.display = 'none';
             document.getElementById('greetingsMemoryGame').style.display = 'block';
@@ -3532,30 +2645,6 @@
         ];
 
         function startGreetingsFlashcards() {
-            // Check authentication
-            if (!currentUser) {
-                showToast(
-                    'Authentication Required', 
-                    'Please login to use flashcards', 
-                    'warning', 
-                    4000
-                );
-                showAuthModal();
-                return;
-            }
-            
-            // Check if user is approved
-            if (currentUser.status !== 'approved' && !currentUser.isAdmin) {
-                showToast(
-                    'Account Pending', 
-                    'Your account is pending admin approval', 
-                    'warning', 
-                    4000
-                );
-                showAuthModal();
-                return;
-            }
-            
             // Hide memory game and show flashcards
             document.getElementById('greetingsMemoryGame').style.display = 'none';
             document.getElementById('greetingsFlashcards').style.display = 'block';
@@ -3645,30 +2734,6 @@
         ];
 
         function startHouseQuiz() {
-            // Check authentication
-            if (!currentUser) {
-                showToast(
-                    'Authentication Required', 
-                    'Please login to take quizzes', 
-                    'warning', 
-                    4000
-                );
-                showAuthModal();
-                return;
-            }
-            
-            // Check if user is approved
-            if (currentUser.status !== 'approved' && !currentUser.isAdmin) {
-                showToast(
-                    'Account Pending', 
-                    'Your account is pending admin approval', 
-                    'warning', 
-                    4000
-                );
-                showAuthModal();
-                return;
-            }
-            
             houseCurrentQuestion = 0;
             houseScore = 0;
             document.getElementById('houseScore').textContent = houseScore;
@@ -3805,30 +2870,6 @@
         const houseHangmanWords = ['LIT', 'TABLE', 'CHAISE', 'LAMPE', 'CUISINE', 'SALON'];
 
         function startHouseHangman() {
-            // Check authentication
-            if (!currentUser) {
-                showToast(
-                    'Authentication Required', 
-                    'Please login to play games', 
-                    'warning', 
-                    4000
-                );
-                showAuthModal();
-                return;
-            }
-            
-            // Check if user is approved
-            if (currentUser.status !== 'approved' && !currentUser.isAdmin) {
-                showToast(
-                    'Account Pending', 
-                    'Your account is pending admin approval', 
-                    'warning', 
-                    4000
-                );
-                showAuthModal();
-                return;
-            }
-            
             // Hide memory game and show hangman
             document.getElementById('houseMemoryGame').style.display = 'none';
             document.getElementById('houseHangman').style.display = 'block';
@@ -3997,30 +3038,6 @@
         ];
 
         function startHouseMemory() {
-            // Check authentication
-            if (!currentUser) {
-                showToast(
-                    'Authentication Required', 
-                    'Please login to play games', 
-                    'warning', 
-                    4000
-                );
-                showAuthModal();
-                return;
-            }
-            
-            // Check if user is approved
-            if (currentUser.status !== 'approved' && !currentUser.isAdmin) {
-                showToast(
-                    'Account Pending', 
-                    'Your account is pending admin approval', 
-                    'warning', 
-                    4000
-                );
-                showAuthModal();
-                return;
-            }
-            
             // Hide hangman and show memory game
             document.getElementById('houseHangman').style.display = 'none';
             document.getElementById('houseMemoryGame').style.display = 'block';
@@ -4167,30 +3184,6 @@
         ];
 
         function startSchoolQuiz() {
-            // Check authentication
-            if (!currentUser) {
-                showToast(
-                    'Authentication Required', 
-                    'Please login to take quizzes', 
-                    'warning', 
-                    4000
-                );
-                showAuthModal();
-                return;
-            }
-            
-            // Check if user is approved
-            if (currentUser.status !== 'approved' && !currentUser.isAdmin) {
-                showToast(
-                    'Account Pending', 
-                    'Your account is pending admin approval', 
-                    'warning', 
-                    4000
-                );
-                showAuthModal();
-                return;
-            }
-            
             schoolCurrentQuestion = 0;
             schoolScore = 0;
             document.getElementById('schoolScore').textContent = schoolScore;
@@ -4334,30 +3327,6 @@
         ];
 
         function startSchoolFlashcards() {
-            // Check authentication
-            if (!currentUser) {
-                showToast(
-                    'Authentication Required', 
-                    'Please login to use flashcards', 
-                    'warning', 
-                    4000
-                );
-                showAuthModal();
-                return;
-            }
-            
-            // Check if user is approved
-            if (currentUser.status !== 'approved' && !currentUser.isAdmin) {
-                showToast(
-                    'Account Pending', 
-                    'Your account is pending admin approval', 
-                    'warning', 
-                    4000
-                );
-                showAuthModal();
-                return;
-            }
-            
             // Hide memory game and show flashcards
             document.getElementById('schoolMemoryGame').style.display = 'none';
             document.getElementById('schoolFlashcards').style.display = 'block';
@@ -4403,30 +3372,6 @@
         ];
 
         function startSchoolMemory() {
-            // Check authentication
-            if (!currentUser) {
-                showToast(
-                    'Authentication Required', 
-                    'Please login to play games', 
-                    'warning', 
-                    4000
-                );
-                showAuthModal();
-                return;
-            }
-            
-            // Check if user is approved
-            if (currentUser.status !== 'approved' && !currentUser.isAdmin) {
-                showToast(
-                    'Account Pending', 
-                    'Your account is pending admin approval', 
-                    'warning', 
-                    4000
-                );
-                showAuthModal();
-                return;
-            }
-            
             // Hide flashcards and show memory game
             document.getElementById('schoolFlashcards').style.display = 'none';
             document.getElementById('schoolMemoryGame').style.display = 'block';
@@ -4573,30 +3518,6 @@
         ];
 
         function startMarketQuiz() {
-            // Check authentication
-            if (!currentUser) {
-                showToast(
-                    'Authentication Required', 
-                    'Please login to take quizzes', 
-                    'warning', 
-                    4000
-                );
-                showAuthModal();
-                return;
-            }
-            
-            // Check if user is approved
-            if (currentUser.status !== 'approved' && !currentUser.isAdmin) {
-                showToast(
-                    'Account Pending', 
-                    'Your account is pending admin approval', 
-                    'warning', 
-                    4000
-                );
-                showAuthModal();
-                return;
-            }
-            
             marketCurrentQuestion = 0;
             marketScore = 0;
             document.getElementById('marketScore').textContent = marketScore;
@@ -4733,30 +3654,6 @@
         const marketHangmanWords = ['POMME', 'BANANE', 'TOMATE', 'CAROTTE', 'OIGNON', 'PIMENT'];
 
         function startMarketHangman() {
-            // Check authentication
-            if (!currentUser) {
-                showToast(
-                    'Authentication Required', 
-                    'Please login to play games', 
-                    'warning', 
-                    4000
-                );
-                showAuthModal();
-                return;
-            }
-            
-            // Check if user is approved
-            if (currentUser.status !== 'approved' && !currentUser.isAdmin) {
-                showToast(
-                    'Account Pending', 
-                    'Your account is pending admin approval', 
-                    'warning', 
-                    4000
-                );
-                showAuthModal();
-                return;
-            }
-            
             // Hide memory game and show hangman
             document.getElementById('marketMemoryGame').style.display = 'none';
             document.getElementById('marketHangman').style.display = 'block';
@@ -4925,30 +3822,6 @@
         ];
 
         function startMarketMemory() {
-            // Check authentication
-            if (!currentUser) {
-                showToast(
-                    'Authentication Required', 
-                    'Please login to play games', 
-                    'warning', 
-                    4000
-                );
-                showAuthModal();
-                return;
-            }
-            
-            // Check if user is approved
-            if (currentUser.status !== 'approved' && !currentUser.isAdmin) {
-                showToast(
-                    'Account Pending', 
-                    'Your account is pending admin approval', 
-                    'warning', 
-                    4000
-                );
-                showAuthModal();
-                return;
-            }
-            
             // Hide hangman and show memory game
             document.getElementById('marketHangman').style.display = 'none';
             document.getElementById('marketMemoryGame').style.display = 'block';
@@ -5039,60 +3912,38 @@
 
         // Certificate System
         function showCertificate(topic) {
-            // Check authentication
-            if (!currentUser) {
-                showToast(
-                    'Authentication Required', 
-                    'Please login to view certificates', 
-                    'warning', 
-                    4000
-                );
-                showAuthModal();
-                return;
-            }
-            
-            // Check if user is approved
-            if (currentUser.status !== 'approved' && !currentUser.isAdmin) {
-                showToast(
-                    'Account Pending', 
-                    'Your account is pending admin approval', 
-                    'warning', 
-                    4000
-                );
-                showAuthModal();
-                return;
-            }
-            
             const modal = document.getElementById('certificateModal');
-            const studentName = currentUser.name || "Excellent Student";
+            const studentName = prompt("Enter your name for the certificate:", "Excellent Student");
             
-            document.getElementById('certificateStudent').textContent = studentName;
-            document.getElementById('certificateAchievement').textContent = `A réussi avec succès le quiz de ${topic}`;
-            document.getElementById('certificateScore').textContent = "10/10";
-            
-            // Set current date
-            const today = new Date();
-            const dateString = today.toLocaleDateString('fr-FR', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
-            document.getElementById('certificateDate').textContent = dateString;
-            
-            // Show modal with animation
-            modal.classList.add('show');
-            
-            // Big celebration for certificate
-            celebrate(true);
-            setTimeout(() => celebrate(true), 500);
-            setTimeout(() => celebrate(true), 1000);
-            
-            showToast(
-                'Congratulations! 🎓', 
-                `You earned a certificate for ${topic}!`, 
-                'success', 
-                6000
-            );
+            if (studentName) {
+                document.getElementById('certificateStudent').textContent = studentName;
+                document.getElementById('certificateAchievement').textContent = `A réussi avec succès le quiz de ${topic}`;
+                document.getElementById('certificateScore').textContent = "10/10";
+                
+                // Set current date
+                const today = new Date();
+                const dateString = today.toLocaleDateString('fr-FR', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                document.getElementById('certificateDate').textContent = dateString;
+                
+                // Show modal with animation
+                modal.classList.add('show');
+                
+                // Big celebration for certificate
+                celebrate(true);
+                setTimeout(() => celebrate(true), 500);
+                setTimeout(() => celebrate(true), 1000);
+                
+                showToast(
+                    'Congratulations! 🎓', 
+                    `You earned a certificate for ${topic}!`, 
+                    'success', 
+                    6000
+                );
+            }
         }
 
         function closeCertificate() {
@@ -5145,26 +3996,14 @@
                 }, 1000);
             }
             
-            // Check authentication status
-            checkAuthOnLoad();
-            
             // Show welcome toast
             setTimeout(() => {
-                if (!currentUser) {
-                    showToast(
-                        'Welcome! 🇬🇭🇫🇷', 
-                        'Click on any word to hear French pronunciation! Please login for full access.', 
-                        'info', 
-                        5000
-                    );
-                } else {
-                    showToast(
-                        'Welcome Back! 🇬🇭🇫🇷', 
-                        `Great to see you, ${currentUser.name}! Click on any word to hear French pronunciation.`, 
-                        'success', 
-                        5000
-                    );
-                }
+                showToast(
+                    'Welcome! 🇬🇭🇫🇷', 
+                    'Click on any word to hear French pronunciation!', 
+                    'info', 
+                    5000
+                );
             }, 1000);
         };
     </script>

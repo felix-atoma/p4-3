@@ -2092,7 +2092,7 @@
             }
         }
 
-        // COMPLETELY FIXED: Dialogue Audio Function with improved pronunciation
+        // ENHANCED: Dialogue Audio Function with real male and female voice differentiation
         function playDialogueSentence(dialogueId) {
             const dialogues = {
                 // Greetings dialogues
@@ -2131,40 +2131,36 @@
             const dialogue = dialogues[dialogueId];
             const utterance = new SpeechSynthesisUtterance(dialogue.text);
             utterance.lang = 'fr-FR';
-            utterance.rate = 0.7; // Slower for dialogues
+            utterance.rate = 0.7;
             
-            // COMPLETELY FIXED: Improved voice selection
+            // ENHANCED: Better voice selection for clear male/female differentiation
             const voices = speechSynthesis.getVoices();
-            let selectedVoice = voices.find(voice => 
-                voice.lang === 'fr-FR' || 
-                voice.lang === 'fr-CA' || 
-                voice.lang.startsWith('fr')
-            );
+            let selectedVoice = null;
+            
+            if (dialogue.speaker === 'male') {
+                // Try to find male French voices in order of preference
+                selectedVoice = voices.find(v => v.lang === 'fr-FR' && v.name.includes('Thomas')) ||
+                               voices.find(v => v.lang === 'fr-FR' && v.name.includes('Male')) ||
+                               voices.find(v => v.lang === 'fr-FR' && !v.name.includes('Female') && !v.name.includes('Amelie') && !v.name.includes('Marie')) ||
+                               voices.find(v => v.lang.startsWith('fr'));
+                utterance.pitch = 0.85; // Lower pitch for male voice
+            } else {
+                // Try to find female French voices in order of preference
+                selectedVoice = voices.find(v => v.lang === 'fr-FR' && v.name.includes('Amelie')) ||
+                               voices.find(v => v.lang === 'fr-FR' && v.name.includes('Marie')) ||
+                               voices.find(v => v.lang === 'fr-FR' && v.name.includes('Female')) ||
+                               voices.find(v => v.lang.startsWith('fr'));
+                utterance.pitch = 1.15; // Higher pitch for female voice
+            }
             
             if (selectedVoice) {
-                // Simple attempt to differentiate voices
-                if (dialogue.speaker === 'male') {
-                    const maleVoices = voices.filter(v => 
-                        (v.lang === 'fr-FR' || v.lang.startsWith('fr')) && 
-                        (v.name.toLowerCase().includes('male') || v.name.toLowerCase().includes('homme'))
-                    );
-                    if (maleVoices.length > 0) selectedVoice = maleVoices[0];
-                } else {
-                    const femaleVoices = voices.filter(v => 
-                        (v.lang === 'fr-FR' || v.lang.startsWith('fr')) && 
-                        (v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('femme'))
-                    );
-                    if (femaleVoices.length > 0) selectedVoice = femaleVoices[0];
-                }
                 utterance.voice = selectedVoice;
             }
             
-            // COMPLETELY FIXED: Improved pronunciation settings
-            utterance.pitch = dialogue.speaker === 'male' ? 0.9 : 1.1;
             utterance.volume = 1.0;
             
-            // Show toast with speaker info
-            const speakerName = dialogue.speaker === 'male' ? 'Kofi' : (dialogue.speaker === 'female' ? 'Ama' : 'Speaker');
+            // Show toast with speaker info and gender indicator
+            const speakerName = dialogue.speaker === 'male' ? 'Kofi (♂)' : 'Ama (♀)';
             showToast(
                 `${speakerName} says:`, 
                 dialogue.text, 
@@ -2172,12 +2168,11 @@
                 4000
             );
             
-            // COMPLETELY FIXED: Stop any current speech before starting new one
             speechSynthesis.cancel();
             speechSynthesis.speak(utterance);
         }
 
-        // COMPLETELY FIXED: Full Conversation Function with improved pronunciation
+        // ENHANCED: Full Conversation Function with improved male/female voice differentiation
         function playFullConversation(topic) {
             const conversations = {
                 'greetings': [
@@ -2241,41 +2236,39 @@
                 utterance.lang = 'fr-FR';
                 utterance.rate = 0.7;
                 
-                // COMPLETELY FIXED: Improved voice selection
+                // ENHANCED: Better voice selection for clear male/female differentiation
                 const voices = speechSynthesis.getVoices();
-                let selectedVoice = voices.find(voice => 
-                    voice.lang === 'fr-FR' || 
-                    voice.lang === 'fr-CA' || 
-                    voice.lang.startsWith('fr')
-                );
+                let selectedVoice = null;
+                
+                if (line.speaker === 'male') {
+                    // Try to find male French voices in order of preference
+                    selectedVoice = voices.find(v => v.lang === 'fr-FR' && v.name.includes('Thomas')) ||
+                                   voices.find(v => v.lang === 'fr-FR' && v.name.includes('Male')) ||
+                                   voices.find(v => v.lang === 'fr-FR' && !v.name.includes('Female') && !v.name.includes('Amelie') && !v.name.includes('Marie')) ||
+                                   voices.find(v => v.lang.startsWith('fr'));
+                    utterance.pitch = 0.85; // Lower pitch for male voice
+                } else {
+                    // Try to find female French voices in order of preference
+                    selectedVoice = voices.find(v => v.lang === 'fr-FR' && v.name.includes('Amelie')) ||
+                                   voices.find(v => v.lang === 'fr-FR' && v.name.includes('Marie')) ||
+                                   voices.find(v => v.lang === 'fr-FR' && v.name.includes('Female')) ||
+                                   voices.find(v => v.lang.startsWith('fr'));
+                    utterance.pitch = 1.15; // Higher pitch for female voice
+                }
                 
                 if (selectedVoice) {
-                    if (line.speaker === 'male') {
-                        const maleVoices = voices.filter(v => 
-                            (v.lang === 'fr-FR' || v.lang.startsWith('fr')) && 
-                            (v.name.toLowerCase().includes('male') || v.name.toLowerCase().includes('homme'))
-                        );
-                        if (maleVoices.length > 0) selectedVoice = maleVoices[0];
-                    } else {
-                        const femaleVoices = voices.filter(v => 
-                            (v.lang === 'fr-FR' || v.lang.startsWith('fr')) && 
-                            (v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('femme'))
-                        );
-                        if (femaleVoices.length > 0) selectedVoice = femaleVoices[0];
-                    }
                     utterance.voice = selectedVoice;
                 }
                 
-                // COMPLETELY FIXED: Improved pronunciation settings
-                utterance.pitch = line.speaker === 'male' ? 0.9 : 1.1;
                 utterance.volume = 1.0;
                 
                 // Highlight the current line being spoken
                 highlightDialogueLine(topic, index);
                 
                 // Show who's speaking in toast
+                const speakerName = line.speaker === 'male' ? `${line.name} (♂)` : `${line.name} (♀)`;
                 showToast(
-                    `${line.name}:`, 
+                    `${speakerName}:`, 
                     line.text, 
                     'info', 
                     4000
@@ -2288,7 +2281,7 @@
                     setTimeout(playNextLine, 1000); // Pause between lines
                 };
                 
-                // COMPLETELY FIXED: Stop any current speech before starting new one
+                // Stop any current speech before starting new one
                 speechSynthesis.cancel();
                 speechSynthesis.speak(utterance);
             }
